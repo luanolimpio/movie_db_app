@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-/// * [DirecaoShimmer.ltr] direcao do shimmer da esquerda para direita
-/// * [DirecaoShimmer.rtl] direcaodo shimmer  da direita para esquerda
-/// * [DirecaoShimmer.ttb] direcao do shimmer da cima para baixo
-/// * [DirecaoShimmer.btt] direcao do shimmer da baixo para cima
-enum DirecaoShimmer { ltr, rtl, ttb, btt }
+/// * [DirectionShimmer.ltr] direcao do shimmer da esquerda para direita
+/// * [DirectionShimmer.rtl] direcaodo shimmer  da direita para esquerda
+/// * [DirectionShimmer.ttb] direcao do shimmer da cima para baixo
+/// * [DirectionShimmer.btt] direcao do shimmer da baixo para cima
+enum DirectionShimmer { ltr, rtl, ttb, btt }
 
 @immutable
 class Shimmer extends StatefulWidget {
@@ -13,10 +13,10 @@ class Shimmer extends StatefulWidget {
     required this.child,
     required this.gradient,
     Key? key,
-    this.direcao = DirecaoShimmer.ltr,
-    this.periodo = const Duration(milliseconds: 1500),
+    this.direction = DirectionShimmer.ltr,
+    this.duration = const Duration(milliseconds: 1500),
     this.loop = 0,
-    this.ativado = true,
+    this.active = true,
   }) : super(key: key);
 
   Shimmer.fromColors({
@@ -24,10 +24,10 @@ class Shimmer extends StatefulWidget {
     required Color baseColor,
     required Color highlightColor,
     Key? key,
-    this.periodo = const Duration(milliseconds: 1500),
-    this.direcao = DirecaoShimmer.ltr,
+    this.duration = const Duration(milliseconds: 1500),
+    this.direction = DirectionShimmer.ltr,
     this.loop = 0,
-    this.ativado = true,
+    this.active = true,
   })  : gradient = LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.centerRight,
@@ -48,11 +48,11 @@ class Shimmer extends StatefulWidget {
         super(key: key);
 
   final Widget child;
-  final Duration periodo;
-  final DirecaoShimmer direcao;
+  final Duration duration;
+  final DirectionShimmer direction;
   final Gradient gradient;
   final int loop;
-  final bool ativado;
+  final bool active;
 
   @override
   State<Shimmer> createState() => _ShimmerState();
@@ -63,16 +63,16 @@ class Shimmer extends StatefulWidget {
     properties.add(DiagnosticsProperty<Gradient>('gradient', gradient,
         defaultValue: null));
     properties.add(
-      EnumProperty<DirecaoShimmer>(
+      EnumProperty<DirectionShimmer>(
         'direcao',
-        direcao,
-        defaultValue: DirecaoShimmer.ltr,
+        direction,
+        defaultValue: DirectionShimmer.ltr,
       ),
     );
     properties.add(
       DiagnosticsProperty<Duration>(
         'periodo',
-        periodo,
+        duration,
         defaultValue: const Duration(
           milliseconds: 1500,
         ),
@@ -81,7 +81,7 @@ class Shimmer extends StatefulWidget {
     properties.add(
       DiagnosticsProperty<bool>(
         'ativado',
-        ativado,
+        active,
         defaultValue: true,
       ),
     );
@@ -91,31 +91,31 @@ class Shimmer extends StatefulWidget {
 
 class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  int _contador = 0;
+  int _counter = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.periodo)
+    _controller = AnimationController(vsync: this, duration: widget.duration)
       ..addStatusListener((AnimationStatus status) {
         if (status != AnimationStatus.completed) {
           return;
         }
-        _contador++;
+        _counter++;
         if (widget.loop <= 0) {
           _controller.repeat();
-        } else if (_contador < widget.loop) {
+        } else if (_counter < widget.loop) {
           _controller.forward(from: 0.0);
         }
       });
-    if (widget.ativado) {
+    if (widget.active) {
       _controller.forward();
     }
   }
 
   @override
   void didUpdateWidget(Shimmer oldWidget) {
-    if (widget.ativado) {
+    if (widget.active) {
       _controller.forward();
     } else {
       _controller.stop();
@@ -129,9 +129,9 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
       animation: _controller,
       child: widget.child,
       builder: (BuildContext context, Widget? child) => _Shimmer(
-        direcao: widget.direcao,
+        direction: widget.direction,
         gradient: widget.gradient,
-        percentual: _controller.value,
+        percentage: _controller.value,
         child: child,
       ),
     );
@@ -147,37 +147,38 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
 @immutable
 class _Shimmer extends SingleChildRenderObjectWidget {
   const _Shimmer({
-    required this.percentual,
-    required this.direcao,
+    required this.percentage,
+    required this.direction,
     required this.gradient,
     Widget? child,
   }) : super(child: child);
-  final double percentual;
-  final DirecaoShimmer direcao;
+  final double percentage;
+  final DirectionShimmer direction;
   final Gradient gradient;
 
   @override
   _ShimmerFilter createRenderObject(BuildContext context) {
-    return _ShimmerFilter(percentual, direcao, gradient);
+    return _ShimmerFilter(percentage, direction, gradient);
   }
 
   @override
   void updateRenderObject(BuildContext context, _ShimmerFilter shimmer) {
-    shimmer.percentual = percentual;
+    shimmer.percentage = percentage;
     shimmer.gradient = gradient;
-    shimmer.direcao = direcao;
+    shimmer.direction = direction;
   }
 }
 
 class _ShimmerFilter extends RenderProxyBox {
   _ShimmerFilter(
-    this._percentual,
-    this._direcao,
+    this._percentage,
+    this._direction,
     this._gradient,
   );
-  DirecaoShimmer _direcao;
+
+  DirectionShimmer _direction;
   Gradient _gradient;
-  double _percentual;
+  double _percentage;
 
   @override
   ShaderMaskLayer? get layer => super.layer as ShaderMaskLayer?;
@@ -185,11 +186,11 @@ class _ShimmerFilter extends RenderProxyBox {
   @override
   bool get alwaysNeedsCompositing => child != null;
 
-  set percentual(double newValue) {
-    if (newValue == _percentual) {
+  set percentage(double newValue) {
+    if (newValue == _percentage) {
       return;
     }
-    _percentual = newValue;
+    _percentage = newValue;
     markNeedsPaint();
   }
 
@@ -201,11 +202,11 @@ class _ShimmerFilter extends RenderProxyBox {
     markNeedsPaint();
   }
 
-  set direcao(DirecaoShimmer newDirection) {
-    if (newDirection == _direcao) {
+  set direction(DirectionShimmer newDirection) {
+    if (newDirection == _direction) {
       return;
     }
-    _direcao = newDirection;
+    _direction = newDirection;
     markNeedsLayout();
   }
 
@@ -218,20 +219,20 @@ class _ShimmerFilter extends RenderProxyBox {
       final double height = child!.size.height;
       Rect rect;
       double dx, dy;
-      if (_direcao == DirecaoShimmer.rtl) {
-        dx = _offset(width, -width, _percentual);
+      if (_direction == DirectionShimmer.rtl) {
+        dx = _offset(width, -width, _percentage);
         dy = 0.0;
         rect = Rect.fromLTWH(dx - width, dy, 3 * width, height);
-      } else if (_direcao == DirecaoShimmer.ttb) {
+      } else if (_direction == DirectionShimmer.ttb) {
         dx = 0.0;
-        dy = _offset(-height, height, _percentual);
+        dy = _offset(-height, height, _percentage);
         rect = Rect.fromLTWH(dx, dy - height, width, 3 * height);
-      } else if (_direcao == DirecaoShimmer.btt) {
+      } else if (_direction == DirectionShimmer.btt) {
         dx = 0.0;
-        dy = _offset(height, -height, _percentual);
+        dy = _offset(height, -height, _percentage);
         rect = Rect.fromLTWH(dx, dy - height, width, 3 * height);
       } else {
-        dx = _offset(-width, width, _percentual);
+        dx = _offset(-width, width, _percentage);
         dy = 0.0;
         rect = Rect.fromLTWH(dx - width, dy, 3 * width, height);
       }
@@ -246,7 +247,7 @@ class _ShimmerFilter extends RenderProxyBox {
     }
   }
 
-  double _offset(double start, double end, double percentual) {
-    return start + (end - start) * percentual;
+  double _offset(double start, double end, double percentage) {
+    return start + (end - start) * percentage;
   }
 }

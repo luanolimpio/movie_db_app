@@ -6,7 +6,9 @@ abstract class BaseApp {
   List<MicroApp> get microApps;
 
   Map<String, WidgetBuilderArgs> get baseRoutes;
+}
 
+mixin BaseAppMixin implements BaseApp {
   final Map<String, WidgetBuilderArgs> routes = {};
 
   void registerRoutes() {
@@ -23,7 +25,7 @@ abstract class BaseApp {
   }
 
   Route<dynamic>? generateRoute(RouteSettings settings) {
-    var widgetBuilder = routes[settings.name];
+    final widgetBuilder = routes[settings.name];
     if (widgetBuilder == null) return null;
     return MaterialPageRoute(
       builder: (context) => widgetBuilder(context, settings.arguments),

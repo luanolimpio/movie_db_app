@@ -11,7 +11,7 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget with BaseApp {
+class MyApp extends StatelessWidget with BaseAppMixin {
   MyApp({super.key}) {
     super.registerRoutes();
     super.registerInjections();
@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget with BaseApp {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFF333333),
+        useMaterial3: false,
       ),
       locale: const Locale('pt', 'BR'),
       supportedLocales: const [Locale('pt', 'BR')],

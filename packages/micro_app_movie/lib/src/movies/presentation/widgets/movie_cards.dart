@@ -17,7 +17,7 @@ class MovieCards extends StatefulWidget {
 
 class _MovieCardsState extends State<MovieCards>
     with AutomaticKeepAliveClientMixin {
-  late MovieBloc _bloc;
+  late final MovieBloc _bloc;
 
   EdgeInsets get _padding => const EdgeInsets.only(
         left: 10,

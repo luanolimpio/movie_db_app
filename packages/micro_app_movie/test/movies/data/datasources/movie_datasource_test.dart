@@ -40,7 +40,7 @@ void main() {
 
     test('Should return error when call dio client', () async {
       when(() => dioClient.get(any())).thenThrow(
-        DioError(
+        DioException(
           requestOptions: RequestOptions(
             path: '',
           ),
@@ -68,7 +68,7 @@ void main() {
 
     test('Should return error when call dio client', () async {
       when(() => dioClient.get(any())).thenThrow(
-        DioError(
+        DioException(
           requestOptions: RequestOptions(
             path: '',
           ),

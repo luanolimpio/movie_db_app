@@ -10,7 +10,7 @@ import '../../movies/presentation/bloc/movie_bloc.dart';
 
 class Injector {
   static void initialize() {
-    GetIt getIt = GetIt.instance;
+    final GetIt getIt = GetIt.instance;
 
     getIt.registerLazySingleton<IMovieDatasource>(() => MovieDatasource(
           Dio(
