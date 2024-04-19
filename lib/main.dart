@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:micro_app_movie/micro_app_movie.dart';
+import 'package:micro_app_tv_show/micro_app_tv_show.dart';
 import 'package:micro_core/micro_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -48,5 +49,6 @@ class MyApp extends StatelessWidget with BaseAppMixin {
   @override
   List<MicroApp> get microApps => [
         MicroAppMovieResolver(),
+        MicroAppTVShowResolver(),
       ];
 }

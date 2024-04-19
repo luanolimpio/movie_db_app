@@ -63,7 +63,7 @@ class MovieDetailsModel extends MovieDetailsEntity {
       overview: map['overview'],
       popularity: map['popularity'],
       posterPath: map['poster_path'],
-      releaseDate: (map['release_date'] as String).toDateTime,
+      releaseDate: (map['release_date'] as String).toDateTime!,
       revenue: map['revenue'],
       runtime: map['runtime'],
       status: map['status'],

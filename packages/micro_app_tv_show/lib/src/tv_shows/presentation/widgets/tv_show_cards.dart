@@ -3,21 +3,21 @@ import 'package:micro_common/micro_common.dart';
 import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
-import '../../../core/routes/movie_routes.dart';
-import '../bloc/movie_bloc.dart';
-import '../bloc/movie_event.dart';
-import '../bloc/movie_state.dart';
 
-class MovieCards extends StatefulWidget {
-  const MovieCards({Key? key}) : super(key: key);
+import '../bloc/tv_show_bloc.dart';
+import '../bloc/tv_show_event.dart';
+import '../bloc/tv_show_state.dart';
+
+class TVShowCards extends StatefulWidget {
+  const TVShowCards({super.key});
 
   @override
-  State<MovieCards> createState() => _MovieCardsState();
+  State<TVShowCards> createState() => _TVShowCardsState();
 }
 
-class _MovieCardsState extends State<MovieCards>
+class _TVShowCardsState extends State<TVShowCards>
     with AutomaticKeepAliveClientMixin {
-  late final MovieBloc _bloc;
+  late final TVShowBloc _bloc;
 
   EdgeInsets get _padding => const EdgeInsets.only(
         left: 10,
@@ -28,7 +28,7 @@ class _MovieCardsState extends State<MovieCards>
   @override
   void initState() {
     super.initState();
-    _bloc = GetIt.I<MovieBloc>()..add(const GetNowPlayingEvent());
+    _bloc = GetIt.I<TVShowBloc>()..add(const GetOnTheAirEvent());
   }
 
   @override
@@ -37,13 +37,13 @@ class _MovieCardsState extends State<MovieCards>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BlocBuilder<MovieBloc, MovieState>(
+    return BlocBuilder(
       bloc: _bloc,
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (state is MovieLoading) ...[
+            if (state is TVShowLoading) ...[
               Padding(
                 padding: _padding,
                 child: const DSShimmer(
@@ -52,11 +52,11 @@ class _MovieCardsState extends State<MovieCards>
                 ),
               ),
               const DSPosterListShimmer(),
-            ] else if (state is MovieSuccess) ...[
+            ] else if (state is TVShowSuccess) ...[
               Padding(
                 padding: _padding,
                 child: const Text(
-                  'Filmes em exibição',
+                  'Séries em exibição',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -66,18 +66,18 @@ class _MovieCardsState extends State<MovieCards>
               ),
               DSPosterCardList(
                 posterCards: List.generate(
-                  state.movies.length,
+                  state.tvShows.length,
                   (index) {
-                    final movie = state.movies[index];
+                    final movie = state.tvShows[index];
                     return DSPosterCard(
                       path: APIInfo.requestPosterImage(
                         movie.posterPath,
                       ),
                       onTap: () {
-                        navigatorKey.currentState!.pushNamed(
-                          MovieRoutes.details,
-                          arguments: movie.id,
-                        );
+                        // navigatorKey.currentState!.pushNamed(
+                        //   MovieRoutes.details,
+                        //   arguments: movie.id,
+                        // );
                       },
                     );
                   },

@@ -1,8 +1,8 @@
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 extension DateTimeFormatterString on String {
-  DateTime get toDateTime {
-    return DateTime.parse(this);
+  DateTime? get toDateTime {
+    return DateTime.tryParse(this);
   }
 }
 

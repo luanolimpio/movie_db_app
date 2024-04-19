@@ -40,7 +40,7 @@ class MovieModel extends MovieEntity {
       posterPath: map['poster_path'],
       adult: map['adult'],
       overview: map['overview'],
-      releaseDate: (map['release_date'] as String).toDateTime,
+      releaseDate: (map['release_date'] as String).toDateTime!,
       genreIds: map['genre_ids'].cast<int>(),
       id: map['id'],
       originalTitle: map['original_title'],
