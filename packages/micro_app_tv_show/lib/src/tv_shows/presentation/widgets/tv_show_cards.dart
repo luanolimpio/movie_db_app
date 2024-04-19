@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:micro_common/micro_common.dart';
-import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
