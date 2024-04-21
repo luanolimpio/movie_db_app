@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:micro_app_movie/src/movies/domain/entities/genre_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_details_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/usecases/get_movie_details_usecase.dart';

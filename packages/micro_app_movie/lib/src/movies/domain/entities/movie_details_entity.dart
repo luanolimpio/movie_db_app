@@ -1,6 +1,5 @@
+import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
-
-import 'genre_entity.dart';
 
 class MovieDetailsEntity extends Equatable {
   const MovieDetailsEntity({

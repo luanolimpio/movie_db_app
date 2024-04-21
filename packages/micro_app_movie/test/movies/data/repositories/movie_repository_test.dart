@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_movie/src/movies/data/datasources/i_movie_datasource.dart';
 import 'package:micro_app_movie/src/movies/data/repositories/movie_repository.dart';
-import 'package:micro_app_movie/src/movies/domain/entities/genre_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_details_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
+import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 class MockMovieDatasource extends Mock implements IMovieDatasource {}

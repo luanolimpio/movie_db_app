@@ -1,8 +1,6 @@
 import 'package:micro_common/micro_common.dart';
 
-import '../../domain/entities/genre_entity.dart';
 import '../../domain/entities/movie_details_entity.dart';
-import 'genre_model.dart';
 
 class MovieDetailsModel extends MovieDetailsEntity {
   const MovieDetailsModel({

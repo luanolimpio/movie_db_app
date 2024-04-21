@@ -20,7 +20,6 @@ class TVShowModel extends TVShowEntity {
   });
 
   factory TVShowModel.fromJson(Map<String, dynamic> map) {
-    print(map['first_air_date']);
     return TVShowModel(
       backdropPath: map['backdrop_path'],
       firstAirDate: (map['first_air_date'] as String).toDateTime,

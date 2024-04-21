@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:micro_app_movie/src/movies/data/models/genre_model.dart';
 import 'package:micro_app_movie/src/movies/data/models/movie_details_model.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_details_entity.dart';
+import 'package:micro_common/micro_common.dart';
 
 void main() {
   final tMovieDetailsModel = MovieDetailsModel(
