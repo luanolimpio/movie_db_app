@@ -2,27 +2,27 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_details_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/usecases/get_movie_details_usecase.dart';
-import 'package:micro_app_movie/src/movies/domain/usecases/get_now_playing_usecase.dart';
+import 'package:micro_app_movie/src/movies/domain/usecases/get_movies_now_playing_usecase.dart';
 import 'package:micro_app_movie/src/movies/presentation/bloc/movie_bloc.dart';
 import 'package:micro_app_movie/src/movies/presentation/bloc/movie_event.dart';
 import 'package:micro_app_movie/src/movies/presentation/bloc/movie_state.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
-class MockGetNowPlayingUseCase extends Mock implements GetNowPlayingUseCase {}
+class MockGetMoviesNowPlayingUseCase extends Mock implements GetMoviesNowPlayingUseCase {}
 
 class MockGetMovieDetailsUseCase extends Mock
     implements GetMovieDetailsUseCase {}
 
 void main() {
-  late MockGetNowPlayingUseCase getNowPlayingUseCase;
+  late MockGetMoviesNowPlayingUseCase getMoviesNowPlayingUseCase;
   late MockGetMovieDetailsUseCase getMovieDetailsUseCase;
   late MovieBloc bloc;
 
   setUp(() {
-    getNowPlayingUseCase = MockGetNowPlayingUseCase();
+    getMoviesNowPlayingUseCase = MockGetMoviesNowPlayingUseCase();
     getMovieDetailsUseCase = MockGetMovieDetailsUseCase();
-    bloc = MovieBloc(getNowPlayingUseCase, getMovieDetailsUseCase);
+    bloc = MovieBloc(getMoviesNowPlayingUseCase, getMovieDetailsUseCase);
   });
 
   tearDown(() {
@@ -81,12 +81,12 @@ void main() {
     blocTest<MovieBloc, MovieState>(
       'Should emit the correct state sequence when getNowPlayingUseCase returns success',
       build: () {
-        when(() => getNowPlayingUseCase())
+        when(() => getMoviesNowPlayingUseCase())
             .thenAnswer((_) async => Right(tListMovieEntity));
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetNowPlayingEvent());
+        bloc.add(const GetMoviesNowPlayingEvent());
       },
       expect: () => <dynamic>[
         isA<MovieLoading>(),
@@ -97,12 +97,12 @@ void main() {
     blocTest<MovieBloc, MovieState>(
       'Should emit the correct state sequence when getNowPlayingUseCase returns error',
       build: () {
-        when(() => getNowPlayingUseCase())
+        when(() => getMoviesNowPlayingUseCase())
             .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetNowPlayingEvent());
+        bloc.add(const GetMoviesNowPlayingEvent());
       },
       expect: () => <dynamic>[
         isA<MovieLoading>(),
@@ -120,7 +120,7 @@ void main() {
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetDetailsEvent(id: tId));
+        bloc.add(const GetMovieDetailsEvent(id: tId));
       },
       expect: () => <dynamic>[
         isA<MovieDetailsLoading>(),
@@ -136,7 +136,7 @@ void main() {
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetDetailsEvent(id: tId));
+        bloc.add(const GetMovieDetailsEvent(id: tId));
       },
       expect: () => <dynamic>[
         isA<MovieDetailsLoading>(),

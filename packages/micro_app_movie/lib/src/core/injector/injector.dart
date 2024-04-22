@@ -5,7 +5,7 @@ import '../../movies/data/datasources/movie_datasource.dart';
 import '../../movies/data/repositories/movie_repository.dart';
 import '../../movies/domain/repositories/i_movie_repository.dart';
 import '../../movies/domain/usecases/get_movie_details_usecase.dart';
-import '../../movies/domain/usecases/get_now_playing_usecase.dart';
+import '../../movies/domain/usecases/get_movies_now_playing_usecase.dart';
 import '../../movies/presentation/bloc/movie_bloc.dart';
 
 class Injector {
@@ -24,8 +24,8 @@ class Injector {
       () => MovieRepository(getIt()),
     );
 
-    getIt.registerLazySingleton<GetNowPlayingUseCase>(
-      () => GetNowPlayingUseCase(getIt()),
+    getIt.registerLazySingleton<GetMoviesNowPlayingUseCase>(
+      () => GetMoviesNowPlayingUseCase(getIt()),
     );
 
     getIt.registerLazySingleton<GetMovieDetailsUseCase>(

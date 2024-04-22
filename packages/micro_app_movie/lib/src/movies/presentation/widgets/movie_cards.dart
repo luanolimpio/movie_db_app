@@ -28,7 +28,7 @@ class _MovieCardsState extends State<MovieCards>
   @override
   void initState() {
     super.initState();
-    _bloc = GetIt.I<MovieBloc>()..add(const GetNowPlayingEvent());
+    _bloc = GetIt.I<MovieBloc>()..add(const GetMoviesNowPlayingEvent());
   }
 
   @override

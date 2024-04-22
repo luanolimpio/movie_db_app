@@ -1,46 +1,26 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:micro_app_tv_show/src/tv_shows/data/datasources/i_tv_show_datasource.dart';
-import 'package:micro_app_tv_show/src/tv_shows/data/repositories/tv_show_repository.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/created_by_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/last_episode_to_air_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/network_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/season_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_details_entity.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_entity.dart';
+import 'package:micro_app_tv_show/src/tv_shows/domain/repositories/i_tv_show_repository.dart';
+import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_show_details_usecase.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
-class MockTVShowDatasource extends Mock implements ITVShowDatasource {}
+class MockTVShowRepository extends Mock implements ITVShowRepository {}
 
 void main() {
-  late MockTVShowDatasource datasource;
-  late TVShowRepository repository;
+  late MockTVShowRepository repository;
+  late GetTVShowDetailsUseCase getTVShowDetailsUseCase;
 
   setUp(() {
-    datasource = MockTVShowDatasource();
-    repository = TVShowRepository(datasource);
+    repository = MockTVShowRepository();
+    getTVShowDetailsUseCase = GetTVShowDetailsUseCase(repository);
   });
 
   const tId = 1399;
-
-  final tListTVShowEntity = [
-    TVShowEntity(
-      backdropPath: '/mAJ84W6I8I272Da87qplS2Dp9ST.jpg',
-      firstAirDate: DateTime.now(),
-      genreIds: const [9648, 18],
-      id: 202250,
-      name: 'Dirty Linen',
-      originCountry: const ['PH'],
-      originalLanguage: 'tl',
-      originalName: 'Dirty Linen',
-      overview:
-          'To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.',
-      popularity: 2797.914,
-      posterPath: '/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg',
-      voteAverage: 5,
-      voteCount: 13,
-    ),
-  ];
 
   final tTVShowDetailsEntity = TVShowDetailsEntity(
     adult: false,
@@ -117,35 +97,15 @@ void main() {
     voteCount: 21390,
   );
 
-  group('getOnTheAir', () {
-    test('Should return success when call datasource', () async {
-      when(() => datasource.getOnTheAir())
-          .thenAnswer((_) async => Right(tListTVShowEntity));
-      final result = await repository.getOnTheAir();
-      expect(result.isRight(), true);
-    });
-
-    test('Should return error when call datasource', () async {
-      when(() => datasource.getOnTheAir())
-          .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-      final result = await repository.getOnTheAir();
-      expect(result.isLeft(), true);
-    });
+  test('Should return a TVShowDetailsEntity when call repository', () async {
+    when(() => repository.getDetails(tId)).thenAnswer((_) async => Right(tTVShowDetailsEntity));
+    final result = await getTVShowDetailsUseCase(tId);
+    expect(result, Right<Exception, TVShowDetailsEntity>(tTVShowDetailsEntity));
   });
 
-  group('getDetails', () {
-    test('Should return success when call datasource', () async {
-      when(() => datasource.getDetails(tId))
-          .thenAnswer((_) async => Right(tTVShowDetailsEntity));
-      final result = await repository.getDetails(tId);
-      expect(result.isRight(), true);
-    });
-
-    test('Should return error when call datasource', () async {
-      when(() => datasource.getDetails(tId))
-          .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-      final result = await repository.getDetails(tId);
-      expect(result.isLeft(), true);
-    });
+  test('Should return an exception when call repository', () async {
+    when(() => repository.getDetails(tId)).thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
+    final result = await getTVShowDetailsUseCase(tId);
+    expect(result.isLeft(), true);
   });
 }

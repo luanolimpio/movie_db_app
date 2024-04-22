@@ -1,18 +1,18 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/repositories/i_tv_show_repository.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_on_the_air_usecase.dart';
+import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_shows_on_the_air_usecase.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 class MockTVShowRepository extends Mock implements ITVShowRepository {}
 
 void main() {
   late MockTVShowRepository repository;
-  late GetOnTheAirUseCase getOnTheAirUseCase;
+  late GetTVShowsOnTheAirUseCase getTVShowsOnTheAirUseCase;
 
   setUp(() {
     repository = MockTVShowRepository();
-    getOnTheAirUseCase = GetOnTheAirUseCase(repository);
+    getTVShowsOnTheAirUseCase = GetTVShowsOnTheAirUseCase(repository);
   });
 
   final tListTVShowEntity = [
@@ -37,14 +37,14 @@ void main() {
   test('Should return a TVShowEntity when call repository', () async {
     when(() => repository.getOnTheAir())
         .thenAnswer((_) async => Right(tListTVShowEntity));
-    final result = await getOnTheAirUseCase();
+    final result = await getTVShowsOnTheAirUseCase();
     expect(result, Right<Exception, List<TVShowEntity>>(tListTVShowEntity));
   });
 
   test('Should return an exception when call repository', () async {
     when(() => repository.getOnTheAir())
         .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-    final result = await getOnTheAirUseCase();
+    final result = await getTVShowsOnTheAirUseCase();
     expect(result.isLeft(), true);
   });
 }

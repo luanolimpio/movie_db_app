@@ -2,12 +2,12 @@ abstract class MovieEvent {
   const MovieEvent();
 }
 
-class GetNowPlayingEvent extends MovieEvent {
-  const GetNowPlayingEvent();
+class GetMoviesNowPlayingEvent extends MovieEvent {
+  const GetMoviesNowPlayingEvent();
 }
 
-class GetDetailsEvent extends MovieEvent {
-  const GetDetailsEvent({required this.id});
+class GetMovieDetailsEvent extends MovieEvent {
+  const GetMovieDetailsEvent({required this.id});
 
   final int id;
 }

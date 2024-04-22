@@ -2,20 +2,20 @@ import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 import '../../domain/usecases/get_movie_details_usecase.dart';
-import '../../domain/usecases/get_now_playing_usecase.dart';
+import '../../domain/usecases/get_movies_now_playing_usecase.dart';
 import 'movie_event.dart';
 import 'movie_state.dart';
 
 class MovieBloc extends Bloc<MovieEvent, MovieState> {
-  final GetNowPlayingUseCase _getNowPlayingUseCase;
+  final GetMoviesNowPlayingUseCase _getNowPlayingUseCase;
   final GetMovieDetailsUseCase _getMovieDetailsUseCase;
 
   MovieBloc(
     this._getNowPlayingUseCase,
     this._getMovieDetailsUseCase,
   ) : super(const MovieInitial()) {
-    on<GetNowPlayingEvent>(_getNowPlaying);
-    on<GetDetailsEvent>(_getDetails);
+    on<GetMoviesNowPlayingEvent>(_getNowPlaying);
+    on<GetMovieDetailsEvent>(_getDetails);
   }
 
   Future<void> _getNowPlaying(
@@ -31,7 +31,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
   }
 
   Future<void> _getDetails(
-    GetDetailsEvent event,
+    GetMovieDetailsEvent event,
     Emitter<MovieState> emit,
   ) async {
     emit(const MovieDetailsLoading());

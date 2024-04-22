@@ -27,7 +27,7 @@ class _TVShowCardsState extends State<TVShowCards>
   @override
   void initState() {
     super.initState();
-    _bloc = GetIt.I<TVShowBloc>()..add(const GetOnTheAirEvent());
+    _bloc = GetIt.I<TVShowBloc>()..add(const GetTVShowsOnTheAirEvent());
   }
 
   @override

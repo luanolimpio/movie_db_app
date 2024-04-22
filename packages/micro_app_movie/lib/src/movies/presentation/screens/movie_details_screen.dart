@@ -20,7 +20,7 @@ class MovieDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => GetIt.I<MovieBloc>()..add(GetDetailsEvent(id: movieId)),
+      create: (_) => GetIt.I<MovieBloc>()..add(GetMovieDetailsEvent(id: movieId)),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
