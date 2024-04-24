@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:micro_app_movie/src/core/enums/status_enum.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
-import '../../domain/entities/movie_details_entity.dart';
-import '../bloc/movie_bloc.dart';
-import '../bloc/movie_event.dart';
-import '../bloc/movie_state.dart';
+import '../../domain/entities/tv_show_details_entity.dart';
+import '../bloc/tv_show_bloc.dart';
+import '../bloc/tv_show_event.dart';
+import '../bloc/tv_show_state.dart';
 
-class MovieDetailsScreen extends StatelessWidget {
-  const MovieDetailsScreen({
-    required this.movieId,
-    Key? key,
-  }) : super(key: key);
+class TVShowDetailsScreen extends StatelessWidget {
+  const TVShowDetailsScreen({
+    required this.tvShowId,
+    super.key,
+  });
 
-  final int movieId;
+  final int tvShowId;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          GetIt.I<MovieBloc>()..add(GetMovieDetailsEvent(id: movieId)),
+          GetIt.I<TVShowBloc>()..add(GetTVShowDetailsEvent(id: tvShowId)),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: BlocConsumer<MovieBloc, MovieState>(
+            child: BlocConsumer<TVShowBloc, TVShowState>(
               listener: (context, state) {
-                if (state is MovieDetailsError) {
+                if (state is TVShowDetailsError) {
                   navigatorKey.currentState!.pop();
                   DSAlertOverlay.show(
                     context: context,
@@ -38,10 +37,10 @@ class MovieDetailsScreen extends StatelessWidget {
                 }
               },
               builder: (context, state) {
-                if (state is MovieDetailsLoading) {
+                if (state is TVShowDetailsLoading) {
                   return const DSDetailsShimmer();
                 }
-                if (state is MovieDetailsSuccess) {
+                if (state is TVShowDetailsSuccess) {
                   return _details(state.details);
                 }
                 return Container();
@@ -53,14 +52,14 @@ class MovieDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _details(MovieDetailsEntity details) {
+  Widget _details(TVShowDetailsEntity details) {
     return Column(
       children: [
         DSBackdropCard(
           posterPath: APIInfo.requestPosterImage(details.posterPath!),
           backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
-          title: '${details.title} (${details.releaseDate.yyyy})',
-          dateText: details.releaseDate.dayMonthYear,
+          title: '${details.name} (${details.firstAirDate!.yyyy})',
+          dateText: details.firstAirDate!.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
         ),
@@ -84,21 +83,9 @@ class MovieDetailsScreen extends StatelessWidget {
                   fontSize: 14,
                   isBold: false,
                 ),
-              ],
-              const SizedBox(height: 10),
-              _getText(
-                text: 'Título original',
-                fontSize: 17,
-                isBold: true,
-              ),
-              const SizedBox(height: 10),
-              _getText(
-                text: details.originalTitle,
-                fontSize: 14,
-                isBold: false,
-              ),
-              if (details.genres.isNotEmpty) ...[
                 const SizedBox(height: 10),
+              ],
+              if (details.genres.isNotEmpty) ...[
                 _getText(
                   text: 'Gênero',
                   fontSize: 17,
@@ -108,16 +95,16 @@ class MovieDetailsScreen extends StatelessWidget {
                 Row(
                   children: List.generate(
                     details.genres.length,
-                    (index) => _getText(
+                        (index) => _getText(
                       text:
-                          '${details.genres[index].name}${details.genres.length != index + 1 ? ', ' : ''}',
+                      '${details.genres[index].name}${details.genres.length != index + 1 ? ', ' : ''}',
                       fontSize: 14,
                       isBold: false,
                     ),
                   ),
                 ),
+                const SizedBox(height: 10),
               ],
-              const SizedBox(height: 10),
               _getText(
                 text: 'Estado',
                 fontSize: 17,
@@ -129,48 +116,48 @@ class MovieDetailsScreen extends StatelessWidget {
                 fontSize: 14,
                 isBold: false,
               ),
-              if (details.status == StatusEnum.released) ...[
+              if (details.createdBy.isNotEmpty) ...[
                 const SizedBox(height: 10),
                 _getText(
-                  text: 'Duração',
+                  text: 'Criador${details.createdBy.length > 1 ? 'es' : ''}',
                   fontSize: 17,
                   isBold: true,
                 ),
                 const SizedBox(height: 10),
-                _getText(
-                  text: details.runtime.toHourMinutes,
-                  fontSize: 14,
-                  isBold: false,
+                Row(
+                  children: List.generate(
+                    details.createdBy.length,
+                    (index) => _getText(
+                      text:
+                          '${details.createdBy[index].name}${details.createdBy.length != index + 1 ? ', ' : ''}',
+                      fontSize: 14,
+                      isBold: false,
+                    ),
+                  ),
                 ),
               ],
-              const SizedBox(height: 10),
-              _getText(
-                text: 'Orçamento',
-                fontSize: 17,
-                isBold: true,
-              ),
-              const SizedBox(height: 10),
-              _getText(
-                text: details.budget > 0
-                    ? details.budget.toDouble().toCurrency
-                    : '-',
-                fontSize: 14,
-                isBold: false,
-              ),
-              const SizedBox(height: 10),
-              _getText(
-                text: 'Bilheteira',
-                fontSize: 17,
-                isBold: true,
-              ),
-              const SizedBox(height: 10),
-              _getText(
-                text: details.revenue > 0
-                    ? details.revenue.toDouble().toCurrency
-                    : '-',
-                fontSize: 14,
-                isBold: false,
-              ),
+              if (details.networks.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                _getText(
+                  text: 'Emissora${details.networks.length > 1 ? 's' : ''}',
+                  fontSize: 17,
+                  isBold: true,
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 15.0,
+                  runSpacing: 15.0,
+                  children: List.generate(
+                    details.networks.length,
+                    (index) => DSImage(
+                      path: APIInfo.requestH30Image(
+                        details.networks[index].logoPath,
+                      ),
+                      onTap: () {},
+                    ),
+                  ),
+                ),
+              ],
             ],
           ),
         ),

@@ -1,6 +1,8 @@
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/status_enum.dart';
+
 class MovieDetailsEntity extends Equatable {
   const MovieDetailsEntity({
     required this.adult,
@@ -39,7 +41,7 @@ class MovieDetailsEntity extends Equatable {
   final DateTime releaseDate;
   final int revenue;
   final int runtime;
-  final String status;
+  final StatusEnum status;
   final String tagline;
   final String title;
   final bool video;

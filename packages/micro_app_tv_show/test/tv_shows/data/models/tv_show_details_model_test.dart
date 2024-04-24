@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_tv_show/src/core/enums/status_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/created_by_model.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/last_episode_to_air_model.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/network_model.dart';
@@ -78,7 +79,7 @@ void main() {
         voteAverage: 8.3,
       ),
     ],
-    status: 'Ended',
+    status: StatusEnum.ended,
     tagline: 'Winter Is Coming',
     type: 'Scripted',
     voteAverage: 8.438,

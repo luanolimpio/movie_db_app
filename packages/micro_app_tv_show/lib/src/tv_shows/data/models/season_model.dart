@@ -16,7 +16,7 @@ class SeasonModel extends SeasonEntity {
 
   factory SeasonModel.fromJson(Map<String, dynamic> map) {
     return SeasonModel(
-      airDate: (map['air_date'] as String).toDateTime!,
+      airDate: (map['air_date'] as String?)?.toDateTime,
       episodeCount: map['episode_count'],
       id: map['id'],
       name: map['name'],

@@ -8,4 +8,7 @@ class APIInfo {
 
   static String requestBackdropImage(String path) =>
       'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/$path';
+
+  static String requestH30Image(String path) =>
+      'https://media.themoviedb.org/t/p/h30/$path';
 }

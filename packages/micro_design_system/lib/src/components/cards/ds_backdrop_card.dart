@@ -9,7 +9,7 @@ class DSBackdropCard extends StatelessWidget {
     required this.backdropPath,
     required this.title,
     required this.dateText,
-    this.tagline,
+    required this.tagline,
     this.onTapBackButton,
     Key? key,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class DSBackdropCard extends StatelessWidget {
   final String backdropPath;
   final String title;
   final String? dateText;
-  final String? tagline;
+  final String tagline;
   final VoidCallback? onTapBackButton;
 
   @override
@@ -32,7 +32,7 @@ class DSBackdropCard extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.4),
+                Colors.white.withOpacity(0.3),
                 BlendMode.modulate,
               ),
               image: CachedNetworkImageProvider(
@@ -82,13 +82,14 @@ class DSBackdropCard extends StatelessWidget {
                         ),
                       ),
                     ],
-                    if (tagline != null) ...[
-                      const SizedBox(height: 5),
+                    if (tagline.isNotEmpty) ...[
+                      const SizedBox(height: 10),
                       Text(
-                        tagline!,
+                        tagline,
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.white,
+                          fontStyle: FontStyle.italic,
                         ),
                       ),
                     ]

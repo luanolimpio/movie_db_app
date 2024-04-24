@@ -24,10 +24,10 @@ class LastEpisodeToAirEntity extends Equatable {
   final DateTime airDate;
   final int episodeNumber;
   final String productionCode;
-  final int runtime;
+  final int? runtime;
   final int seasonNumber;
   final int showId;
-  final String stillPath;
+  final String? stillPath;
 
   @override
   String toString() {

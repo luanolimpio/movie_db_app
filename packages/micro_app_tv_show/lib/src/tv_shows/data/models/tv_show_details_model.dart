@@ -1,5 +1,6 @@
 import 'package:micro_common/micro_common.dart';
 
+import '../../../core/enums/status_enum.dart';
 import '../../domain/entities/tv_show_details_entity.dart';
 import 'created_by_model.dart';
 import 'last_episode_to_air_model.dart';
@@ -46,14 +47,14 @@ class TVShowDetailsModel extends TVShowDetailsEntity {
           .map((e) => CreatedByModel.fromJson(e))
           .toList(),
       episodeRunTime: map['episode_run_time'].cast<int>(),
-      firstAirDate: (map['first_air_date'] as String).toDateTime,
+      firstAirDate: (map['first_air_date'] as String?)?.toDateTime,
       genres:
           List.from(map['genres']).map((e) => GenreModel.fromJson(e)).toList(),
       homepage: map['homepage'],
       id: map['id'],
       inProduction: map['in_production'],
       languages: map['languages'].cast<String>(),
-      lastAirDate: (map['last_air_date'] as String).toDateTime,
+      lastAirDate: (map['last_air_date'] as String?)?.toDateTime,
       lastEpisodeToAir:
           LastEpisodeToAirModel.fromJson(map['last_episode_to_air']),
       name: map['name'],
@@ -71,7 +72,7 @@ class TVShowDetailsModel extends TVShowDetailsEntity {
       seasons: List.from(map['seasons'])
           .map((e) => SeasonModel.fromJson(e))
           .toList(),
-      status: map['status'],
+      status: getStatusEnum(map['status']),
       tagline: map['tagline'],
       type: map['type'],
       voteAverage: map['vote_average'],

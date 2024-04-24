@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:micro_common/micro_common.dart';
+import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
+import '../../../core/routes/tv_show_routes.dart';
 import '../bloc/tv_show_bloc.dart';
 import '../bloc/tv_show_event.dart';
 import '../bloc/tv_show_state.dart';
@@ -67,16 +69,16 @@ class _TVShowCardsState extends State<TVShowCards>
                 posterCards: List.generate(
                   state.tvShows.length,
                   (index) {
-                    final movie = state.tvShows[index];
+                    final tvShow = state.tvShows[index];
                     return DSPosterCard(
                       path: APIInfo.requestPosterImage(
-                        movie.posterPath,
+                        tvShow.posterPath,
                       ),
                       onTap: () {
-                        // navigatorKey.currentState!.pushNamed(
-                        //   MovieRoutes.details,
-                        //   arguments: movie.id,
-                        // );
+                        navigatorKey.currentState!.pushNamed(
+                          TVShowRoutes.details,
+                          arguments: tvShow.id,
+                        );
                       },
                     );
                   },

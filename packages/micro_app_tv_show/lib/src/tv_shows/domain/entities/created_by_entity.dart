@@ -13,7 +13,7 @@ class CreatedByEntity extends Equatable {
   final String creditId;
   final String name;
   final int gender;
-  final String profilePath;
+  final String? profilePath;
 
   @override
   String toString() {

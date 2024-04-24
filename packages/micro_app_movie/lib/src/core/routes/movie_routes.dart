@@ -1,3 +1,3 @@
 class MovieRoutes {
-  static const String details = '/movie_details';
+  static const String details = 'movie/details';
 }

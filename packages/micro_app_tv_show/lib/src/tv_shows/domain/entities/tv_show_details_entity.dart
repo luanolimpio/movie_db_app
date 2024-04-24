@@ -1,6 +1,7 @@
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/status_enum.dart';
 import 'created_by_entity.dart';
 import 'last_episode_to_air_entity.dart';
 import 'network_entity.dart';
@@ -21,7 +22,6 @@ class TVShowDetailsEntity extends Equatable {
     required this.lastAirDate,
     required this.lastEpisodeToAir,
     required this.name,
-    // required this.nextEpisodeToAir,
     required this.networks,
     required this.numberOfEpisodes,
     required this.numberOfSeasons,
@@ -52,7 +52,6 @@ class TVShowDetailsEntity extends Equatable {
   final DateTime? lastAirDate;
   final LastEpisodeToAirEntity lastEpisodeToAir;
   final String name;
-  // final dynamic nextEpisodeToAir;
   final List<NetworkEntity> networks;
   final int numberOfEpisodes;
   final int numberOfSeasons;
@@ -63,7 +62,7 @@ class TVShowDetailsEntity extends Equatable {
   final double popularity;
   final String? posterPath;
   final List<SeasonEntity> seasons;
-  final String status;
+  final StatusEnum status;
   final String tagline;
   final String type;
   final double voteAverage;

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_movie/src/core/enums/status_enum.dart';
 import 'package:micro_app_movie/src/movies/data/models/movie_details_model.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_details_entity.dart';
 import 'package:micro_common/micro_common.dart';
@@ -24,7 +25,7 @@ void main() {
     releaseDate: DateTime.now(),
     revenue: 100853753,
     runtime: 139,
-    status: 'Released',
+    status: StatusEnum.released,
     tagline: 'How much can you know about yourself?',
     title: 'Suicide Squad',
     video: false,
