@@ -38,7 +38,7 @@ class TVShowDatasource implements ITVShowDatasource {
   Future<Either<Exception, TVShowDetailsEntity>> getDetails(int id) async {
     try {
       final result = await _dioClient.get(
-        'tv/4607?api_key=${APIInfo.key}&language=${APIInfo.language}',
+        'tv/$id?api_key=${APIInfo.key}&language=${APIInfo.language}',
       );
       if (result.statusCode == 200) {
         return Right(TVShowDetailsModel.fromJson(result.data));
