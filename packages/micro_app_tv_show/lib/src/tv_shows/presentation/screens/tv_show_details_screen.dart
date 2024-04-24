@@ -58,8 +58,8 @@ class TVShowDetailsScreen extends StatelessWidget {
         DSBackdropCard(
           posterPath: APIInfo.requestPosterImage(details.posterPath!),
           backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
-          title: '${details.name} (${details.firstAirDate!.yyyy})',
-          dateText: details.firstAirDate!.dayMonthYear,
+          title: '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
+          dateText: details.firstAirDate?.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
         ),
@@ -95,9 +95,9 @@ class TVShowDetailsScreen extends StatelessWidget {
                 Row(
                   children: List.generate(
                     details.genres.length,
-                        (index) => _getText(
+                    (index) => _getText(
                       text:
-                      '${details.genres[index].name}${details.genres.length != index + 1 ? ', ' : ''}',
+                          '${details.genres[index].name}${details.genres.length != index + 1 ? ', ' : ''}',
                       fontSize: 14,
                       isBold: false,
                     ),
@@ -145,16 +145,27 @@ class TVShowDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Wrap(
-                  spacing: 15.0,
-                  runSpacing: 15.0,
+                  spacing: 8.0,
                   children: List.generate(
                     details.networks.length,
-                    (index) => DSImage(
-                      path: APIInfo.requestH30Image(
-                        details.networks[index].logoPath,
-                      ),
-                      onTap: () {},
-                    ),
+                    (index) {
+                      if (details.networks[index].logoPath != null) {
+                        return DSImage(
+                          path: APIInfo.requestH30Image(
+                            details.networks[index].logoPath!,
+                          ),
+                          onTap: () {},
+                        );
+                      }
+                      return InkWell(
+                        child: _getText(
+                          text: details.networks[index].name,
+                          fontSize: 14,
+                          isBold: true,
+                        ),
+                        onTap: () {},
+                      );
+                    },
                   ),
                 ),
               ],
