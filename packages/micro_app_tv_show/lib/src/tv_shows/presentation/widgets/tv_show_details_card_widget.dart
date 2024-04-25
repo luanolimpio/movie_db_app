@@ -107,7 +107,7 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                       Text(
                         airDate.yyyy,
                         style: const TextStyle(
-                          color: Colors.black54,
+                          color: Colors.black87,
                           fontSize: 13.0,
                           fontWeight: FontWeight.w500,
                         ),
@@ -115,14 +115,14 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                       const Text(
                         ' - ',
                         style: TextStyle(
-                          color: Colors.black45,
+                          color: Colors.black87,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       Text(
                         '$episodeCount Episódios',
                         style: const TextStyle(
-                          color: Colors.black54,
+                          color: Colors.black87,
                           fontSize: 13.0,
                           fontWeight: FontWeight.w500,
                         ),
