@@ -4,11 +4,14 @@ class APIInfo {
   static const String language = 'pt-BR';
 
   static String requestPosterImage(String path) =>
-      'https://image.tmdb.org/t/p/w220_and_h330_face/$path';
+      'https://image.tmdb.org/t/p/w220_and_h330_face$path';
 
   static String requestBackdropImage(String path) =>
-      'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/$path';
+      'https://image.tmdb.org/t/p/w1920_and_h800_multi_faces$path';
 
   static String requestH30Image(String path) =>
-      'https://media.themoviedb.org/t/p/h30/$path';
+      'https://media.themoviedb.org/t/p/h30$path';
+
+  static String requestH195Image(String path) =>
+      'https://media.themoviedb.org/t/p/w130_and_h195_bestv2$path';
 }

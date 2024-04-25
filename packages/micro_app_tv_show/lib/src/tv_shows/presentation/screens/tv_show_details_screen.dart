@@ -8,6 +8,7 @@ import '../../domain/entities/tv_show_details_entity.dart';
 import '../bloc/tv_show_bloc.dart';
 import '../bloc/tv_show_event.dart';
 import '../bloc/tv_show_state.dart';
+import '../widgets/tv_show_details_card_widget.dart';
 
 class TVShowDetailsScreen extends StatelessWidget {
   const TVShowDetailsScreen({
@@ -58,7 +59,8 @@ class TVShowDetailsScreen extends StatelessWidget {
         DSBackdropCard(
           posterPath: APIInfo.requestPosterImage(details.posterPath!),
           backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
-          title: '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
+          title:
+              '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
           dateText: details.firstAirDate?.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
@@ -136,6 +138,25 @@ class TVShowDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ],
+              if (details.lastEpisodeToAir != null &&
+                  details.seasons.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                _getText(
+                  text: 'Última Temporada',
+                  fontSize: 17,
+                  isBold: true,
+                ),
+                const SizedBox(height: 10),
+                TVShowDetailsCardWidget(
+                  posterPath: details.seasons.last.posterPath,
+                  seasonNumber: details.lastEpisodeToAir!.seasonNumber,
+                  voteAverage: details.seasons.last.voteAverage,
+                  airDate: details.seasons.last.airDate!,
+                  episodeCount: details.seasons.last.episodeCount,
+                  overview: details.seasons.last.overview,
+                  lastEpisodeName: details.lastEpisodeToAir!.name,
+                ),
+              ],
               if (details.networks.isNotEmpty) ...[
                 const SizedBox(height: 10),
                 _getText(
@@ -145,14 +166,17 @@ class TVShowDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Wrap(
-                  spacing: 8.0,
+                  spacing: 10.0,
+                  runSpacing: 10.0,
                   children: List.generate(
                     details.networks.length,
                     (index) {
                       if (details.networks[index].logoPath != null) {
-                        return DSImage(
-                          path: APIInfo.requestH30Image(
-                            details.networks[index].logoPath!,
+                        return InkWell(
+                          child: DSImage(
+                            path: APIInfo.requestH30Image(
+                              details.networks[index].logoPath!,
+                            ),
                           ),
                           onTap: () {},
                         );

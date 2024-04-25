@@ -3,7 +3,7 @@ import 'package:micro_common/micro_common.dart';
 import '../../../core/enums/status_enum.dart';
 import '../../domain/entities/tv_show_details_entity.dart';
 import 'created_by_model.dart';
-import 'last_episode_to_air_model.dart';
+import 'episode_model.dart';
 import 'network_model.dart';
 import 'season_model.dart';
 
@@ -55,8 +55,9 @@ class TVShowDetailsModel extends TVShowDetailsEntity {
       inProduction: map['in_production'],
       languages: map['languages'].cast<String>(),
       lastAirDate: (map['last_air_date'] as String?)?.toDateTime,
-      lastEpisodeToAir:
-          LastEpisodeToAirModel.fromJson(map['last_episode_to_air']),
+      lastEpisodeToAir: map['last_episode_to_air'] != null
+          ? EpisodeModel.fromJson(map['last_episode_to_air'])
+          : null,
       name: map['name'],
       networks: List.from(map['networks'])
           .map((e) => NetworkModel.fromJson(e))

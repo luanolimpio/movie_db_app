@@ -3,7 +3,7 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 
 import '../../../core/enums/status_enum.dart';
 import 'created_by_entity.dart';
-import 'last_episode_to_air_entity.dart';
+import 'episode_entity.dart';
 import 'network_entity.dart';
 import 'season_entity.dart';
 
@@ -50,7 +50,7 @@ class TVShowDetailsEntity extends Equatable {
   final bool inProduction;
   final List<String> languages;
   final DateTime? lastAirDate;
-  final LastEpisodeToAirEntity lastEpisodeToAir;
+  final EpisodeEntity? lastEpisodeToAir;
   final String name;
   final List<NetworkEntity> networks;
   final int numberOfEpisodes;

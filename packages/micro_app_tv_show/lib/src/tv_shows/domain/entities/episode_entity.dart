@@ -1,7 +1,7 @@
 import 'package:micro_dependencies/micro_dependencies.dart';
 
-class LastEpisodeToAirEntity extends Equatable {
-  const LastEpisodeToAirEntity({
+class EpisodeEntity extends Equatable {
+  const EpisodeEntity({
     required this.id,
     required this.name,
     required this.overview,
@@ -31,7 +31,7 @@ class LastEpisodeToAirEntity extends Equatable {
 
   @override
   String toString() {
-    return 'LastEpisodeToAirEntity(id: $id,'
+    return 'EpisodeEntity(id: $id,'
         ' name: $name,'
         ' overview: $overview,'
         ' voteAverage: $voteAverage,'

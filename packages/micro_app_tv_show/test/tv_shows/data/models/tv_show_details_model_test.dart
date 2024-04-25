@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_tv_show/src/core/enums/status_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/created_by_model.dart';
-import 'package:micro_app_tv_show/src/tv_shows/data/models/last_episode_to_air_model.dart';
+import 'package:micro_app_tv_show/src/tv_shows/data/models/episode_model.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/network_model.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/season_model.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/models/tv_show_details_model.dart';
@@ -33,7 +33,7 @@ void main() {
     inProduction: false,
     languages: const ['en'],
     lastAirDate: DateTime.now(),
-    lastEpisodeToAir: LastEpisodeToAirModel(
+    lastEpisodeToAir: EpisodeModel(
       id: 1551830,
       name: 'The Iron Throne',
       overview:

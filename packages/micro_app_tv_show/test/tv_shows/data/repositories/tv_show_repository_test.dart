@@ -3,7 +3,7 @@ import 'package:micro_app_tv_show/src/core/enums/status_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/datasources/i_tv_show_datasource.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/repositories/tv_show_repository.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/created_by_entity.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/entities/last_episode_to_air_entity.dart';
+import 'package:micro_app_tv_show/src/tv_shows/domain/entities/episode_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/network_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/season_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_details_entity.dart';
@@ -65,7 +65,7 @@ void main() {
     inProduction: false,
     languages: const ['en'],
     lastAirDate: DateTime.now(),
-    lastEpisodeToAir: LastEpisodeToAirEntity(
+    lastEpisodeToAir: EpisodeEntity(
       id: 1551830,
       name: 'The Iron Throne',
       overview:

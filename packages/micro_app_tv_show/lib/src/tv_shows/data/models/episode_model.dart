@@ -1,9 +1,9 @@
 import 'package:micro_common/micro_common.dart';
 
-import '../../domain/entities/last_episode_to_air_entity.dart';
+import '../../domain/entities/episode_entity.dart';
 
-class LastEpisodeToAirModel extends LastEpisodeToAirEntity {
-  const LastEpisodeToAirModel({
+class EpisodeModel extends EpisodeEntity {
+  const EpisodeModel({
     required super.id,
     required super.name,
     required super.overview,
@@ -18,8 +18,8 @@ class LastEpisodeToAirModel extends LastEpisodeToAirEntity {
     required super.stillPath,
   });
 
-  factory LastEpisodeToAirModel.fromJson(Map<String, dynamic> map) {
-    return LastEpisodeToAirModel(
+  factory EpisodeModel.fromJson(Map<String, dynamic> map) {
+    return EpisodeModel(
       id: map['id'],
       name: map['name'],
       overview: map['overview'],
