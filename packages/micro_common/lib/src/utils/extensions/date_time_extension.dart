@@ -13,7 +13,7 @@ extension DateTimeFormatter on DateTime {
 
   String get dayMonthYear {
     return DateFormat(
-      "dd 'de' MMM 'de' yyyy",
+      "dd 'de' MMMM 'de' yyyy",
       'pt_BR',
     ).format(this);
   }
