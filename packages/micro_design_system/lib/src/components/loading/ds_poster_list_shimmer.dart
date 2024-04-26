@@ -14,9 +14,9 @@ class DSPosterListShimmer extends StatelessWidget {
         itemCount: 4,
         itemBuilder: (_, index) {
           return Padding(
-            padding: index == 0
-                ? const EdgeInsets.symmetric(horizontal: 10)
-                : const EdgeInsets.only(right: 10),
+            padding: index != 4
+                ? const EdgeInsets.only(right: 10)
+                : EdgeInsets.zero,
             child: DSShimmer(
               height: 200,
               width: MediaQuery.of(context).size.width / 3,

@@ -19,12 +19,6 @@ class _MovieCardsState extends State<MovieCards>
     with AutomaticKeepAliveClientMixin {
   late final MovieBloc _bloc;
 
-  EdgeInsets get _padding => const EdgeInsets.only(
-        left: 10,
-        right: 10,
-        bottom: 10,
-      );
-
   @override
   void initState() {
     super.initState();
@@ -44,26 +38,22 @@ class _MovieCardsState extends State<MovieCards>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (state is MovieLoading) ...[
-              Padding(
-                padding: _padding,
-                child: const DSShimmer(
-                  height: 20,
-                  width: 120,
-                ),
+              const DSShimmer(
+                height: 20,
+                width: 120,
               ),
+              const SizedBox(height: 10),
               const DSPosterListShimmer(),
             ] else if (state is MovieSuccess) ...[
-              Padding(
-                padding: _padding,
-                child: const Text(
-                  'Filmes em exibição',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+              const Text(
+                'Filmes em exibição',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 10),
               DSPosterCardList(
                 posterCards: List.generate(
                   state.movies.length,

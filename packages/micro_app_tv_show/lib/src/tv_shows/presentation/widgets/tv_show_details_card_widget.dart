@@ -4,23 +4,23 @@ import 'package:micro_design_system/micro_design_system.dart';
 
 class TVShowDetailsCardWidget extends StatelessWidget {
   const TVShowDetailsCardWidget({
-    required this.posterPath,
     required this.seasonNumber,
     required this.voteAverage,
     required this.airDate,
     required this.episodeCount,
     required this.overview,
     required this.lastEpisodeName,
+    this.posterPath,
     super.key,
   });
 
-  final String? posterPath;
   final int seasonNumber;
   final double voteAverage;
   final DateTime airDate;
   final int episodeCount;
   final String overview;
   final String lastEpisodeName;
+  final String? posterPath;
 
   BorderRadius get _imageRadius => const BorderRadius.only(
         topLeft: Radius.circular(5.0),

@@ -19,9 +19,9 @@ class DSPosterCardList extends StatelessWidget {
         itemCount: posterCards.length,
         itemBuilder: (_, index) {
           return Padding(
-            padding: index == 0
-                ? const EdgeInsets.symmetric(horizontal: 10)
-                : const EdgeInsets.only(right: 10),
+            padding: index != posterCards.length - 1
+                ? const EdgeInsets.only(right: 10)
+                : EdgeInsets.zero,
             child: posterCards[index],
           );
         },

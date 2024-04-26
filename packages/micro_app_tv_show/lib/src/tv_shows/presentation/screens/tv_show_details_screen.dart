@@ -59,8 +59,7 @@ class TVShowDetailsScreen extends StatelessWidget {
         DSBackdropCard(
           posterPath: APIInfo.requestPosterImage(details.posterPath!),
           backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
-          title:
-              '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
+          title: '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
           dateText: details.firstAirDate?.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
@@ -148,13 +147,13 @@ class TVShowDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 TVShowDetailsCardWidget(
-                  posterPath: details.seasons.last.posterPath,
                   seasonNumber: details.lastEpisodeToAir!.seasonNumber,
                   voteAverage: details.seasons.last.voteAverage,
                   airDate: details.seasons.last.airDate!,
                   episodeCount: details.seasons.last.episodeCount,
                   overview: details.seasons.last.overview,
                   lastEpisodeName: details.lastEpisodeToAir!.name,
+                  posterPath: details.seasons.last.posterPath,
                 ),
               ],
               if (details.networks.isNotEmpty) ...[
