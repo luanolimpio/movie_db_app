@@ -8,4 +8,6 @@ abstract class MicroApp {
   Map<String, WidgetBuilderArgs> get routes;
 
   VoidCallback get injection;
+
+  VoidCallback get eventListener;
 }

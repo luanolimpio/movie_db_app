@@ -30,6 +30,7 @@ linter:
     always_put_required_named_parameters_first: true
     unnecessary_parenthesis: true
     avoid_void_async: true
+    type_literal_in_constant_pattern: false
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 

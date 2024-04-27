@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:micro_common/micro_common.dart';
 
 class _DrawerItem {
   const _DrawerItem({
@@ -46,19 +47,19 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 _DrawerItem(
                   title: 'Populares',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToPopularMoviesEvent()),
                 ),
                 _DrawerItem(
                   title: 'Em Exibição',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToNowPlayingMoviesEvent()),
                 ),
                 _DrawerItem(
                   title: 'Brevemente',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToUpcomingMoviesEvent()),
                 ),
                 _DrawerItem(
                   title: 'Melhor Classificação',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToTopRatedMoviesEvent()),
                 ),
               ],
             ),
@@ -69,19 +70,20 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 _DrawerItem(
                   title: 'Populares',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToPopularTvShowsEvent()),
                 ),
                 _DrawerItem(
                   title: 'Emitidos Hoje',
-                  onTap: () {},
+                  onTap: () =>
+                      EventBus.emit(const GoToAiringTodayTvShowsEvent()),
                 ),
                 _DrawerItem(
                   title: 'Na TV',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToOnTheAirTvShowsEvent()),
                 ),
                 _DrawerItem(
                   title: 'Melhor Classificação',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToTopRatedTvShowsEvent()),
                 ),
               ],
             ),
@@ -92,7 +94,7 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 _DrawerItem(
                   title: 'Pessoas populares',
-                  onTap: () {},
+                  onTap: () => EventBus.emit(const GoToPopularPeopleEvent()),
                 ),
               ],
             ),

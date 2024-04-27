@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget with BaseAppMixin {
   MyApp({super.key}) {
     super.registerRoutes();
     super.registerInjections();
+    super.registerListeners();
   }
 
   @override

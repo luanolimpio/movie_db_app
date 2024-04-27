@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:micro_core/micro_core.dart';
 
+import 'core/event_listener/event_listener.dart';
 import 'core/injector/injector.dart';
 import 'core/routes/movie_routes.dart';
 
@@ -18,4 +19,7 @@ class MicroAppMovieResolver implements MicroApp {
 
   @override
   VoidCallback get injection => Injector.initialize;
+
+  @override
+  VoidCallback get eventListener => EventListener.initialize;
 }

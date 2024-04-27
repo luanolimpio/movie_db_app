@@ -24,6 +24,12 @@ mixin BaseAppMixin implements BaseApp {
     }
   }
 
+  void registerListeners() {
+    for (var microApp in microApps) {
+      microApp.eventListener();
+    }
+  }
+
   Route<dynamic>? generateRoute(RouteSettings settings) {
     final widgetBuilder = routes[settings.name];
     if (widgetBuilder == null) return null;
