@@ -1,10 +1,11 @@
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/movie_type_enum.dart';
 import '../entities/movie_details_entity.dart';
 import '../entities/movie_entity.dart';
 
 abstract class IMovieRepository {
-  Future<Either<Exception, List<MovieEntity>>> getNowPlaying();
+  Future<Either<Exception, List<MovieEntity>>> getList(MovieTypeEnum type);
 
   Future<Either<Exception, MovieDetailsEntity>> getDetails(int id);
 }

@@ -1,12 +1,16 @@
 import 'dart:ui';
 
 import 'package:micro_core/micro_core.dart';
+import 'package:micro_dependencies/micro_dependencies.dart';
 
 import 'core/event_listener/event_listener.dart';
 import 'core/injector/injector.dart';
 import 'core/routes/movie_routes.dart';
 
+import 'movies/presentation/arguments/movies_arguments.dart';
+import 'movies/presentation/bloc/movie_bloc.dart';
 import 'movies/presentation/screens/movie_details_screen.dart';
+import 'movies/presentation/screens/movies_screen.dart';
 
 class MicroAppMovieResolver implements MicroApp {
   @override
@@ -14,7 +18,14 @@ class MicroAppMovieResolver implements MicroApp {
 
   @override
   Map<String, WidgetBuilderArgs> get routes => {
-        MovieRoutes.details: (_, args) => MovieDetailsScreen(movieId: args as int),
+        MovieRoutes.list: (_, args) => BlocProvider<MovieBloc>(
+              create: (_) => GetIt.I<MovieBloc>(),
+              child: MoviesScreen(
+                arguments: args as MoviesArguments,
+              ),
+            ),
+        MovieRoutes.details: (_, args) =>
+            MovieDetailsScreen(movieId: args as int),
       };
 
   @override

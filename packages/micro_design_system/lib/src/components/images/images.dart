@@ -1,1 +1,1 @@
-export 'ds_image.dart';
+export 'ds_cached_image.dart';

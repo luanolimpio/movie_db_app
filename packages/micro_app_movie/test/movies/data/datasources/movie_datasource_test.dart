@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_movie/src/core/enums/movie_type_enum.dart';
 import 'package:micro_app_movie/src/movies/data/datasources/movie_datasource.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
@@ -23,7 +24,9 @@ void main() {
   const tJsonDetails =
       '{"adult": false, "backdrop_path": "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jp", "budget": 63000000, "genres": [{"id": 18, "name": "Action"}], "id": 297761, "imdb_id": "tt0137523", "original_language": "en", "original_title": "Suicide Squad", "overview": "From DC Comics comes the Suicide Squad, an antihero team of incarcerated", "popularity": 48.261451, "poster_path": "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg", "release_date": "2016-08-03", "revenue": 100853753, "runtime": 139, "status": "Released", "tagline": "How much can you know about yourself?", "title": "Suicide Squad", "video": false, "vote_average": 5.91, "vote_count": 1466}';
 
-  group('getNowPlaying', () {
+  const type = MovieTypeEnum.nowPlaying;
+
+  group('getList', () {
     test('Should return success when call dio client', () async {
       when(() => dioClient.get(any())).thenAnswer(
         (_) async => Response(
@@ -34,7 +37,7 @@ void main() {
           ),
         ),
       );
-      final result = await dataSource.getNowPlaying();
+      final result = await dataSource.getList(type);
       expect(result.isRight(), true);
     });
 
@@ -46,7 +49,7 @@ void main() {
           ),
         ),
       );
-      final result = await dataSource.getNowPlaying();
+      final result = await dataSource.getList(type);
       expect(result.isLeft(), true);
     });
   });

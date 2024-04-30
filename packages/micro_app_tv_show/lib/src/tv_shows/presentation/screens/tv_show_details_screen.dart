@@ -172,7 +172,7 @@ class TVShowDetailsScreen extends StatelessWidget {
                     (index) {
                       if (details.networks[index].logoPath != null) {
                         return InkWell(
-                          child: DSImage(
+                          child: DSCachedImage(
                             path: APIInfo.requestH30Image(
                               details.networks[index].logoPath!,
                             ),

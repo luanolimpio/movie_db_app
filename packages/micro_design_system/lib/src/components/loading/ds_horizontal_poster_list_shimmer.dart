@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'ds_shimmer.dart';
 
-class DSPosterListShimmer extends StatelessWidget {
-  const DSPosterListShimmer({Key? key}) : super(key: key);
+class DSHorizontalPosterListShimmer extends StatelessWidget {
+  const DSHorizontalPosterListShimmer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

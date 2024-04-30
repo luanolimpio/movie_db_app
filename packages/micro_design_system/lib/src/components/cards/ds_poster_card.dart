@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../images/ds_cached_image.dart';
 import '../loading/ds_shimmer.dart';
 
 class DSPosterCard extends StatelessWidget {
@@ -22,10 +22,10 @@ class DSPosterCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width / 3,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5.0),
-          child: CachedNetworkImage(
-            imageUrl: path,
+          child: DSCachedImage(
+            path: path,
             fit: BoxFit.cover,
-            placeholder: (_, __) => DSShimmer(
+            placeholder: DSShimmer(
               height: 200,
               width: MediaQuery.of(context).size.width / 3,
             ),

@@ -3,6 +3,7 @@ import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/movie_type_enum.dart';
 import '../models/movie_details_model.dart';
 import '../models/movie_model.dart';
 import 'i_movie_datasource.dart';
@@ -13,10 +14,12 @@ class MovieDatasource implements IMovieDatasource {
   MovieDatasource(this._dioClient);
 
   @override
-  Future<Either<Exception, List<MovieEntity>>> getNowPlaying() async {
+  Future<Either<Exception, List<MovieEntity>>> getList(
+    MovieTypeEnum type,
+  ) async {
     try {
       final result = await _dioClient.get(
-        'movie/now_playing?api_key=${APIInfo.key}&language=${APIInfo.language}',
+        'movie/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}',
       );
       if (result.statusCode == 200) {
         final List<MovieEntity> list = (result.data['results'] as List)
@@ -24,7 +27,11 @@ class MovieDatasource implements IMovieDatasource {
             .toList();
         return Right(list);
       }
-      return Left(ApiException('Não foi possível buscar os filmes. Por favor, tente novamente.'));
+      return Left(
+        ApiException(
+          'Não foi possível buscar filmes em exibição. Por favor, tente novamente.',
+        ),
+      );
     } catch (e) {
       return Left(ApiException(e.toString()));
     }
@@ -39,7 +46,11 @@ class MovieDatasource implements IMovieDatasource {
       if (result.statusCode == 200) {
         return Right(MovieDetailsModel.fromJson(result.data));
       }
-      return Left(ApiException('Não foi possível buscar os detalhes. Por favor, tente novamente.'));
+      return Left(
+        ApiException(
+          'Não foi possível buscar os detalhes. Por favor, tente novamente.',
+        ),
+      );
     } catch (e) {
       return Left(ApiException(e.toString()));
     }

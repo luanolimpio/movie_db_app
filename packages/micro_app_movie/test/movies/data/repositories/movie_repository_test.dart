@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_movie/src/core/enums/movie_type_enum.dart';
 import 'package:micro_app_movie/src/core/enums/status_enum.dart';
 import 'package:micro_app_movie/src/movies/data/datasources/i_movie_datasource.dart';
 import 'package:micro_app_movie/src/movies/data/repositories/movie_repository.dart';
@@ -66,18 +67,20 @@ void main() {
     voteCount: 1466,
   );
 
-  group('getNowPlaying', () {
+  const type = MovieTypeEnum.nowPlaying;
+
+  group('getList', () {
     test('Should return success when call datasource', () async {
-      when(() => datasource.getNowPlaying())
+      when(() => datasource.getList(type))
           .thenAnswer((_) async => Right(tListMovieEntity));
-      final result = await repository.getNowPlaying();
+      final result = await repository.getList(type);
       expect(result.isRight(), true);
     });
 
     test('Should return error when call datasource', () async {
-      when(() => datasource.getNowPlaying())
+      when(() => datasource.getList(type))
           .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-      final result = await repository.getNowPlaying();
+      final result = await repository.getList(MovieTypeEnum.nowPlaying);
       expect(result.isLeft(), true);
     });
   });

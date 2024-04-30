@@ -44,7 +44,7 @@ class _TVShowCardsState extends State<TVShowCards>
                 width: 120,
               ),
               const SizedBox(height: 10),
-              const DSPosterListShimmer(),
+              const DSHorizontalPosterListShimmer(),
             ] else if (state is TVShowSuccess) ...[
               const Text(
                 'Séries em exibição',
@@ -55,7 +55,7 @@ class _TVShowCardsState extends State<TVShowCards>
                 ),
               ),
               const SizedBox(height: 10),
-              DSPosterCardList(
+              DSHorizontalPosterCardList(
                 posterCards: List.generate(
                   state.tvShows.length,
                   (index) {

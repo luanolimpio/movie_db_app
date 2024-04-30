@@ -40,7 +40,7 @@ class TVShowDetailsCardWidget extends StatelessWidget {
           if (posterPath != null)
             ClipRRect(
               borderRadius: _imageRadius,
-              child: DSImage(
+              child: DSCachedImage(
                 path: APIInfo.requestH195Image(
                   posterPath!,
                 ),

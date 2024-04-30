@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:micro_app_movie/micro_app_movie.dart';
 import 'package:micro_common/micro_common.dart';
 
 class _DrawerItem {
@@ -47,19 +48,35 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 _DrawerItem(
                   title: 'Populares',
-                  onTap: () => EventBus.emit(const GoToPopularMoviesEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToMoviesEvent(
+                      type: MovieTypeEnum.popular,
+                    ),
+                  ),
                 ),
                 _DrawerItem(
                   title: 'Em Exibição',
-                  onTap: () => EventBus.emit(const GoToNowPlayingMoviesEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToMoviesEvent(
+                      type: MovieTypeEnum.nowPlaying,
+                    ),
+                  ),
                 ),
                 _DrawerItem(
                   title: 'Brevemente',
-                  onTap: () => EventBus.emit(const GoToUpcomingMoviesEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToMoviesEvent(
+                      type: MovieTypeEnum.upcoming,
+                    ),
+                  ),
                 ),
                 _DrawerItem(
                   title: 'Melhor Classificação',
-                  onTap: () => EventBus.emit(const GoToTopRatedMoviesEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToMoviesEvent(
+                      type: MovieTypeEnum.topRated,
+                    ),
+                  ),
                 ),
               ],
             ),

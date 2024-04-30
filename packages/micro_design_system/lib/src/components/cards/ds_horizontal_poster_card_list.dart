@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'ds_poster_card.dart';
 
-class DSPosterCardList extends StatelessWidget {
-  const DSPosterCardList({
+class DSHorizontalPosterCardList extends StatelessWidget {
+  const DSHorizontalPosterCardList({
     required this.posterCards,
     Key? key,
   }) : super(key: key);

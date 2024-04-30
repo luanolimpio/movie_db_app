@@ -1,18 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_movie/src/core/enums/movie_type_enum.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/repositories/i_movie_repository.dart';
-import 'package:micro_app_movie/src/movies/domain/usecases/get_movies_now_playing_usecase.dart';
+import 'package:micro_app_movie/src/movies/domain/usecases/get_movies_usecase.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 class MockMovieRepository extends Mock implements IMovieRepository {}
 
 void main() {
   late MockMovieRepository repository;
-  late GetMoviesNowPlayingUseCase getMoviesNowPlayingUseCase;
+  late GetMoviesUseCase getMoviesUseCase;
 
   setUp(() {
     repository = MockMovieRepository();
-    getMoviesNowPlayingUseCase = GetMoviesNowPlayingUseCase(repository);
+    getMoviesUseCase = GetMoviesUseCase(repository);
   });
 
   final tListMovieEntity = [
@@ -35,15 +36,17 @@ void main() {
     ),
   ];
 
+  const type = MovieTypeEnum.nowPlaying;
+
   test('Should return a MovieEntity when call repository', () async {
-    when(() => repository.getNowPlaying()).thenAnswer((_) async => Right(tListMovieEntity));
-    final result = await getMoviesNowPlayingUseCase();
+    when(() => repository.getList(type)).thenAnswer((_) async => Right(tListMovieEntity));
+    final result = await getMoviesUseCase(type);
     expect(result, Right<Exception, List<MovieEntity>>(tListMovieEntity));
   });
 
   test('Should return an exception when call repository', () async {
-    when(() => repository.getNowPlaying()).thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-    final result = await getMoviesNowPlayingUseCase();
+    when(() => repository.getList(type)).thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
+    final result = await getMoviesUseCase(type);
     expect(result.isLeft(), true);
   });
 }

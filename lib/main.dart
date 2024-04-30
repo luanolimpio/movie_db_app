@@ -27,6 +27,10 @@ class MyApp extends StatelessWidget with BaseAppMixin {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: const Color(0xFF333333),
         useMaterial3: false,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF333333),
+          elevation: 0,
+        ),
       ),
       locale: const Locale('pt', 'BR'),
       supportedLocales: const [Locale('pt', 'BR')],

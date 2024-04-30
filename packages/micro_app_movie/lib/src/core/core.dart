@@ -1,0 +1,1 @@
+export 'enums/movie_type_enum.dart';

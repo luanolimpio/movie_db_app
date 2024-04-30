@@ -43,7 +43,7 @@ class _MovieCardsState extends State<MovieCards>
                 width: 120,
               ),
               const SizedBox(height: 10),
-              const DSPosterListShimmer(),
+              const DSHorizontalPosterListShimmer(),
             ] else if (state is MovieSuccess) ...[
               const Text(
                 'Filmes em exibição',
@@ -54,7 +54,7 @@ class _MovieCardsState extends State<MovieCards>
                 ),
               ),
               const SizedBox(height: 10),
-              DSPosterCardList(
+              DSHorizontalPosterCardList(
                 posterCards: List.generate(
                   state.movies.length,
                   (index) {
