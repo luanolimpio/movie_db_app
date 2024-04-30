@@ -67,18 +67,18 @@ void main() {
     voteCount: 1466,
   );
 
-  const type = MovieTypeEnum.nowPlaying;
+  const tType = MovieTypeEnum.nowPlaying;
 
   group('getList', () {
     test('Should return success when call datasource', () async {
-      when(() => datasource.getList(type))
+      when(() => datasource.getList(tType))
           .thenAnswer((_) async => Right(tListMovieEntity));
-      final result = await repository.getList(type);
+      final result = await repository.getList(tType);
       expect(result.isRight(), true);
     });
 
     test('Should return error when call datasource', () async {
-      when(() => datasource.getList(type))
+      when(() => datasource.getList(tType))
           .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
       final result = await repository.getList(MovieTypeEnum.nowPlaying);
       expect(result.isLeft(), true);

@@ -31,7 +31,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   void initState() {
     super.initState();
     _bloc = BlocProvider.of<MovieBloc>(context);
-    _bloc.add(const GetMoviesNowPlayingEvent());
+    _bloc.add(GetMoviesEvent(type: _arguments.type));
   }
 
   @override
@@ -53,7 +53,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
         padding: const EdgeInsets.all(10),
         child: BlocConsumer<MovieBloc, MovieState>(
           listener: (context, state) {
-            if (state is MovieError) {
+            if (state is MoviesError) {
               navigatorKey.currentState!.pop();
               DSAlertOverlay.show(
                 context: context,
@@ -63,10 +63,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
             }
           },
           builder: (context, state) {
-            if (state is MovieLoading) {
+            if (state is MoviesLoading) {
               return const DSVerticalPosterListShimmer();
             }
-            if (state is MovieSuccess) {
+            if (state is MoviesSuccess) {
               return DSVerticalPosterCardList(
                 posterCards: List.generate(
                   state.movies.length,

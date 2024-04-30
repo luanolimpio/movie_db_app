@@ -38,7 +38,7 @@ void main() {
       posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
       adult: false,
       overview:
-      'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
+          'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
       releaseDate: DateTime.now(),
       genreIds: const [14, 28, 80],
       id: 297761,
@@ -65,7 +65,7 @@ void main() {
     originalLanguage: 'en',
     originalTitle: 'Suicide Squad',
     overview:
-    'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
+        'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
     popularity: 48.261451,
     posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
     releaseDate: DateTime.now(),
@@ -79,38 +79,38 @@ void main() {
     voteCount: 1466,
   );
 
-  const type = MovieTypeEnum.nowPlaying;
+  const tType = MovieTypeEnum.nowPlaying;
 
-  group('getNowPlaying', () {
+  group('getMovies', () {
     blocTest<MovieBloc, MovieState>(
       'Should emit the correct state sequence when getNowPlayingUseCase returns success',
       build: () {
-        when(() => getMoviesUseCase(type))
+        when(() => getMoviesUseCase(tType))
             .thenAnswer((_) async => Right(tListMovieEntity));
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetMoviesNowPlayingEvent());
+        bloc.add(const GetMoviesEvent(type: tType));
       },
       expect: () => <dynamic>[
-        isA<MovieLoading>(),
-        isA<MovieSuccess>(),
+        isA<MoviesLoading>(),
+        isA<MoviesSuccess>(),
       ],
     );
 
     blocTest<MovieBloc, MovieState>(
       'Should emit the correct state sequence when getNowPlayingUseCase returns error',
       build: () {
-        when(() => getMoviesUseCase(type))
+        when(() => getMoviesUseCase(tType))
             .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetMoviesNowPlayingEvent());
+        bloc.add(const GetMoviesEvent(type: tType));
       },
       expect: () => <dynamic>[
-        isA<MovieLoading>(),
-        isA<MovieError>(),
+        isA<MoviesLoading>(),
+        isA<MoviesError>(),
       ],
     );
   });

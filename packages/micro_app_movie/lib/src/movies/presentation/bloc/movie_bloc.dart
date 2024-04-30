@@ -1,7 +1,6 @@
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
-import '../../../core/enums/movie_type_enum.dart';
 import '../../domain/usecases/get_movie_details_usecase.dart';
 import '../../domain/usecases/get_movies_usecase.dart';
 import 'movie_event.dart';
@@ -15,19 +14,19 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     this._getMoviesUseCase,
     this._getMovieDetailsUseCase,
   ) : super(const MovieInitial()) {
-    on<GetMoviesNowPlayingEvent>(_getNowPlaying);
+    on<GetMoviesEvent>(_getMovies);
     on<GetMovieDetailsEvent>(_getDetails);
   }
 
-  Future<void> _getNowPlaying(
-    MovieEvent event,
+  Future<void> _getMovies(
+    GetMoviesEvent event,
     Emitter<MovieState> emit,
   ) async {
-    emit(const MovieLoading());
-    final result = await _getMoviesUseCase(MovieTypeEnum.nowPlaying);
+    emit(const MoviesLoading());
+    final result = await _getMoviesUseCase(event.type);
     result.fold(
-      (error) => emit(MovieError(message: (error as ApiException).message)),
-      (movies) => emit(MovieSuccess(movies: movies)),
+      (error) => emit(MoviesError(message: (error as ApiException).message)),
+      (movies) => emit(MoviesSuccess(movies: movies)),
     );
   }
 

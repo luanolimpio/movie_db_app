@@ -57,5 +57,5 @@ class TVShowDetailsError extends TVShowState {
   final String message;
 
   @override
-  List<Object?> get props => [...super.props, message];
+  List<Object?> get props => [message];
 }

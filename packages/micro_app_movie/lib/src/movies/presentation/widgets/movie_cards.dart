@@ -3,6 +3,7 @@ import 'package:micro_common/micro_common.dart';
 import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
+import '../../../core/enums/movie_type_enum.dart';
 import '../../../core/routes/movie_routes.dart';
 import '../bloc/movie_bloc.dart';
 import '../bloc/movie_event.dart';
@@ -22,7 +23,8 @@ class _MovieCardsState extends State<MovieCards>
   @override
   void initState() {
     super.initState();
-    _bloc = GetIt.I<MovieBloc>()..add(const GetMoviesNowPlayingEvent());
+    _bloc = GetIt.I<MovieBloc>()
+      ..add(const GetMoviesEvent(type: MovieTypeEnum.nowPlaying));
   }
 
   @override
@@ -37,14 +39,14 @@ class _MovieCardsState extends State<MovieCards>
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (state is MovieLoading) ...[
+            if (state is MoviesLoading) ...[
               const DSShimmer(
                 height: 20,
                 width: 120,
               ),
               const SizedBox(height: 10),
               const DSHorizontalPosterListShimmer(),
-            ] else if (state is MovieSuccess) ...[
+            ] else if (state is MoviesSuccess) ...[
               const Text(
                 'Filmes em exibição',
                 style: TextStyle(

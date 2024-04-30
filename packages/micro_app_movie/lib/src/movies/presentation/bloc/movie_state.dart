@@ -14,12 +14,12 @@ class MovieInitial extends MovieState {
   const MovieInitial();
 }
 
-class MovieLoading extends MovieState {
-  const MovieLoading();
+class MoviesLoading extends MovieState {
+  const MoviesLoading();
 }
 
-class MovieSuccess extends MovieState {
-  const MovieSuccess({
+class MoviesSuccess extends MovieState {
+  const MoviesSuccess({
     required this.movies,
   });
 
@@ -29,8 +29,8 @@ class MovieSuccess extends MovieState {
   List<Object?> get props => [movies];
 }
 
-class MovieError extends MovieState {
-  const MovieError({required this.message});
+class MoviesError extends MovieState {
+  const MoviesError({required this.message});
 
   final String message;
 
@@ -57,5 +57,5 @@ class MovieDetailsError extends MovieState {
   final String message;
 
   @override
-  List<Object?> get props => [...super.props, message];
+  List<Object?> get props => [message];
 }
