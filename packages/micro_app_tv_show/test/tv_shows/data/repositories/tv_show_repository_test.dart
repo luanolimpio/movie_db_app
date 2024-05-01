@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_tv_show/src/core/enums/status_enum.dart';
+import 'package:micro_app_tv_show/src/core/enums/tv_show_type_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/datasources/i_tv_show_datasource.dart';
 import 'package:micro_app_tv_show/src/tv_shows/data/repositories/tv_show_repository.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/created_by_entity.dart';
@@ -118,18 +119,20 @@ void main() {
     voteCount: 21390,
   );
 
-  group('getOnTheAir', () {
+  const tType = TVShowTypeEnum.onTheAir;
+
+  group('getList', () {
     test('Should return success when call datasource', () async {
-      when(() => datasource.getOnTheAir())
+      when(() => datasource.getList(tType))
           .thenAnswer((_) async => Right(tListTVShowEntity));
-      final result = await repository.getOnTheAir();
+      final result = await repository.getList(tType);
       expect(result.isRight(), true);
     });
 
     test('Should return error when call datasource', () async {
-      when(() => datasource.getOnTheAir())
+      when(() => datasource.getList(tType))
           .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-      final result = await repository.getOnTheAir();
+      final result = await repository.getList(tType);
       expect(result.isLeft(), true);
     });
   });

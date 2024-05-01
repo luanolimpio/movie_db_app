@@ -29,7 +29,7 @@ class MovieDatasource implements IMovieDatasource {
       }
       return Left(
         ApiException(
-          'Não foi possível buscar filmes em exibição. Por favor, tente novamente.',
+          'Não foi possível buscar os filmes. Por favor, tente novamente.',
         ),
       );
     } catch (e) {

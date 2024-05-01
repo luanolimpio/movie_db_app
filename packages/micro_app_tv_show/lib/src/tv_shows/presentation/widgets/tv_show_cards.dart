@@ -4,6 +4,7 @@ import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
+import '../../../core/enums/tv_show_type_enum.dart';
 import '../../../core/routes/tv_show_routes.dart';
 import '../bloc/tv_show_bloc.dart';
 import '../bloc/tv_show_event.dart';
@@ -23,7 +24,8 @@ class _TVShowCardsState extends State<TVShowCards>
   @override
   void initState() {
     super.initState();
-    _bloc = GetIt.I<TVShowBloc>()..add(const GetTVShowsOnTheAirEvent());
+    _bloc = GetIt.I<TVShowBloc>()
+      ..add(const GetTVShowsEvent(type: TVShowTypeEnum.onTheAir));
   }
 
   @override
@@ -38,14 +40,14 @@ class _TVShowCardsState extends State<TVShowCards>
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (state is TVShowLoading) ...[
+            if (state is TVShowsLoading) ...[
               const DSShimmer(
                 height: 20,
                 width: 120,
               ),
               const SizedBox(height: 10),
               const DSHorizontalPosterListShimmer(),
-            ] else if (state is TVShowSuccess) ...[
+            ] else if (state is TVShowsSuccess) ...[
               const Text(
                 'Séries em exibição',
                 style: TextStyle(

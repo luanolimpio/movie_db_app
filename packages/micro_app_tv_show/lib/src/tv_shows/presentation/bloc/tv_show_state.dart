@@ -14,12 +14,12 @@ class TVShowInitial extends TVShowState {
   const TVShowInitial();
 }
 
-class TVShowLoading extends TVShowState {
-  const TVShowLoading();
+class TVShowsLoading extends TVShowState {
+  const TVShowsLoading();
 }
 
-class TVShowSuccess extends TVShowState {
-  const TVShowSuccess({
+class TVShowsSuccess extends TVShowState {
+  const TVShowsSuccess({
     required this.tvShows,
   });
 
@@ -29,8 +29,8 @@ class TVShowSuccess extends TVShowState {
   List<Object?> get props => [tvShows];
 }
 
-class TVShowError extends TVShowState {
-  const TVShowError({required this.message});
+class TVShowsError extends TVShowState {
+  const TVShowsError({required this.message});
 
   final String message;
 

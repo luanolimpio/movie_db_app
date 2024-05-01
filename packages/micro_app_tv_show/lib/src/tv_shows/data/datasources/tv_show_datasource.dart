@@ -1,6 +1,7 @@
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/tv_show_type_enum.dart';
 import '../../domain/entities/tv_show_details_entity.dart';
 import '../../domain/entities/tv_show_entity.dart';
 import '../models/tv_show_details_model.dart';
@@ -13,10 +14,10 @@ class TVShowDatasource implements ITVShowDatasource {
   TVShowDatasource(this._dioClient);
 
   @override
-  Future<Either<Exception, List<TVShowEntity>>> getOnTheAir() async {
+  Future<Either<Exception, List<TVShowEntity>>> getList(TVShowTypeEnum type) async {
     try {
       final result = await _dioClient.get(
-        'tv/on_the_air?api_key=${APIInfo.key}&language=${APIInfo.language}',
+        'tv/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}',
       );
       if (result.statusCode == 200) {
         final List<TVShowEntity> list = (result.data['results'] as List)

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_core/micro_core.dart';
@@ -59,7 +60,8 @@ class TVShowDetailsScreen extends StatelessWidget {
         DSBackdropCard(
           posterPath: APIInfo.requestPosterImage(details.posterPath!),
           backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
-          title: '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
+          title:
+              '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
           dateText: details.firstAirDate?.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
@@ -93,7 +95,7 @@ class TVShowDetailsScreen extends StatelessWidget {
                   isBold: true,
                 ),
                 const SizedBox(height: 10),
-                Row(
+                Wrap(
                   children: List.generate(
                     details.genres.length,
                     (index) => _getText(
@@ -125,7 +127,7 @@ class TVShowDetailsScreen extends StatelessWidget {
                   isBold: true,
                 ),
                 const SizedBox(height: 10),
-                Row(
+                Wrap(
                   children: List.generate(
                     details.createdBy.length,
                     (index) => _getText(
@@ -149,7 +151,7 @@ class TVShowDetailsScreen extends StatelessWidget {
                 TVShowDetailsCardWidget(
                   seasonNumber: details.lastEpisodeToAir!.seasonNumber,
                   voteAverage: details.seasons.last.voteAverage,
-                  airDate: details.seasons.last.airDate!,
+                  airDate: details.seasons.last.airDate,
                   episodeCount: details.seasons.last.episodeCount,
                   overview: details.seasons.last.overview,
                   lastEpisodeName: details.lastEpisodeToAir!.name,

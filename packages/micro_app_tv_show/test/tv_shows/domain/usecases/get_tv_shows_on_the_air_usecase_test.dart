@@ -1,18 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_tv_show/src/core/enums/tv_show_type_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/repositories/i_tv_show_repository.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_shows_on_the_air_usecase.dart';
+import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_shows_usecase.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 class MockTVShowRepository extends Mock implements ITVShowRepository {}
 
 void main() {
   late MockTVShowRepository repository;
-  late GetTVShowsOnTheAirUseCase getTVShowsOnTheAirUseCase;
+  late GetTVShowsUseCase getTVShowsUseCase;
 
   setUp(() {
     repository = MockTVShowRepository();
-    getTVShowsOnTheAirUseCase = GetTVShowsOnTheAirUseCase(repository);
+    getTVShowsUseCase = GetTVShowsUseCase(repository);
   });
 
   final tListTVShowEntity = [
@@ -34,17 +35,19 @@ void main() {
     ),
   ];
 
+  const tType = TVShowTypeEnum.onTheAir;
+
   test('Should return a TVShowEntity when call repository', () async {
-    when(() => repository.getOnTheAir())
+    when(() => repository.getList(tType))
         .thenAnswer((_) async => Right(tListTVShowEntity));
-    final result = await getTVShowsOnTheAirUseCase();
+    final result = await getTVShowsUseCase(tType);
     expect(result, Right<Exception, List<TVShowEntity>>(tListTVShowEntity));
   });
 
   test('Should return an exception when call repository', () async {
-    when(() => repository.getOnTheAir())
+    when(() => repository.getList(tType))
         .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-    final result = await getTVShowsOnTheAirUseCase();
+    final result = await getTVShowsUseCase(tType);
     expect(result.isLeft(), true);
   });
 }

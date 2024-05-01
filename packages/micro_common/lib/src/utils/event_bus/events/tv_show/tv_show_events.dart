@@ -1,17 +1,9 @@
 import '../../i_event.dart';
 
-class GoToPopularTvShowsEvent extends IEvent {
-  const GoToPopularTvShowsEvent();
-}
+class GoToTVShowsEvent extends IEvent {
+  const GoToTVShowsEvent({
+    required this.type,
+  });
 
-class GoToAiringTodayTvShowsEvent extends IEvent {
-  const GoToAiringTodayTvShowsEvent();
-}
-
-class GoToOnTheAirTvShowsEvent extends IEvent {
-  const GoToOnTheAirTvShowsEvent();
-}
-
-class GoToTopRatedTvShowsEvent extends IEvent {
-  const GoToTopRatedTvShowsEvent();
+  final Enum type;
 }

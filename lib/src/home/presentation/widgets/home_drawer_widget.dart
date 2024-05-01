@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:micro_app_movie/micro_app_movie.dart';
+import 'package:micro_app_tv_show/micro_app_tv_show.dart';
 import 'package:micro_common/micro_common.dart';
 
 class _DrawerItem {
@@ -87,20 +88,35 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 _DrawerItem(
                   title: 'Populares',
-                  onTap: () => EventBus.emit(const GoToPopularTvShowsEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToTVShowsEvent(
+                      type: TVShowTypeEnum.popular,
+                    ),
+                  ),
                 ),
                 _DrawerItem(
                   title: 'Emitidos Hoje',
-                  onTap: () =>
-                      EventBus.emit(const GoToAiringTodayTvShowsEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToTVShowsEvent(
+                      type: TVShowTypeEnum.airingToday,
+                    ),
+                  ),
                 ),
                 _DrawerItem(
                   title: 'Na TV',
-                  onTap: () => EventBus.emit(const GoToOnTheAirTvShowsEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToTVShowsEvent(
+                      type: TVShowTypeEnum.onTheAir,
+                    ),
+                  ),
                 ),
                 _DrawerItem(
                   title: 'Melhor Classificação',
-                  onTap: () => EventBus.emit(const GoToTopRatedTvShowsEvent()),
+                  onTap: () => EventBus.emit(
+                    const GoToTVShowsEvent(
+                      type: TVShowTypeEnum.topRated,
+                    ),
+                  ),
                 ),
               ],
             ),

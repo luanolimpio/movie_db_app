@@ -1,5 +1,6 @@
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/tv_show_type_enum.dart';
 import '../../domain/entities/tv_show_details_entity.dart';
 import '../../domain/entities/tv_show_entity.dart';
 import '../../domain/repositories/i_tv_show_repository.dart';
@@ -11,8 +12,10 @@ class TVShowRepository implements ITVShowRepository {
   TVShowRepository(this._dataSource);
 
   @override
-  Future<Either<Exception, List<TVShowEntity>>> getOnTheAir() async {
-    return await _dataSource.getOnTheAir();
+  Future<Either<Exception, List<TVShowEntity>>> getList(
+    TVShowTypeEnum type,
+  ) async {
+    return await _dataSource.getList(type);
   }
 
   @override

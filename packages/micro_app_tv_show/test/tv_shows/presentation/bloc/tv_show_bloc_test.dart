@@ -1,33 +1,34 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_tv_show/src/core/enums/status_enum.dart';
+import 'package:micro_app_tv_show/src/core/enums/tv_show_type_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/created_by_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/episode_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/network_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/season_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_details_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_entity.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_shows_on_the_air_usecase.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_show_details_usecase.dart';
+import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_shows_usecase.dart';
 import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/tv_show_bloc.dart';
 import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/tv_show_event.dart';
 import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/tv_show_state.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
-class MockGetTVShowsOnTheAirUseCase extends Mock implements GetTVShowsOnTheAirUseCase {}
+class MockGetTVShowsUseCase extends Mock implements GetTVShowsUseCase {}
 
 class MockGetTVShowDetailsUseCase extends Mock
     implements GetTVShowDetailsUseCase {}
 
 void main() {
-  late MockGetTVShowsOnTheAirUseCase getTVShowsOnTheAirUseCase;
+  late MockGetTVShowsUseCase getTVShowsUseCase;
   late MockGetTVShowDetailsUseCase getTVShowDetailsUseCase;
   late TVShowBloc bloc;
 
   setUp(() {
-    getTVShowsOnTheAirUseCase = MockGetTVShowsOnTheAirUseCase();
+    getTVShowsUseCase = MockGetTVShowsUseCase();
     getTVShowDetailsUseCase = MockGetTVShowDetailsUseCase();
-    bloc = TVShowBloc(getTVShowsOnTheAirUseCase, getTVShowDetailsUseCase);
+    bloc = TVShowBloc(getTVShowsUseCase, getTVShowDetailsUseCase);
   });
 
   tearDown(() {
@@ -130,36 +131,38 @@ void main() {
     voteCount: 21390,
   );
 
-  group('getOnTheAir', () {
+  const tType = TVShowTypeEnum.onTheAir;
+
+  group('getTVShows', () {
     blocTest<TVShowBloc, TVShowState>(
       'Should emit the correct state sequence when getOnTheAirUseCase returns success',
       build: () {
-        when(() => getTVShowsOnTheAirUseCase())
+        when(() => getTVShowsUseCase(tType))
             .thenAnswer((_) async => Right(tListTVShowEntity));
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetTVShowsOnTheAirEvent());
+        bloc.add(const GetTVShowsEvent(type: tType));
       },
       expect: () => <dynamic>[
-        isA<TVShowLoading>(),
-        isA<TVShowSuccess>(),
+        isA<TVShowsLoading>(),
+        isA<TVShowsSuccess>(),
       ],
     );
 
     blocTest<TVShowBloc, TVShowState>(
       'Should emit the correct state sequence when getOnTheAirUseCase returns error',
       build: () {
-        when(() => getTVShowsOnTheAirUseCase())
+        when(() => getTVShowsUseCase(tType))
             .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));
         return bloc;
       },
       act: (bloc) {
-        bloc.add(const GetTVShowsOnTheAirEvent());
+        bloc.add(const GetTVShowsEvent(type: tType));
       },
       expect: () => <dynamic>[
-        isA<TVShowLoading>(),
-        isA<TVShowError>(),
+        isA<TVShowsLoading>(),
+        isA<TVShowsError>(),
       ],
     );
   });

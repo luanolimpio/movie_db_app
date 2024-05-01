@@ -16,7 +16,7 @@ class TVShowDetailsCardWidget extends StatelessWidget {
 
   final int seasonNumber;
   final double voteAverage;
-  final DateTime airDate;
+  final DateTime? airDate;
   final int episodeCount;
   final String overview;
   final String lastEpisodeName;
@@ -104,21 +104,23 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                       ],
-                      Text(
-                        airDate.yyyy,
-                        style: const TextStyle(
-                          color: Colors.black87,
-                          fontSize: 13.0,
-                          fontWeight: FontWeight.w500,
+                      if (airDate != null) ...[
+                        Text(
+                          airDate!.yyyy,
+                          style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 13.0,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        ' - ',
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500,
+                        const Text(
+                          ' - ',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
+                      ],
                       Text(
                         '$episodeCount Episódios',
                         style: const TextStyle(
@@ -136,9 +138,9 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     )
-                  else
+                  else if (airDate != null)
                     Text(
-                      'A $seasonNumber.ª temporada estreou ${airDate.dayMonthYear}.',
+                      'A $seasonNumber.ª temporada estreou ${airDate!.dayMonthYear}.',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -105,7 +105,7 @@ class MovieDetailsScreen extends StatelessWidget {
                   isBold: true,
                 ),
                 const SizedBox(height: 10),
-                Row(
+                Wrap(
                   children: List.generate(
                     details.genres.length,
                     (index) => _getText(
