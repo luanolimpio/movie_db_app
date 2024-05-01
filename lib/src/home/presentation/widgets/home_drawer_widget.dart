@@ -63,7 +63,7 @@ class HomeDrawerWidget extends StatelessWidget {
                   ),
                 ),
                 _DrawerItem(
-                  title: 'Em breve',
+                  title: 'Em Breve',
                   onTap: () => EventBus.emit(
                     const GoToMoviesEvent(
                       type: MovieTypeEnum.upcoming,

@@ -25,13 +25,11 @@ class MoviesScreen extends StatefulWidget {
 class _MoviesScreenState extends State<MoviesScreen> {
   MoviesArguments get _arguments => widget.arguments;
 
-  late final MovieBloc _bloc;
-
   @override
   void initState() {
     super.initState();
-    _bloc = BlocProvider.of<MovieBloc>(context);
-    _bloc.add(GetMoviesEvent(type: _arguments.type));
+    BlocProvider.of<MovieBloc>(context)
+        .add(GetMoviesEvent(type: _arguments.type));
   }
 
   @override
@@ -49,7 +47,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
         leadingWidth: 40,
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(10),
         child: BlocConsumer<MovieBloc, MovieState>(
           listener: (context, state) {
@@ -67,25 +65,28 @@ class _MoviesScreenState extends State<MoviesScreen> {
               return const DSVerticalPosterListShimmer();
             }
             if (state is MoviesSuccess) {
-              return DSVerticalPosterCardList(
-                posterCards: List.generate(
-                  state.movies.length,
-                  (index) {
-                    final movie = state.movies[index];
-                    return DSPosterCard(
-                      path: APIInfo.requestPosterImage(
-                        movie.posterPath,
-                      ),
-                      onTap: () {
-                        navigatorKey.currentState!.pushNamed(
-                          MovieRoutes.details,
-                          arguments: movie.id,
-                        );
-                      },
-                    );
-                  },
-                ),
-              );
+              if (state.movies.isNotEmpty) {
+                return DSVerticalPosterCardList(
+                  posterCards: List.generate(
+                    state.movies.length,
+                    (index) {
+                      final movie = state.movies[index];
+                      return DSPosterCard(
+                        path: APIInfo.requestPosterImage(
+                          movie.posterPath,
+                        ),
+                        onTap: () {
+                          navigatorKey.currentState!.pushNamed(
+                            MovieRoutes.details,
+                            arguments: movie.id,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                );
+              }
+              return const DSEmptyState();
             }
             return Container();
           },
