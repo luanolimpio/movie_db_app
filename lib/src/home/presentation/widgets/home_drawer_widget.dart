@@ -153,6 +153,7 @@ class HomeDrawerWidget extends StatelessWidget {
       leading: Icon(
         icon,
       ),
+      collapsedTextColor: Colors.black54,
       title: Text(
         headerTitle,
       ),
