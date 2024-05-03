@@ -162,9 +162,8 @@ class HomeDrawerWidget extends StatelessWidget {
           return ListTile(
             title: Text(
               children[index].title,
-              style: TextStyle(
-                color: Colors.grey.shade800,
-                fontSize: 13,
+              style: const TextStyle(
+                color: Colors.black54,
               ),
             ),
             onTap: children[index].onTap,
