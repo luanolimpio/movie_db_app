@@ -13,7 +13,7 @@ class DSVerticalPosterCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      physics: const ScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,

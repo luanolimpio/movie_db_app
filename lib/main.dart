@@ -30,6 +30,11 @@ class MyApp extends StatelessWidget with BaseAppMixin {
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF333333),
           elevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
       locale: const Locale('pt', 'BR'),

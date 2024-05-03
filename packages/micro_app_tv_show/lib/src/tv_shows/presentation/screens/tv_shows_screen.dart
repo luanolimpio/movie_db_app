@@ -38,14 +38,8 @@ class _TVShowsScreenState extends State<TVShowsScreen> {
       appBar: AppBar(
         title: Text(
           'Séries ${_arguments.type.label}',
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
         ),
         leadingWidth: 40,
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'ds_shimmer.dart';
@@ -12,7 +13,7 @@ class DSDetailsShimmer extends StatelessWidget {
       children: [
         DSShimmer(
           height: 300,
-          radius: 0,
+          borderRadius: BorderRadius.zero,
         ),
         Padding(
           padding: EdgeInsets.symmetric(

@@ -2,25 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
-class TVShowDetailsCardWidget extends StatelessWidget {
-  const TVShowDetailsCardWidget({
-    required this.seasonNumber,
-    required this.voteAverage,
-    required this.airDate,
-    required this.episodeCount,
-    required this.overview,
-    required this.lastEpisodeName,
-    this.posterPath,
+import '../../domain/entities/season_entity.dart';
+
+class SeasonCardWidget extends StatelessWidget {
+  const SeasonCardWidget({
+    required this.season,
+    this.lastEpisodeName,
     super.key,
   });
 
-  final int seasonNumber;
-  final double voteAverage;
-  final DateTime? airDate;
-  final int episodeCount;
-  final String overview;
-  final String lastEpisodeName;
-  final String? posterPath;
+  final SeasonEntity season;
+  final String? lastEpisodeName;
 
   BorderRadius get _imageRadius => const BorderRadius.only(
         topLeft: Radius.circular(5.0),
@@ -37,12 +29,17 @@ class TVShowDetailsCardWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (posterPath != null)
+          if (season.posterPath != null)
             ClipRRect(
               borderRadius: _imageRadius,
               child: DSCachedImage(
                 path: APIInfo.requestH195Image(
-                  posterPath!,
+                  season.posterPath!,
+                ),
+                placeholder: DSShimmer(
+                  height: 195,
+                  width: 130,
+                  borderRadius: _imageRadius,
                 ),
               ),
             )
@@ -67,15 +64,16 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Temporada $seasonNumber',
+                    season.name,
                     style: const TextStyle(
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Row(
                     children: [
-                      if (voteAverage > 0) ...[
+                      if (season.voteAverage > 0) ...[
                         Container(
                           height: 20,
                           padding: const EdgeInsets.all(3.0),
@@ -92,7 +90,7 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                                 size: 13,
                               ),
                               Text(
-                                '${voteAverage.toString().replaceAll('.', '')}%',
+                                '${season.voteAverage.toString().replaceAll('.', '')}%',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 13.0,
@@ -104,59 +102,58 @@ class TVShowDetailsCardWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                       ],
-                      if (airDate != null) ...[
+                      if (season.airDate != null) ...[
                         Text(
-                          airDate!.yyyy,
-                          style: const TextStyle(
-                            color: Colors.black87,
+                          season.airDate!.yyyy,
+                          style:  const TextStyle(
                             fontSize: 13.0,
-                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         const Text(
-                          ' - ',
+                          ' • ',
                           style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                       Text(
-                        '$episodeCount Episódios',
-                        style: const TextStyle(
-                          color: Colors.black87,
+                        '${season.episodeCount} Episódios',
+                        style:  const TextStyle(
                           fontSize: 13.0,
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  if (overview.isNotEmpty)
+                  if (season.overview.isNotEmpty) ...[
+                    const SizedBox(height: 10),
                     Text(
-                      overview,
+                      season.overview,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                     )
-                  else if (airDate != null)
+                  ] else if (season.airDate != null) ...[
+                    const SizedBox(height: 10),
                     Text(
-                      'A $seasonNumber.ª temporada estreou ${airDate!.dayMonthYear}.',
+                      'A ${season.seasonNumber}.ª temporada estreou ${season.airDate!.dayMonthYear}.',
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Último Episódio:',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    lastEpisodeName,
-                    style: const TextStyle(
-                      decoration: TextDecoration.underline,
+                  ],
+                  if (lastEpisodeName != null) ...[
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Último Episódio:',
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                    const SizedBox(height: 5),
+                    Text(
+                      lastEpisodeName!,
+                      style: const TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ],
               ),
             ),

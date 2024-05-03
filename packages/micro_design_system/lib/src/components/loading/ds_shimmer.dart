@@ -8,7 +8,7 @@ class DSShimmer extends StatelessWidget {
     this.width,
     this.baseColor,
     this.highlightColor,
-    this.radius = 5.0,
+    this.borderRadius,
     Key? key,
   }) : super(key: key);
 
@@ -16,7 +16,7 @@ class DSShimmer extends StatelessWidget {
   final Color? highlightColor;
   final double? height;
   final double? width;
-  final double radius;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class DSShimmer extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: borderRadius ?? BorderRadius.circular(5.0),
         ),
       ),
     );

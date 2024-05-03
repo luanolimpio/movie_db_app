@@ -4,11 +4,13 @@ import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
+import '../../../core/routes/tv_show_routes.dart';
 import '../../domain/entities/tv_show_details_entity.dart';
+import '../arguments/seasons_arguments.dart';
 import '../bloc/tv_show_bloc.dart';
 import '../bloc/tv_show_event.dart';
 import '../bloc/tv_show_state.dart';
-import '../widgets/tv_show_details_card_widget.dart';
+import '../widgets/season_card_widget.dart';
 
 class TVShowDetailsScreen extends StatelessWidget {
   const TVShowDetailsScreen({
@@ -147,14 +149,31 @@ class TVShowDetailsScreen extends StatelessWidget {
                   isBold: true,
                 ),
                 const SizedBox(height: 10),
-                TVShowDetailsCardWidget(
-                  seasonNumber: details.lastEpisodeToAir!.seasonNumber,
-                  voteAverage: details.seasons.last.voteAverage,
-                  airDate: details.seasons.last.airDate,
-                  episodeCount: details.seasons.last.episodeCount,
-                  overview: details.seasons.last.overview,
+                SeasonCardWidget(
+                  season: details.seasons.last,
                   lastEpisodeName: details.lastEpisodeToAir!.name,
-                  posterPath: details.seasons.last.posterPath,
+                ),
+                const SizedBox(height: 10),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    side: const BorderSide(width: 1.0, color: Colors.white),
+                  ),
+                  child: const Text(
+                    'Ver Todas as Temporadas',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    navigatorKey.currentState!.pushNamed(
+                      TVShowRoutes.seasons,
+                      arguments: SeasonsArguments(
+                        tvShowName: details.originalName,
+                        seasons: details.seasons,
+                      ),
+                    );
+                  },
                 ),
               ],
               if (details.networks.isNotEmpty) ...[

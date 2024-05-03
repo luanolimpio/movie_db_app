@@ -7,8 +7,10 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 import 'core/enums/tv_show_type_enum.dart';
 import 'core/injector/injector.dart';
 import 'core/routes/tv_show_routes.dart';
+import 'tv_shows/presentation/arguments/seasons_arguments.dart';
 import 'tv_shows/presentation/arguments/tv_shows_arguments.dart';
 import 'tv_shows/presentation/bloc/tv_show_bloc.dart';
+import 'tv_shows/presentation/screens/seasons_screen.dart';
 import 'tv_shows/presentation/screens/tv_show_details_screen.dart';
 import 'tv_shows/presentation/screens/tv_shows_screen.dart';
 
@@ -24,8 +26,12 @@ class MicroAppTVShowResolver implements MicroApp {
                 arguments: args as TVShowsArguments,
               ),
             ),
-        TVShowRoutes.details: (_, args) =>
-            TVShowDetailsScreen(tvShowId: args as int),
+        TVShowRoutes.details: (_, args) => TVShowDetailsScreen(
+              tvShowId: args as int,
+            ),
+        TVShowRoutes.seasons: (_, args) => SeasonsScreen(
+              arguments: args as SeasonsArguments,
+            ),
       };
 
   @override

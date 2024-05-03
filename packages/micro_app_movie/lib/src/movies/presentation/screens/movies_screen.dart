@@ -38,14 +38,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
       appBar: AppBar(
         title: Text(
           'Filmes ${_arguments.type.label}',
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
         ),
         leadingWidth: 40,
-        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
