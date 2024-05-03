@@ -169,7 +169,7 @@ class TVShowDetailsScreen extends StatelessWidget {
                     navigatorKey.currentState!.pushNamed(
                       TVShowRoutes.seasons,
                       arguments: SeasonsArguments(
-                        tvShowName: details.originalName,
+                        tvShowName: details.name,
                         seasons: details.seasons,
                       ),
                     );
