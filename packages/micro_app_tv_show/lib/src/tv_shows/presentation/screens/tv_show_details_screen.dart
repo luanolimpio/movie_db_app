@@ -196,6 +196,10 @@ class TVShowDetailsScreen extends StatelessWidget {
                             path: APIInfo.requestH30Image(
                               details.networks[index].logoPath!,
                             ),
+                            placeholder: const DSShimmer(
+                              height: 30,
+                              width: 100,
+                            ),
                           ),
                           onTap: () {},
                         );
