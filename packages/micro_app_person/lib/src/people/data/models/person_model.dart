@@ -9,6 +9,7 @@ class PersonModel extends PersonEntity {
     required super.knownFor,
     required super.knownForDepartment,
     required super.name,
+    required super.originalName,
     required super.popularity,
     required super.profilePath,
   });
@@ -23,6 +24,7 @@ class PersonModel extends PersonEntity {
           .toList(),
       knownForDepartment: map['known_for_department'],
       name: map['name'],
+      originalName: map['original_name'],
       popularity: map['popularity'],
       profilePath: map['profile_path'],
     );

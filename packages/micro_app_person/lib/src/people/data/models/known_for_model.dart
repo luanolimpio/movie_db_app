@@ -5,17 +5,19 @@ class KnownForModel extends KnownForEntity {
   const KnownForModel({
     required super.id,
     required super.mediaType,
-    required super.originalTitle,
     required super.title,
+    required super.originalTitle,
     required super.posterPath,
   });
 
   factory KnownForModel.fromJson(Map<String, dynamic> map) {
+    final mediaType = getMediaTypeEnum(map['media_type']);
+    final title = mediaType == MediaTypeEnum.movie ? 'title': 'name';
     return KnownForModel(
       id: map['id'],
-      mediaType: getMediaTypeEnum(map['media_type']),
-      originalTitle: map['original_title'],
-      title: map['title'],
+      mediaType: mediaType,
+      title: map[title],
+      originalTitle: map['original_$title'],
       posterPath: map['poster_path'],
     );
   }

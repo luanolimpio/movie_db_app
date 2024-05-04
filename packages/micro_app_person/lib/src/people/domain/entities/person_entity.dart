@@ -10,6 +10,7 @@ class PersonEntity extends Equatable {
     required this.knownFor,
     required this.knownForDepartment,
     required this.name,
+    required this.originalName,
     required this.popularity,
     required this.profilePath,
   });
@@ -20,8 +21,9 @@ class PersonEntity extends Equatable {
   final List<KnownForEntity> knownFor;
   final String knownForDepartment;
   final String name;
+  final String originalName;
   final double popularity;
-  final String profilePath;
+  final String? profilePath;
 
   @override
   String toString() {
@@ -31,6 +33,7 @@ class PersonEntity extends Equatable {
         ' knownFor: $knownFor,'
         ' knownForDepartment: $knownForDepartment,'
         ' name: $name,'
+        ' originalName: $originalName,'
         ' popularity: $popularity,'
         ' profilePath: $profilePath)';
   }

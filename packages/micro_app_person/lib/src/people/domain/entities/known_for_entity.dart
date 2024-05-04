@@ -6,23 +6,23 @@ class KnownForEntity extends Equatable {
   const KnownForEntity({
     required this.id,
     required this.mediaType,
-    required this.originalTitle,
     required this.title,
+    required this.originalTitle,
     required this.posterPath,
   });
 
   final int id;
   final MediaTypeEnum mediaType;
-  final String originalTitle;
   final String title;
+  final String originalTitle;
   final String posterPath;
 
   @override
   String toString() {
     return 'KnownForEntity(id: $id,'
         ' mediaType: $mediaType,'
-        ' originalTitle: $originalTitle,'
         ' title: $title,'
+        ' originalTitle: $originalTitle,'
         ' posterPath: $posterPath)';
   }
 
@@ -30,8 +30,8 @@ class KnownForEntity extends Equatable {
   List<Object?> get props => [
         id,
         mediaType,
-        originalTitle,
         title,
+        originalTitle,
         posterPath,
       ];
 }

@@ -9,8 +9,8 @@ void main() {
   const tKnownForModel = KnownForModel(
     id: 335984,
     mediaType: MediaTypeEnum.movie,
-    originalTitle: 'Blade Runner 2049',
     title: 'Blade Runner 2049',
+    originalTitle: 'Blade Runner 2049',
     posterPath: '/ilRyazdMJwN05exqhwK4tMKBYZs.jpg',
   );
 
