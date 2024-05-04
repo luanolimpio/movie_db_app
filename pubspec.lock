@@ -391,6 +391,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  micro_app_person:
+    dependency: "direct main"
+    description:
+      path: "packages/micro_app_person"
+      relative: true
+    source: path
+    version: "0.0.1"
   micro_app_tv_show:
     dependency: "direct main"
     description:

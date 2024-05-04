@@ -25,6 +25,9 @@ dependencies:
   micro_app_tv_show:
     path: packages/micro_app_tv_show
 
+  micro_app_person:
+    path: packages/micro_app_person
+
   micro_dependencies:
     path: packages/micro_dependencies
 
