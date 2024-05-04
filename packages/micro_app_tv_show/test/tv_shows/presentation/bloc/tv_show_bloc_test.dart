@@ -135,7 +135,7 @@ void main() {
 
   group('getTVShows', () {
     blocTest<TVShowBloc, TVShowState>(
-      'Should emit the correct state sequence when getOnTheAirUseCase returns success',
+      'Should emit the correct state sequence when getTVShowsUseCase returns success',
       build: () {
         when(() => getTVShowsUseCase(tType))
             .thenAnswer((_) async => Right(tListTVShowEntity));
@@ -151,7 +151,7 @@ void main() {
     );
 
     blocTest<TVShowBloc, TVShowState>(
-      'Should emit the correct state sequence when getOnTheAirUseCase returns error',
+      'Should emit the correct state sequence when getTVShowsUseCase returns error',
       build: () {
         when(() => getTVShowsUseCase(tType))
             .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));

@@ -83,7 +83,7 @@ void main() {
 
   group('getMovies', () {
     blocTest<MovieBloc, MovieState>(
-      'Should emit the correct state sequence when getNowPlayingUseCase returns success',
+      'Should emit the correct state sequence when getMoviesUseCase returns success',
       build: () {
         when(() => getMoviesUseCase(tType))
             .thenAnswer((_) async => Right(tListMovieEntity));
@@ -99,7 +99,7 @@ void main() {
     );
 
     blocTest<MovieBloc, MovieState>(
-      'Should emit the correct state sequence when getNowPlayingUseCase returns error',
+      'Should emit the correct state sequence when getMoviesUseCase returns error',
       build: () {
         when(() => getMoviesUseCase(tType))
             .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));

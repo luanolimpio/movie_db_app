@@ -18,7 +18,7 @@ void main() {
 
   const tId = 297761;
 
-  const tJsonNowPlaying =
+  const tJsonList =
       '{"page": 1, "results": [{"poster_path": "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg", "adult": false, "overview": "From DC Comics comes the Suicide Squad, an antihero team of incarcerated", "release_date": "2016-08-03", "genre_ids": [14, 28, 80], "id": 297761, "original_title": "Suicide Squad", "original_language": "en", "title": "Suicide Squad", "backdrop_path": "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg", "popularity": 48.261451, "vote_count": 1466, "video": false, "vote_average": 5.91}], "dates": {"maximum": "2016-09-01", "minimum": "2016-07-21"}, "total_pages": 33, "total_results": 649}';
 
   const tJsonDetails =
@@ -30,7 +30,7 @@ void main() {
     test('Should return success when call dio client', () async {
       when(() => dioClient.get(any())).thenAnswer(
         (_) async => Response(
-          data: json.decode(tJsonNowPlaying),
+          data: json.decode(tJsonList),
           statusCode: 200,
           requestOptions: RequestOptions(
             path: '',
