@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:micro_app_person/src/core/enums/department_type_enum.dart';
 import 'package:micro_app_person/src/core/enums/media_type_enum.dart';
 import 'package:micro_app_person/src/people/data/datasources/i_person_datasource.dart';
 import 'package:micro_app_person/src/people/data/repositories/person_repository.dart';
@@ -31,7 +32,7 @@ void main() {
           posterPath: '/ilRyazdMJwN05exqhwK4tMKBYZs.jpg',
         ),
       ],
-      knownForDepartment: 'Acting',
+      knownForDepartment: DepartmentTypeEnum.acting,
       name: 'Rufus Sewell',
       originalName: 'Rufus Sewell',
       popularity: 102.157,

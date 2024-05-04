@@ -1,3 +1,4 @@
+import '../../../core/enums/department_type_enum.dart';
 import '../../domain/entities/person_entity.dart';
 import 'known_for_model.dart';
 
@@ -22,7 +23,7 @@ class PersonModel extends PersonEntity {
       knownFor: List.from(map['known_for'])
           .map((e) => KnownForModel.fromJson(e))
           .toList(),
-      knownForDepartment: map['known_for_department'],
+      knownForDepartment: getDepartmentTypeEnum(map['known_for_department']),
       name: map['name'],
       originalName: map['original_name'],
       popularity: map['popularity'],

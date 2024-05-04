@@ -1,5 +1,6 @@
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import '../../../core/enums/department_type_enum.dart';
 import 'known_for_entity.dart';
 
 class PersonEntity extends Equatable {
@@ -19,7 +20,7 @@ class PersonEntity extends Equatable {
   final int gender;
   final int id;
   final List<KnownForEntity> knownFor;
-  final String knownForDepartment;
+  final DepartmentTypeEnum knownForDepartment;
   final String name;
   final String originalName;
   final double popularity;
