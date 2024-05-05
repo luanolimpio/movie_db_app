@@ -56,7 +56,10 @@ class _TVShowsScreenState extends State<TVShowsScreen> {
           },
           builder: (context, state) {
             if (state is TVShowsLoading) {
-              return const DSVerticalPosterListShimmer();
+              return const DSVerticalPosterListShimmer(
+                crossAxisCount: 3,
+                height: 200,
+              );
             }
             if (state is TVShowsSuccess) {
               if (state.tvShows.isNotEmpty) {

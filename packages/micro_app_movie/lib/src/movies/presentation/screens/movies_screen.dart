@@ -56,7 +56,10 @@ class _MoviesScreenState extends State<MoviesScreen> {
           },
           builder: (context, state) {
             if (state is MoviesLoading) {
-              return const DSVerticalPosterListShimmer();
+              return const DSVerticalPosterListShimmer(
+                crossAxisCount: 3,
+                height: 200,
+              );
             }
             if (state is MoviesSuccess) {
               if (state.movies.isNotEmpty) {

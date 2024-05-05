@@ -24,7 +24,7 @@ class PersonEntity extends Equatable {
   final String name;
   final String originalName;
   final double popularity;
-  final String? profilePath;
+  final String profilePath;
 
   @override
   String toString() {

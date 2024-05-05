@@ -14,4 +14,7 @@ class APIInfo {
 
   static String requestH195Image(String path) =>
       'https://media.themoviedb.org/t/p/w130_and_h195_bestv2$path';
+
+  static String requestH235Image(String path) =>
+      'https://media.themoviedb.org/t/p/w235_and_h235_face$path';
 }
