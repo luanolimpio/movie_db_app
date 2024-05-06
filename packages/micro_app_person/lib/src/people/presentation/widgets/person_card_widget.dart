@@ -32,19 +32,33 @@ class PersonCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ClipRRect(
-              borderRadius: _imageRadius,
-              child: DSCachedImage(
-                path: APIInfo.requestH235Image(
-                  person.profilePath,
+            if (person.profilePath != null)
+              ClipRRect(
+                borderRadius: _imageRadius,
+                child: DSCachedImage(
+                  path: APIInfo.requestH235Image(
+                    person.profilePath!,
+                  ),
+                  fit: BoxFit.cover,
+                  placeholder: DSShimmer(
+                    height: 190,
+                    borderRadius: _imageRadius,
+                  ),
                 ),
-                fit: BoxFit.cover,
-                placeholder: DSShimmer(
-                  height: 190,
+              )
+            else
+              Container(
+                height: 190,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade400,
                   borderRadius: _imageRadius,
                 ),
+                child: Icon(
+                  Icons.person,
+                  size: 100,
+                  color: Colors.grey.shade600,
+                ),
               ),
-            ),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Column(

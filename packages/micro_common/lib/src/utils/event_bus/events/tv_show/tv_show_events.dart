@@ -7,3 +7,11 @@ class GoToTVShowsEvent extends IEvent {
 
   final Enum type;
 }
+
+class GoToTVShowDetailsEvent extends IEvent {
+  const GoToTVShowDetailsEvent({
+    required this.id,
+  });
+
+  final int id;
+}

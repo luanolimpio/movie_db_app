@@ -4,6 +4,7 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
 import '../../../core/routes/person_routes.dart';
+import '../arguments/person_details_arguments.dart';
 import '../bloc/person_bloc.dart';
 import '../bloc/person_event.dart';
 import '../bloc/person_state.dart';
@@ -71,7 +72,10 @@ class _PopularPeopleScreenState extends State<PopularPeopleScreen> {
                       onTap: () {
                         navigatorKey.currentState!.pushNamed(
                           PersonRoutes.details,
-                          // arguments: movie.id,
+                          arguments: PersonDetailsArguments(
+                            id: person.id,
+                            knownFor: person.knownFor,
+                          ),
                         );
                       },
                     );

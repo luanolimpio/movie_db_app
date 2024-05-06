@@ -8,23 +8,23 @@ class PersonDetailsEntity extends Equatable {
     required this.adult,
     required this.alsoKnownAs,
     required this.biography,
-    required this.birthday,
-    required this.deathDay,
     required this.gender,
-    required this.homepage,
     required this.id,
     required this.imdbId,
     required this.knownForDepartment,
     required this.name,
     required this.placeOfBirth,
     required this.popularity,
-    required this.profilePath,
+    this.birthday,
+    this.deathDay,
+    this.homepage,
+    this.profilePath,
   });
 
   final bool adult;
   final List<String> alsoKnownAs;
   final String biography;
-  final DateTime birthday;
+  final DateTime? birthday;
   final DateTime? deathDay;
   final GenderTypeEnum gender;
   final String? homepage;
@@ -34,7 +34,7 @@ class PersonDetailsEntity extends Equatable {
   final String name;
   final String placeOfBirth;
   final double popularity;
-  final String profilePath;
+  final String? profilePath;
 
   @override
   String toString() {

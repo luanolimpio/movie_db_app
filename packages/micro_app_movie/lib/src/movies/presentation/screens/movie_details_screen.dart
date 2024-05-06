@@ -55,20 +55,22 @@ class MovieDetailsScreen extends StatelessWidget {
 
   Widget _details(MovieDetailsEntity details) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DSBackdropCard(
-          posterPath: APIInfo.requestPosterImage(details.posterPath!),
-          backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
+          posterPath: details.posterPath != null
+              ? APIInfo.requestPosterImage(details.posterPath!)
+              : null,
+          backdropPath: details.backdropPath != null
+              ? APIInfo.requestBackdropImage(details.backdropPath!)
+              : null,
           title: '${details.title} (${details.releaseDate.yyyy})',
-          dateText: details.releaseDate.dayMonthYear,
+          subtitle: details.releaseDate.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 10,
-          ),
+          padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

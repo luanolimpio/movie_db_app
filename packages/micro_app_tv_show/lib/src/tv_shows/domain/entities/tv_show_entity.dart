@@ -3,7 +3,6 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 class TVShowEntity extends Equatable {
   const TVShowEntity({
     required this.backdropPath,
-    required this.firstAirDate,
     required this.genreIds,
     required this.id,
     required this.name,
@@ -15,6 +14,7 @@ class TVShowEntity extends Equatable {
     required this.posterPath,
     required this.voteAverage,
     required this.voteCount,
+    this.firstAirDate,
   });
 
   final String backdropPath;

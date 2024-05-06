@@ -3,9 +3,9 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 class NetworkEntity extends Equatable {
   const NetworkEntity({
     required this.id,
-    required this.logoPath,
     required this.name,
     required this.originCountry,
+    this.logoPath,
   });
 
   final int id;

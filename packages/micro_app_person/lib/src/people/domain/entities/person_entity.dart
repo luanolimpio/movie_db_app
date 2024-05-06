@@ -13,7 +13,7 @@ class PersonEntity extends Equatable {
     required this.name,
     required this.originalName,
     required this.popularity,
-    required this.profilePath,
+    this.profilePath,
   });
 
   final bool adult;
@@ -24,7 +24,7 @@ class PersonEntity extends Equatable {
   final String name;
   final String originalName;
   final double popularity;
-  final String profilePath;
+  final String? profilePath;
 
   @override
   String toString() {

@@ -21,4 +21,11 @@ extension DateTimeFormatter on DateTime {
   String get yyyy {
     return DateFormat('yyyy').format(this);
   }
+
+  String get age {
+    final DateTime now = DateTime.now();
+    final Duration age = now.difference(this);
+    final years = age.inDays ~/ 365;
+    return '$years';
+  }
 }

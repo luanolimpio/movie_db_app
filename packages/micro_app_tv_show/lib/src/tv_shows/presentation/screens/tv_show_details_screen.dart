@@ -57,21 +57,23 @@ class TVShowDetailsScreen extends StatelessWidget {
 
   Widget _details(TVShowDetailsEntity details) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DSBackdropCard(
-          posterPath: APIInfo.requestPosterImage(details.posterPath!),
-          backdropPath: APIInfo.requestBackdropImage(details.backdropPath),
+          posterPath: details.posterPath != null
+              ? APIInfo.requestPosterImage(details.posterPath!)
+              : null,
+          backdropPath: details.backdropPath != null
+              ? APIInfo.requestBackdropImage(details.backdropPath!)
+              : null,
           title:
               '${details.name} ${details.firstAirDate != null ? '(${details.firstAirDate!.yyyy})' : ''}',
-          dateText: details.firstAirDate?.dayMonthYear,
+          subtitle: details.firstAirDate?.dayMonthYear,
           tagline: details.tagline,
           onTapBackButton: () => navigatorKey.currentState!.pop(),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 10,
-          ),
+          padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

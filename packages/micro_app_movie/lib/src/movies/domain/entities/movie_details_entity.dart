@@ -6,7 +6,6 @@ import '../../../core/enums/status_enum.dart';
 class MovieDetailsEntity extends Equatable {
   const MovieDetailsEntity({
     required this.adult,
-    required this.backdropPath,
     required this.budget,
     required this.genres,
     required this.id,
@@ -15,7 +14,6 @@ class MovieDetailsEntity extends Equatable {
     required this.originalTitle,
     required this.overview,
     required this.popularity,
-    required this.posterPath,
     required this.releaseDate,
     required this.revenue,
     required this.runtime,
@@ -25,10 +23,12 @@ class MovieDetailsEntity extends Equatable {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    this.backdropPath,
+    this.posterPath,
   });
 
   final bool adult;
-  final String backdropPath;
+  final String? backdropPath;
   final int budget;
   final List<GenreEntity> genres;
   final int id;
@@ -74,25 +74,25 @@ class MovieDetailsEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    adult,
-    backdropPath,
-    budget,
-    genres,
-    id,
-    imdbId,
-    originalLanguage,
-    originalTitle,
-    overview,
-    popularity,
-    posterPath,
-    releaseDate,
-    revenue,
-    runtime,
-    status,
-    tagline,
-    title,
-    video,
-    voteAverage,
-    voteCount,
-  ];
+        adult,
+        backdropPath,
+        budget,
+        genres,
+        id,
+        imdbId,
+        originalLanguage,
+        originalTitle,
+        overview,
+        popularity,
+        posterPath,
+        releaseDate,
+        revenue,
+        runtime,
+        status,
+        tagline,
+        title,
+        video,
+        voteAverage,
+        voteCount,
+      ];
 }

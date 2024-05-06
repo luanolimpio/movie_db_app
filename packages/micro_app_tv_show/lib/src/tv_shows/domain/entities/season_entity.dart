@@ -2,14 +2,14 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 
 class SeasonEntity extends Equatable {
   const SeasonEntity({
-    required this.airDate,
     required this.episodeCount,
     required this.id,
     required this.name,
     required this.overview,
-    required this.posterPath,
     required this.seasonNumber,
     required this.voteAverage,
+    this.airDate,
+    this.posterPath,
   });
 
   final DateTime? airDate;
@@ -35,13 +35,13 @@ class SeasonEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    airDate,
-    episodeCount,
-    id,
-    name,
-    overview,
-    posterPath,
-    seasonNumber,
-    voteAverage,
-  ];
+        airDate,
+        episodeCount,
+        id,
+        name,
+        overview,
+        posterPath,
+        seasonNumber,
+        voteAverage,
+      ];
 }

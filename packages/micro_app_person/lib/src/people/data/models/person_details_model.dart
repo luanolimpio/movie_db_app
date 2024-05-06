@@ -27,7 +27,7 @@ class PersonDetailsModel extends PersonDetailsEntity {
       adult: map['adult'],
       alsoKnownAs: map['also_known_as'].cast<String>(),
       biography: map['biography'],
-      birthday: (map['birthday'] as String).toDateTime!,
+      birthday: (map['birthday'] as String?)?.toDateTime,
       deathDay: (map['deathday'] as String?)?.toDateTime,
       gender: getGenderTypeEnum(map['gender']),
       homepage: map['homepage'],

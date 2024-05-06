@@ -6,7 +6,7 @@ class CreatedByEntity extends Equatable {
     required this.creditId,
     required this.name,
     required this.gender,
-    required this.profilePath,
+    this.profilePath,
   });
 
   final int id;

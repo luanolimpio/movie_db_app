@@ -45,6 +45,12 @@ class MicroAppMovieResolver implements MicroApp {
                   ),
                 );
                 break;
+              case GoToMovieDetailsEvent:
+                navigatorKey.currentState!.pushNamed(
+                  MovieRoutes.details,
+                  arguments: (event as GoToMovieDetailsEvent).id,
+                );
+                break;
               default:
             }
           },

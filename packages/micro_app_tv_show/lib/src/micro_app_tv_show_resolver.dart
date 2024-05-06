@@ -50,6 +50,12 @@ class MicroAppTVShowResolver implements MicroApp {
                   ),
                 );
                 break;
+              case GoToTVShowDetailsEvent:
+                navigatorKey.currentState!.pushNamed(
+                  TVShowRoutes.details,
+                  arguments: (event as GoToTVShowDetailsEvent).id,
+                );
+                break;
               default:
             }
           },
