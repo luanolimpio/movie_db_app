@@ -5,6 +5,7 @@ import '../../people/data/datasources/i_person_datasource.dart';
 import '../../people/data/datasources/person_datasource.dart';
 import '../../people/data/repositories/person_repository.dart';
 import '../../people/domain/repositories/i_person_repository.dart';
+import '../../people/domain/usecases/get_person_details_usecase.dart';
 import '../../people/domain/usecases/get_popular_people_usecase.dart';
 import '../../people/presentation/bloc/person_bloc.dart';
 
@@ -28,6 +29,10 @@ class Injector {
       () => GetPopularPeopleUseCase(getIt()),
     );
 
-    getIt.registerFactory(() => PersonBloc(getIt()));
+    getIt.registerLazySingleton<GetPersonDetailsUseCase>(
+          () => GetPersonDetailsUseCase(getIt()),
+    );
+
+    getIt.registerFactory(() => PersonBloc(getIt(), getIt()));
   }
 }

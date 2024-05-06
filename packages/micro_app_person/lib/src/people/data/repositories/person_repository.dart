@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:micro_app_person/src/people/domain/entities/person_details_entity.dart';
 
 import '../../domain/entities/person_entity.dart';
 import '../../domain/repositories/i_person_repository.dart';
@@ -12,5 +13,10 @@ class PersonRepository implements IPersonRepository {
   @override
   Future<Either<Exception, List<PersonEntity>>> getList() async {
     return await _dataSource.getList();
+  }
+
+  @override
+  Future<Either<Exception, PersonDetailsEntity>> getDetails(int id) async {
+    return await _dataSource.getDetails(id);
   }
 }
