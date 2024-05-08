@@ -4,7 +4,6 @@ import 'package:micro_core/micro_core.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
-import '../../../core/enums/media_type_enum.dart';
 import '../../domain/entities/person_details_entity.dart';
 import '../arguments/person_details_arguments.dart';
 import '../bloc/person_bloc.dart';
@@ -174,29 +173,31 @@ class PersonDetailsScreen extends StatelessWidget {
                 fontSize: 14,
                 isBold: false,
               ),
-              const SizedBox(height: 10),
-              _getText(
-                text: 'Nome por qual também é conhecido(a)',
-                fontSize: 17,
-                isBold: true,
-              ),
-              const SizedBox(height: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  details.alsoKnownAs.length,
-                  (index) => Padding(
-                    padding: details.alsoKnownAs.length != index + 1
-                        ? const EdgeInsets.only(bottom: 10)
-                        : EdgeInsets.zero,
-                    child: _getText(
-                      text: details.alsoKnownAs[index],
-                      fontSize: 14,
-                      isBold: false,
+              if (details.alsoKnownAs.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                _getText(
+                  text: 'Nome por qual também é conhecido(a)',
+                  fontSize: 17,
+                  isBold: true,
+                ),
+                const SizedBox(height: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                    details.alsoKnownAs.length,
+                    (index) => Padding(
+                      padding: details.alsoKnownAs.length != index + 1
+                          ? const EdgeInsets.only(bottom: 10)
+                          : EdgeInsets.zero,
+                      child: _getText(
+                        text: details.alsoKnownAs[index],
+                        fontSize: 14,
+                        isBold: false,
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ],
           ),
         ),

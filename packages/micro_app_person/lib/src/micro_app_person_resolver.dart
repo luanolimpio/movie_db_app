@@ -38,6 +38,16 @@ class MicroAppPersonResolver implements MicroApp {
                   PersonRoutes.list,
                 );
                 break;
+              case GoToPersonDetailsEvent:
+                final args = event as GoToPersonDetailsEvent;
+                navigatorKey.currentState!.pushNamed(
+                  PersonRoutes.details,
+                  arguments: PersonDetailsArguments(
+                    id: args.id,
+                    knownFor: args.knownFor,
+                  ),
+                );
+                break;
               default:
             }
           },

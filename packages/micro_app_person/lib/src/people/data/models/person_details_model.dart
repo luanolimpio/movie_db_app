@@ -9,17 +9,17 @@ class PersonDetailsModel extends PersonDetailsEntity {
     required super.adult,
     required super.alsoKnownAs,
     required super.biography,
-    required super.birthday,
-    required super.deathDay,
     required super.gender,
-    required super.homepage,
     required super.id,
     required super.imdbId,
     required super.knownForDepartment,
     required super.name,
     required super.placeOfBirth,
     required super.popularity,
-    required super.profilePath,
+    super.birthday,
+    super.deathDay,
+    super.homepage,
+    super.profilePath,
   });
 
   factory PersonDetailsModel.fromJson(Map<String, dynamic> map) {

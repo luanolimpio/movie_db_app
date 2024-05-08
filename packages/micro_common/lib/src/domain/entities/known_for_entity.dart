@@ -1,6 +1,5 @@
+import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
-
-import '../../../core/enums/media_type_enum.dart';
 
 class KnownForEntity extends Equatable {
   const KnownForEntity({

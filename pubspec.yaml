@@ -28,6 +28,9 @@ dependencies:
   micro_app_person:
     path: packages/micro_app_person
 
+  micro_app_search:
+    path: packages/micro_app_search
+
   micro_dependencies:
     path: packages/micro_dependencies
 

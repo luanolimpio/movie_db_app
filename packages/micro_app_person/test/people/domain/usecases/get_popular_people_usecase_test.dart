@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_person/src/core/enums/department_type_enum.dart';
-import 'package:micro_app_person/src/core/enums/media_type_enum.dart';
-import 'package:micro_app_person/src/people/domain/entities/known_for_entity.dart';
+import 'package:micro_common/src/utils/enums/media_type_enum.dart';
+import 'package:micro_common/src/domain/entities/known_for_entity.dart';
 import 'package:micro_app_person/src/people/domain/entities/person_entity.dart';
 import 'package:micro_app_person/src/people/domain/repositories/i_person_repository.dart';
 import 'package:micro_app_person/src/people/domain/usecases/get_popular_people_usecase.dart';

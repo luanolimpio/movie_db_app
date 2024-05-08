@@ -1,6 +1,7 @@
+import 'package:micro_common/micro_common.dart';
+
 import '../../../core/enums/department_type_enum.dart';
 import '../../domain/entities/person_entity.dart';
-import 'known_for_model.dart';
 
 class PersonModel extends PersonEntity {
   const PersonModel({
@@ -12,7 +13,7 @@ class PersonModel extends PersonEntity {
     required super.name,
     required super.originalName,
     required super.popularity,
-    required super.profilePath,
+    super.profilePath,
   });
 
   factory PersonModel.fromJson(Map<String, dynamic> map) {

@@ -4,14 +4,14 @@ import '../../domain/entities/season_entity.dart';
 
 class SeasonModel extends SeasonEntity {
   const SeasonModel({
-    required super.airDate,
     required super.episodeCount,
     required super.id,
     required super.name,
     required super.overview,
-    required super.posterPath,
     required super.seasonNumber,
     required super.voteAverage,
+    super.airDate,
+    super.posterPath,
   });
 
   factory SeasonModel.fromJson(Map<String, dynamic> map) {

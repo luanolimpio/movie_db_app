@@ -1,8 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_person/src/core/enums/department_type_enum.dart';
 import 'package:micro_app_person/src/core/enums/gender_type_enum.dart';
-import 'package:micro_app_person/src/core/enums/media_type_enum.dart';
-import 'package:micro_app_person/src/people/domain/entities/known_for_entity.dart';
 import 'package:micro_app_person/src/people/domain/entities/person_details_entity.dart';
 import 'package:micro_app_person/src/people/domain/entities/person_entity.dart';
 import 'package:micro_app_person/src/people/domain/usecases/get_person_details_usecase.dart';

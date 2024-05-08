@@ -6,7 +6,6 @@ import '../../domain/entities/movie_details_entity.dart';
 class MovieDetailsModel extends MovieDetailsEntity {
   const MovieDetailsModel({
     required super.adult,
-    required super.backdropPath,
     required super.budget,
     required super.genres,
     required super.id,
@@ -15,7 +14,6 @@ class MovieDetailsModel extends MovieDetailsEntity {
     required super.originalTitle,
     required super.overview,
     required super.popularity,
-    required super.posterPath,
     required super.releaseDate,
     required super.revenue,
     required super.runtime,
@@ -25,6 +23,8 @@ class MovieDetailsModel extends MovieDetailsEntity {
     required super.video,
     required super.voteAverage,
     required super.voteCount,
+    super.backdropPath,
+    super.posterPath,
   });
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> map) {

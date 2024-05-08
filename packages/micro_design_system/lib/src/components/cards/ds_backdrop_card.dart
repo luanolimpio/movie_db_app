@@ -73,7 +73,7 @@ class DSBackdropCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: Icon(
-                    Icons.person,
+                    Icons.image,
                     size: 100,
                     color: Colors.grey.shade600,
                   ),

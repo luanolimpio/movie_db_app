@@ -10,10 +10,10 @@ class EpisodeEntity extends Equatable {
     required this.airDate,
     required this.episodeNumber,
     required this.productionCode,
-    required this.runtime,
     required this.seasonNumber,
     required this.showId,
-    required this.stillPath,
+    this.runtime,
+    this.stillPath,
   });
 
   final int id;
@@ -47,17 +47,17 @@ class EpisodeEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    name,
-    overview,
-    voteAverage,
-    voteCount,
-    airDate,
-    episodeNumber,
-    productionCode,
-    runtime,
-    seasonNumber,
-    showId,
-    stillPath,
-  ];
+        id,
+        name,
+        overview,
+        voteAverage,
+        voteCount,
+        airDate,
+        episodeNumber,
+        productionCode,
+        runtime,
+        seasonNumber,
+        showId,
+        stillPath,
+      ];
 }

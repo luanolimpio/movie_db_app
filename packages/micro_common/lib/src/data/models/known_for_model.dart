@@ -1,5 +1,5 @@
-import '../../../core/enums/media_type_enum.dart';
 import '../../domain/entities/known_for_entity.dart';
+import '../../utils/enums/media_type_enum.dart';
 
 class KnownForModel extends KnownForEntity {
   const KnownForModel({
@@ -12,12 +12,11 @@ class KnownForModel extends KnownForEntity {
 
   factory KnownForModel.fromJson(Map<String, dynamic> map) {
     final mediaType = getMediaTypeEnum(map['media_type']);
-    final title = mediaType == MediaTypeEnum.movie ? 'title': 'name';
     return KnownForModel(
       id: map['id'],
       mediaType: mediaType,
-      title: map[title],
-      originalTitle: map['original_$title'],
+      title: map[mediaType.titlePath],
+      originalTitle: map['original_${mediaType.titlePath}'],
       posterPath: map['poster_path'],
     );
   }

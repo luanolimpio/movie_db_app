@@ -1,7 +1,7 @@
+import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
 import '../../../core/enums/department_type_enum.dart';
-import 'known_for_entity.dart';
 
 class PersonEntity extends Equatable {
   const PersonEntity({

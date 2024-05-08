@@ -1,4 +1,4 @@
-import '../../domain/entities/known_for_entity.dart';
+import 'package:micro_common/micro_common.dart';
 
 class PersonDetailsArguments {
   const PersonDetailsArguments({

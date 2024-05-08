@@ -3,9 +3,9 @@ import '../../domain/entities/network_entity.dart';
 class NetworkModel extends NetworkEntity {
   const NetworkModel({
     required super.id,
-    required super.logoPath,
     required super.name,
     required super.originCountry,
+    super.logoPath,
   });
 
   factory NetworkModel.fromJson(Map<String, dynamic> map) {

@@ -12,10 +12,10 @@ class EpisodeModel extends EpisodeEntity {
     required super.airDate,
     required super.episodeNumber,
     required super.productionCode,
-    required super.runtime,
     required super.seasonNumber,
     required super.showId,
-    required super.stillPath,
+    super.runtime,
+    super.stillPath,
   });
 
   factory EpisodeModel.fromJson(Map<String, dynamic> map) {

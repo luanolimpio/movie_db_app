@@ -23,7 +23,7 @@ class SeasonsScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.all(10),
         itemCount: arguments.seasons.length,
-        separatorBuilder: (context, index) => const SizedBox(
+        separatorBuilder: (_, index) => const SizedBox(
           height: 10,
         ),
         itemBuilder: (_, index) {

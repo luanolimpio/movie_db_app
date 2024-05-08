@@ -36,20 +36,16 @@ class PersonDatasource implements IPersonDatasource {
 
   @override
   Future<Either<Exception, PersonDetailsEntity>> getDetails(int id) async {
-    try {
-      final result = await _dioClient.get(
-        'person/$id?api_key=${APIInfo.key}&language=${APIInfo.language}',
-      );
-      if (result.statusCode == 200) {
-        return Right(PersonDetailsModel.fromJson(result.data));
-      }
-      return Left(
-        ApiException(
-          'Não foi possível buscar os detalhes. Por favor, tente novamente.',
-        ),
-      );
-    } catch (e) {
-      return Left(ApiException(e.toString()));
+    final result = await _dioClient.get(
+      'person/$id?api_key=${APIInfo.key}&language=${APIInfo.language}',
+    );
+    if (result.statusCode == 200) {
+      return Right(PersonDetailsModel.fromJson(result.data));
     }
+    return Left(
+      ApiException(
+        'Não foi possível buscar os detalhes. Por favor, tente novamente.',
+      ),
+    );
   }
 }

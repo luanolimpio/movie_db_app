@@ -5,7 +5,6 @@ import '../../domain/entities/tv_show_entity.dart';
 class TVShowModel extends TVShowEntity {
   const TVShowModel({
     required super.backdropPath,
-    required super.firstAirDate,
     required super.genreIds,
     required super.id,
     required super.name,
@@ -17,6 +16,7 @@ class TVShowModel extends TVShowEntity {
     required super.posterPath,
     required super.voteAverage,
     required super.voteCount,
+    super.firstAirDate,
   });
 
   factory TVShowModel.fromJson(Map<String, dynamic> map) {

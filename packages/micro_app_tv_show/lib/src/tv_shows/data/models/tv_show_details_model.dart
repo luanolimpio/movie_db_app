@@ -10,17 +10,13 @@ import 'season_model.dart';
 class TVShowDetailsModel extends TVShowDetailsEntity {
   const TVShowDetailsModel({
     required super.adult,
-    required super.backdropPath,
     required super.createdBy,
     required super.episodeRunTime,
-    required super.firstAirDate,
     required super.genres,
     required super.homepage,
     required super.id,
     required super.inProduction,
     required super.languages,
-    required super.lastAirDate,
-    required super.lastEpisodeToAir,
     required super.name,
     required super.networks,
     required super.numberOfEpisodes,
@@ -30,13 +26,17 @@ class TVShowDetailsModel extends TVShowDetailsEntity {
     required super.originalName,
     required super.overview,
     required super.popularity,
-    required super.posterPath,
     required super.seasons,
     required super.status,
     required super.tagline,
     required super.type,
     required super.voteAverage,
     required super.voteCount,
+    super.backdropPath,
+    super.firstAirDate,
+    super.lastAirDate,
+    super.lastEpisodeToAir,
+    super.posterPath,
   });
 
   factory TVShowDetailsModel.fromJson(Map<String, dynamic> map) {

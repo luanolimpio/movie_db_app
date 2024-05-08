@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_person/src/core/enums/department_type_enum.dart';
 import 'package:micro_app_person/src/core/enums/gender_type_enum.dart';
-import 'package:micro_app_person/src/core/enums/media_type_enum.dart';
+import 'package:micro_common/src/utils/enums/media_type_enum.dart';
 import 'package:micro_app_person/src/people/data/datasources/i_person_datasource.dart';
 import 'package:micro_app_person/src/people/data/repositories/person_repository.dart';
-import 'package:micro_app_person/src/people/domain/entities/known_for_entity.dart';
+import 'package:micro_common/src/domain/entities/known_for_entity.dart';
 import 'package:micro_app_person/src/people/domain/entities/person_details_entity.dart';
 import 'package:micro_app_person/src/people/domain/entities/person_entity.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';

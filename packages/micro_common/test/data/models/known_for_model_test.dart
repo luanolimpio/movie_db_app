@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:micro_app_person/src/core/enums/media_type_enum.dart';
-import 'package:micro_app_person/src/people/data/models/known_for_model.dart';
-import 'package:micro_app_person/src/people/domain/entities/known_for_entity.dart';
+import 'package:micro_common/src/utils/enums/media_type_enum.dart';
+import 'package:micro_common/src/data/models/known_for_model.dart';
+import 'package:micro_common/src/domain/entities/known_for_entity.dart';
 
 void main() {
   const tKnownForModel = KnownForModel(

@@ -1,8 +1,14 @@
 import 'package:micro_common/micro_common.dart';
 
 enum MediaTypeEnum {
-  movie,
-  tv,
+  movie('title', 'poster'),
+  tv('name', 'poster'),
+  person('name', 'profile');
+
+  const MediaTypeEnum(this.titlePath, this.posterPath);
+
+  final String titlePath;
+  final String posterPath;
 }
 
 MediaTypeEnum getMediaTypeEnum(String value) {

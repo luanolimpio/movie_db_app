@@ -1,0 +1,1 @@
+export 'presentation/delegates/custom_search_delegate.dart';

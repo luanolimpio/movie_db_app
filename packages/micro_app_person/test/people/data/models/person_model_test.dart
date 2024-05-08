@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_person/src/core/enums/department_type_enum.dart';
-import 'package:micro_app_person/src/core/enums/media_type_enum.dart';
-import 'package:micro_app_person/src/people/data/models/known_for_model.dart';
+import 'package:micro_common/src/utils/enums/media_type_enum.dart';
+import 'package:micro_common/src/data/models/known_for_model.dart';
 import 'package:micro_app_person/src/people/data/models/person_model.dart';
 import 'package:micro_app_person/src/people/domain/entities/person_entity.dart';
 

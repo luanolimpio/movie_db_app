@@ -6,7 +6,7 @@ class CreatedByModel extends CreatedByEntity {
     required super.creditId,
     required super.name,
     required super.gender,
-    required super.profilePath,
+    super.profilePath,
   });
 
   factory CreatedByModel.fromJson(Map<String, dynamic> map) {
