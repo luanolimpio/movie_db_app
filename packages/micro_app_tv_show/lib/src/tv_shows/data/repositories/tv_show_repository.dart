@@ -12,10 +12,11 @@ class TVShowRepository implements ITVShowRepository {
   TVShowRepository(this._dataSource);
 
   @override
-  Future<Either<Exception, List<TVShowEntity>>> getList(
-    TVShowTypeEnum type,
-  ) async {
-    return await _dataSource.getList(type);
+  Future<Either<Exception, TVShowEntity>> getList({
+    required TVShowTypeEnum type,
+    required int page,
+  }) async {
+    return await _dataSource.getList(type: type, page: page);
   }
 
   @override

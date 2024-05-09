@@ -9,9 +9,10 @@ class GetTVShowsUseCase {
 
   GetTVShowsUseCase(this._repository);
 
-  Future<Either<Exception, List<TVShowEntity>>> call(
-    TVShowTypeEnum type,
-  ) async {
-    return _repository.getList(type);
+  Future<Either<Exception, TVShowEntity>> call({
+    required TVShowTypeEnum type,
+    required int page,
+  }) async {
+    return _repository.getList(type: type, page: page);
   }
 }

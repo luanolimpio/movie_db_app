@@ -7,7 +7,8 @@ import '../../tv_shows/data/repositories/tv_show_repository.dart';
 import '../../tv_shows/domain/repositories/i_tv_show_repository.dart';
 import '../../tv_shows/domain/usecases/get_tv_show_details_usecase.dart';
 import '../../tv_shows/domain/usecases/get_tv_shows_usecase.dart';
-import '../../tv_shows/presentation/bloc/tv_show_bloc.dart';
+import '../../tv_shows/presentation/bloc/details/tv_show_details_bloc.dart';
+import '../../tv_shows/presentation/bloc/list/tv_show_bloc.dart';
 
 class Injector {
   static void initialize() {
@@ -30,9 +31,11 @@ class Injector {
     );
 
     getIt.registerLazySingleton<GetTVShowDetailsUseCase>(
-          () => GetTVShowDetailsUseCase(getIt()),
+      () => GetTVShowDetailsUseCase(getIt()),
     );
 
-    getIt.registerFactory(() => TVShowBloc(getIt(), getIt()));
+    getIt.registerFactory(() => TVShowBloc(getIt()));
+
+    getIt.registerFactory(() => TVShowDetailsBloc(getIt()));
   }
 }

@@ -14,18 +14,16 @@ class MovieDatasource implements IMovieDatasource {
   MovieDatasource(this._dioClient);
 
   @override
-  Future<Either<Exception, List<MovieEntity>>> getList(
-    MovieTypeEnum type,
-  ) async {
+  Future<Either<Exception, MovieEntity>> getList({
+    required MovieTypeEnum type,
+    required int page,
+  }) async {
     try {
       final result = await _dioClient.get(
-        'movie/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}',
+        'movie/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}&page=$page',
       );
       if (result.statusCode == 200) {
-        final List<MovieEntity> list = (result.data['results'] as List)
-            .map((dynamic json) => MovieModel.fromJson(json))
-            .toList();
-        return Right(list);
+        return Right(MovieModel.fromJson(result.data));
       }
       return Left(
         ApiException(

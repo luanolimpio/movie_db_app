@@ -1,4 +1,4 @@
-import '../../../core/enums/movie_type_enum.dart';
+import '../../../../core/enums/movie_type_enum.dart';
 
 abstract class MovieEvent {
   const MovieEvent();
@@ -10,9 +10,4 @@ class GetMoviesEvent extends MovieEvent {
   final MovieTypeEnum type;
 }
 
-class GetMovieDetailsEvent extends MovieEvent {
-  const GetMovieDetailsEvent({required this.id});
-
-  final int id;
-}
 

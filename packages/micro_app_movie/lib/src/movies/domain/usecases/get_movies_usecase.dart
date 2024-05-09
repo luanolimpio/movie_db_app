@@ -9,7 +9,10 @@ class GetMoviesUseCase {
 
   GetMoviesUseCase(this._repository);
 
-  Future<Either<Exception, List<MovieEntity>>> call(MovieTypeEnum type) async {
-    return _repository.getList(type);
+  Future<Either<Exception, MovieEntity>> call({
+    required MovieTypeEnum type,
+    required int page,
+  }) async {
+    return _repository.getList(type: type, page: page);
   }
 }

@@ -9,7 +9,7 @@ import 'core/injector/injector.dart';
 import 'core/routes/tv_show_routes.dart';
 import 'tv_shows/presentation/arguments/seasons_arguments.dart';
 import 'tv_shows/presentation/arguments/tv_shows_arguments.dart';
-import 'tv_shows/presentation/bloc/tv_show_bloc.dart';
+import 'tv_shows/presentation/bloc/list/tv_show_bloc.dart';
 import 'tv_shows/presentation/screens/seasons_screen.dart';
 import 'tv_shows/presentation/screens/tv_show_details_screen.dart';
 import 'tv_shows/presentation/screens/tv_shows_screen.dart';

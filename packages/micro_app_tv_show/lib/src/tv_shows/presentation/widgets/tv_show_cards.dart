@@ -6,9 +6,9 @@ import 'package:micro_design_system/micro_design_system.dart';
 
 import '../../../core/enums/tv_show_type_enum.dart';
 import '../../../core/routes/tv_show_routes.dart';
-import '../bloc/tv_show_bloc.dart';
-import '../bloc/tv_show_event.dart';
-import '../bloc/tv_show_state.dart';
+import '../bloc/list/tv_show_bloc.dart';
+import '../bloc/list/tv_show_event.dart';
+import '../bloc/list/tv_show_state.dart';
 
 class TVShowCards extends StatefulWidget {
   const TVShowCards({super.key});

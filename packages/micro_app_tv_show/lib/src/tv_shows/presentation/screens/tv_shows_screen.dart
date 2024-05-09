@@ -6,9 +6,9 @@ import 'package:micro_design_system/micro_design_system.dart';
 
 import '../../../core/routes/tv_show_routes.dart';
 import '../arguments/tv_shows_arguments.dart';
-import '../bloc/tv_show_bloc.dart';
-import '../bloc/tv_show_event.dart';
-import '../bloc/tv_show_state.dart';
+import '../bloc/list/tv_show_bloc.dart';
+import '../bloc/list/tv_show_event.dart';
+import '../bloc/list/tv_show_state.dart';
 
 class TVShowsScreen extends StatefulWidget {
   const TVShowsScreen({
@@ -22,14 +22,30 @@ class TVShowsScreen extends StatefulWidget {
   State<TVShowsScreen> createState() => _TVShowsScreenState();
 }
 
-class _TVShowsScreenState extends State<TVShowsScreen> {
+class _TVShowsScreenState extends State<TVShowsScreen>
+    implements IPaginationController {
   TVShowsArguments get _arguments => widget.arguments;
+
+  late final PaginationScrollController _paginationController;
+  late final TVShowBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<TVShowBloc>(context)
-        .add(GetTVShowsEvent(type: _arguments.type));
+    _bloc = BlocProvider.of<TVShowBloc>(context)
+      ..add(GetTVShowsEvent(type: _arguments.type));
+    _paginationController = PaginationScrollController(delegate: this);
+  }
+
+  @override
+  void dispose() {
+    _paginationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void loadMore() {
+    _bloc.add(GetTVShowsEvent(type: _arguments.type));
   }
 
   @override
@@ -55,37 +71,46 @@ class _TVShowsScreenState extends State<TVShowsScreen> {
             }
           },
           builder: (context, state) {
-            if (state is TVShowsLoading) {
+            if (state is TVShowsLoading && state.currentPage == 1) {
               return const DSVerticalPosterListShimmer(
                 crossAxisCount: 3,
                 height: 200,
               );
             }
-            if (state is TVShowsSuccess) {
-              if (state.tvShows.isNotEmpty) {
-                return DSVerticalPosterCardList(
-                  posterCards: List.generate(
-                    state.tvShows.length,
-                    (index) {
-                      final tvShow = state.tvShows[index];
-                      return DSPosterCard(
-                        path: APIInfo.requestPosterImage(
-                          tvShow.posterPath,
-                        ),
-                        onTap: () {
-                          navigatorKey.currentState!.pushNamed(
-                            TVShowRoutes.details,
-                            arguments: tvShow.id,
-                          );
-                        },
-                      );
-                    },
-                  ),
-                );
-              }
+            if (state.tvShows.isNotEmpty) {
+              return GridView.builder(
+                controller: _paginationController,
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: 200,
+                ),
+                itemCount: state.tvShows.length + 4,
+                itemBuilder: (_, index) {
+                  if (index < state.tvShows.length) {
+                    final tvShow = state.tvShows[index];
+                    return DSPosterCard(
+                      path: APIInfo.requestPosterImage(
+                        tvShow.posterPath,
+                      ),
+                      onTap: () {
+                        navigatorKey.currentState!.pushNamed(
+                          TVShowRoutes.details,
+                          arguments: tvShow.id,
+                        );
+                      },
+                    );
+                  } else {
+                    return const DSShimmer();
+                  }
+                },
+              );
+            } else {
               return const DSEmptyState();
             }
-            return Container();
           },
         ),
       ),

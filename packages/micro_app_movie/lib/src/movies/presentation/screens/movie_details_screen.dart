@@ -6,9 +6,9 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
 import '../../domain/entities/movie_details_entity.dart';
-import '../bloc/movie_bloc.dart';
-import '../bloc/movie_event.dart';
-import '../bloc/movie_state.dart';
+import '../bloc/details/movie_details_bloc.dart';
+import '../bloc/details/movie_details_event.dart';
+import '../bloc/details/movie_details_state.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({
@@ -22,11 +22,11 @@ class MovieDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          GetIt.I<MovieBloc>()..add(GetMovieDetailsEvent(id: movieId)),
+          GetIt.I<MovieDetailsBloc>()..add(GetMovieDetailsEvent(id: movieId)),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: BlocConsumer<MovieBloc, MovieState>(
+            child: BlocConsumer<MovieDetailsBloc, MovieDetailsState>(
               listener: (context, state) {
                 if (state is MovieDetailsError) {
                   navigatorKey.currentState!.pop();

@@ -1,67 +1,33 @@
 import 'package:micro_dependencies/micro_dependencies.dart';
 
+import 'tv_show_result_entity.dart';
+
 class TVShowEntity extends Equatable {
   const TVShowEntity({
-    required this.backdropPath,
-    required this.genreIds,
-    required this.id,
-    required this.name,
-    required this.originCountry,
-    required this.originalLanguage,
-    required this.originalName,
-    required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.voteAverage,
-    required this.voteCount,
-    this.firstAirDate,
+    required this.page,
+    required this.results,
+    required this.totalPages,
+    required this.totalResults,
   });
 
-  final String backdropPath;
-  final DateTime? firstAirDate;
-  final List<int> genreIds;
-  final int id;
-  final String name;
-  final List<String> originCountry;
-  final String originalLanguage;
-  final String originalName;
-  final String overview;
-  final double popularity;
-  final String posterPath;
-  final double voteAverage;
-  final int voteCount;
+  final int page;
+  final List<TVShowResultEntity> results;
+  final int totalPages;
+  final int totalResults;
 
   @override
   String toString() {
-    return 'TVShowEntity(backdropPath: $backdropPath,'
-        ' firstAirDate: $firstAirDate,'
-        ' genreIds: $genreIds,'
-        ' id: $id,'
-        ' name: $name,'
-        ' originCountry: $originCountry,'
-        ' originalLanguage: $originalLanguage,'
-        ' originalName: $originalName,'
-        ' overview: $overview,'
-        ' popularity: $popularity,'
-        ' posterPath: $posterPath,'
-        ' voteAverage: $voteAverage,'
-        ' voteCount: $voteCount)';
+    return 'TVShowEntity(page: $page,'
+        ' results: $results,'
+        ' totalPages: $totalPages,'
+        ' totalResults: $totalResults)';
   }
 
   @override
   List<Object?> get props => [
-        backdropPath,
-        firstAirDate,
-        genreIds,
-        id,
-        name,
-        originCountry,
-        originalLanguage,
-        originalName,
-        overview,
-        popularity,
-        posterPath,
-        voteAverage,
-        voteCount,
-      ];
+    page,
+    results,
+    totalPages,
+    totalResults,
+  ];
 }

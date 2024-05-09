@@ -9,7 +9,7 @@ import 'core/injector/injector.dart';
 import 'core/routes/movie_routes.dart';
 
 import 'movies/presentation/arguments/movies_arguments.dart';
-import 'movies/presentation/bloc/movie_bloc.dart';
+import 'movies/presentation/bloc/list/movie_bloc.dart';
 import 'movies/presentation/screens/movie_details_screen.dart';
 import 'movies/presentation/screens/movies_screen.dart';
 

@@ -6,9 +6,9 @@ import 'package:micro_design_system/micro_design_system.dart';
 
 import '../../../core/routes/movie_routes.dart';
 import '../arguments/movies_arguments.dart';
-import '../bloc/movie_bloc.dart';
-import '../bloc/movie_event.dart';
-import '../bloc/movie_state.dart';
+import '../bloc/list/movie_bloc.dart';
+import '../bloc/list/movie_event.dart';
+import '../bloc/list/movie_state.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({
@@ -22,14 +22,30 @@ class MoviesScreen extends StatefulWidget {
   State<MoviesScreen> createState() => _MoviesScreenState();
 }
 
-class _MoviesScreenState extends State<MoviesScreen> {
+class _MoviesScreenState extends State<MoviesScreen>
+    implements IPaginationController {
   MoviesArguments get _arguments => widget.arguments;
+
+  late final PaginationScrollController _paginationController;
+  late final MovieBloc _bloc;
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<MovieBloc>(context)
-        .add(GetMoviesEvent(type: _arguments.type));
+    _bloc = BlocProvider.of<MovieBloc>(context)
+      ..add(GetMoviesEvent(type: _arguments.type));
+    _paginationController = PaginationScrollController(delegate: this);
+  }
+
+  @override
+  void dispose() {
+    _paginationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void loadMore() {
+    _bloc.add(GetMoviesEvent(type: _arguments.type));
   }
 
   @override
@@ -55,37 +71,46 @@ class _MoviesScreenState extends State<MoviesScreen> {
             }
           },
           builder: (context, state) {
-            if (state is MoviesLoading) {
+            if (state is MoviesLoading && state.currentPage == 1) {
               return const DSVerticalPosterListShimmer(
                 crossAxisCount: 3,
                 height: 200,
               );
             }
-            if (state is MoviesSuccess) {
-              if (state.movies.isNotEmpty) {
-                return DSVerticalPosterCardList(
-                  posterCards: List.generate(
-                    state.movies.length,
-                    (index) {
-                      final movie = state.movies[index];
-                      return DSPosterCard(
-                        path: APIInfo.requestPosterImage(
-                          movie.posterPath,
-                        ),
-                        onTap: () {
-                          navigatorKey.currentState!.pushNamed(
-                            MovieRoutes.details,
-                            arguments: movie.id,
-                          );
-                        },
-                      );
-                    },
-                  ),
-                );
-              }
+            if (state.movies.isNotEmpty) {
+              return GridView.builder(
+                controller: _paginationController,
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: 200,
+                ),
+                itemCount: state.movies.length + 4,
+                itemBuilder: (_, index) {
+                  if (index < state.movies.length) {
+                    final movie = state.movies[index];
+                    return DSPosterCard(
+                      path: APIInfo.requestPosterImage(
+                        movie.posterPath,
+                      ),
+                      onTap: () {
+                        navigatorKey.currentState!.pushNamed(
+                          MovieRoutes.details,
+                          arguments: movie.id,
+                        );
+                      },
+                    );
+                  } else {
+                    return const DSShimmer();
+                  }
+                },
+              );
+            } else {
               return const DSEmptyState();
             }
-            return Container();
           },
         ),
       ),

@@ -12,10 +12,11 @@ class MovieRepository implements IMovieRepository {
   MovieRepository(this._dataSource);
 
   @override
-  Future<Either<Exception, List<MovieEntity>>> getList(
-    MovieTypeEnum type,
-  ) async {
-    return await _dataSource.getList(type);
+  Future<Either<Exception, MovieEntity>> getList({
+    required MovieTypeEnum type,
+    required int page,
+  }) async {
+    return await _dataSource.getList(type: type, page: page);
   }
 
   @override

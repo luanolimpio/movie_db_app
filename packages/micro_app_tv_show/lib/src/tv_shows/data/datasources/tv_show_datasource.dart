@@ -14,16 +14,16 @@ class TVShowDatasource implements ITVShowDatasource {
   TVShowDatasource(this._dioClient);
 
   @override
-  Future<Either<Exception, List<TVShowEntity>>> getList(TVShowTypeEnum type) async {
+  Future<Either<Exception, TVShowEntity>> getList({
+    required TVShowTypeEnum type,
+    required int page,
+  }) async {
     try {
       final result = await _dioClient.get(
-        'tv/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}',
+        'tv/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}&page=$page',
       );
       if (result.statusCode == 200) {
-        final List<TVShowEntity> list = (result.data['results'] as List)
-            .map((dynamic json) => TVShowModel.fromJson(json))
-            .toList();
-        return Right(list);
+        return Right(TVShowModel.fromJson(result.data));
       }
       return Left(
         ApiException(
@@ -44,7 +44,8 @@ class TVShowDatasource implements ITVShowDatasource {
       if (result.statusCode == 200) {
         return Right(TVShowDetailsModel.fromJson(result.data));
       }
-      return Left(ApiException('Não foi possível buscar os detalhes. Por favor, tente novamente.'));
+      return Left(ApiException(
+          'Não foi possível buscar os detalhes. Por favor, tente novamente.'));
     } catch (e) {
       return Left(ApiException(e.toString()));
     }

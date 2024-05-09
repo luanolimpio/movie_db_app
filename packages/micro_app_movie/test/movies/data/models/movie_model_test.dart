@@ -2,29 +2,37 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_movie/src/movies/data/models/movie_model.dart';
+import 'package:micro_app_movie/src/movies/data/models/movie_result_model.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
 
 void main() {
   final tMovieModel = MovieModel(
-    posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
-    adult: false,
-    overview:
+    page: 1,
+    results: [
+      MovieResultModel(
+        posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
+        adult: false,
+        overview:
         'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
-    releaseDate: DateTime.now(),
-    genreIds: const [14, 28, 80],
-    id: 297761,
-    originalTitle: 'Suicide Squad',
-    originalLanguage: 'en',
-    title: 'Suicide Squad',
-    backdropPath: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg',
-    popularity: 48.261451,
-    voteCount: 1466,
-    video: false,
-    voteAverage: 5.91,
+        releaseDate: DateTime.now(),
+        genreIds: const [14, 28, 80],
+        id: 297761,
+        originalTitle: 'Suicide Squad',
+        originalLanguage: 'en',
+        title: 'Suicide Squad',
+        backdropPath: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg',
+        popularity: 48.261451,
+        voteCount: 1466,
+        video: false,
+        voteAverage: 5.91,
+      ),
+    ],
+    totalPages: 33,
+    totalResults: 649,
   );
 
   const tJson =
-      '{"poster_path": "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg", "adult": false, "overview": "From DC Comics comes the Suicide Squad, an antihero team of incarcerated", "release_date": "2016-08-03", "genre_ids": [14, 28, 80], "id": 297761, "original_title": "Suicide Squad", "original_language": "en", "title": "Suicide Squad", "backdrop_path": "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg", "popularity": 48.261451, "vote_count": 1466, "video": false, "vote_average": 5.91}';
+      '{"page": 1, "results": [{"poster_path": "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg", "adult": false, "overview": "From DC Comics comes the Suicide Squad, an antihero team of incarcerated", "release_date": "2016-08-03", "genre_ids": [14, 28, 80], "id": 297761, "original_title": "Suicide Squad", "original_language": "en", "title": "Suicide Squad", "backdrop_path": "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg", "popularity": 48.261451, "vote_count": 1466, "video": false, "vote_average": 5.91}], "dates": {"maximum": "2016-09-01", "minimum": "2016-07-21"}, "total_pages": 33, "total_results": 649}';
 
   test('Should be a subclass of MovieEntity', () {
     expect(tMovieModel, isA<MovieEntity>());

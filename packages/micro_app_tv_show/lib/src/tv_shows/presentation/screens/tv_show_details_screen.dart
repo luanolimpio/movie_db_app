@@ -7,9 +7,9 @@ import 'package:micro_design_system/micro_design_system.dart';
 import '../../../core/routes/tv_show_routes.dart';
 import '../../domain/entities/tv_show_details_entity.dart';
 import '../arguments/seasons_arguments.dart';
-import '../bloc/tv_show_bloc.dart';
-import '../bloc/tv_show_event.dart';
-import '../bloc/tv_show_state.dart';
+import '../bloc/details/tv_show_details_bloc.dart';
+import '../bloc/details/tv_show_details_event.dart';
+import '../bloc/details/tv_show_details_state.dart';
 import '../widgets/season_card_widget.dart';
 
 class TVShowDetailsScreen extends StatelessWidget {
@@ -24,11 +24,11 @@ class TVShowDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          GetIt.I<TVShowBloc>()..add(GetTVShowDetailsEvent(id: tvShowId)),
+          GetIt.I<TVShowDetailsBloc>()..add(GetTVShowDetailsEvent(id: tvShowId)),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: BlocConsumer<TVShowBloc, TVShowState>(
+            child: BlocConsumer<TVShowDetailsBloc, TVShowDetailsState>(
               listener: (context, state) {
                 if (state is TVShowDetailsError) {
                   navigatorKey.currentState!.pop();

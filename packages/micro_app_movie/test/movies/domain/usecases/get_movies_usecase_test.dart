@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_movie/src/core/enums/movie_type_enum.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
+import 'package:micro_app_movie/src/movies/domain/entities/movie_result_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/repositories/i_movie_repository.dart';
 import 'package:micro_app_movie/src/movies/domain/usecases/get_movies_usecase.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
@@ -16,37 +17,44 @@ void main() {
     getMoviesUseCase = GetMoviesUseCase(repository);
   });
 
-  final tListMovieEntity = [
-    MovieEntity(
-      posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
-      adult: false,
-      overview:
-      'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
-      releaseDate: DateTime.now(),
-      genreIds: const [14, 28, 80],
-      id: 297761,
-      originalTitle: 'Suicide Squad',
-      originalLanguage: 'en',
-      title: 'Suicide Squad',
-      backdropPath: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jp',
-      popularity: 48.261451,
-      voteCount: 1466,
-      video: false,
-      voteAverage: 5.91,
-    ),
-  ];
+  final tMovieEntity = MovieEntity(
+    page: 1,
+    results: [
+      MovieResultEntity(
+        posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
+        adult: false,
+        overview:
+        'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
+        releaseDate: DateTime.now(),
+        genreIds: const [14, 28, 80],
+        id: 297761,
+        originalTitle: 'Suicide Squad',
+        originalLanguage: 'en',
+        title: 'Suicide Squad',
+        backdropPath: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg',
+        popularity: 48.261451,
+        voteCount: 1466,
+        video: false,
+        voteAverage: 5.91,
+      ),
+    ],
+    totalPages: 33,
+    totalResults: 649,
+  );
 
-  const type = MovieTypeEnum.nowPlaying;
+  const tType = MovieTypeEnum.nowPlaying;
+
+  const tPage = 1;
 
   test('Should return a MovieEntity when call repository', () async {
-    when(() => repository.getList(type)).thenAnswer((_) async => Right(tListMovieEntity));
-    final result = await getMoviesUseCase(type);
-    expect(result, Right<Exception, List<MovieEntity>>(tListMovieEntity));
+    when(() => repository.getList(type: tType, page: tPage)).thenAnswer((_) async => Right(tMovieEntity));
+    final result = await getMoviesUseCase(type: tType, page: tPage);
+    expect(result, Right<Exception, MovieEntity>(tMovieEntity));
   });
 
   test('Should return an exception when call repository', () async {
-    when(() => repository.getList(type)).thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-    final result = await getMoviesUseCase(type);
+    when(() => repository.getList(type: tType, page: tPage)).thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
+    final result = await getMoviesUseCase(type: tType, page: tPage);
     expect(result.isLeft(), true);
   });
 }

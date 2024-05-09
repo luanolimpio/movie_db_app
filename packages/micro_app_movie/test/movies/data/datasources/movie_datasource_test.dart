@@ -26,6 +26,8 @@ void main() {
 
   const tType = MovieTypeEnum.nowPlaying;
 
+  const tPage = 1;
+
   group('getList', () {
     test('Should return success when call dio client', () async {
       when(() => dioClient.get(any())).thenAnswer(
@@ -37,7 +39,7 @@ void main() {
           ),
         ),
       );
-      final result = await dataSource.getList(tType);
+      final result = await dataSource.getList(type: tType, page: tPage);
       expect(result.isRight(), true);
     });
 
@@ -49,7 +51,7 @@ void main() {
           ),
         ),
       );
-      final result = await dataSource.getList(tType);
+      final result = await dataSource.getList(type: tType, page: tPage);
       expect(result.isLeft(), true);
     });
   });
@@ -57,7 +59,7 @@ void main() {
   group('getDetails', () {
     test('Should return success when call dio client', () async {
       when(() => dioClient.get(any())).thenAnswer(
-            (_) async => Response(
+        (_) async => Response(
           data: json.decode(tJsonDetails),
           statusCode: 200,
           requestOptions: RequestOptions(

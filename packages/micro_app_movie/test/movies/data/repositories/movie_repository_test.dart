@@ -5,6 +5,7 @@ import 'package:micro_app_movie/src/movies/data/datasources/i_movie_datasource.d
 import 'package:micro_app_movie/src/movies/data/repositories/movie_repository.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_details_entity.dart';
 import 'package:micro_app_movie/src/movies/domain/entities/movie_entity.dart';
+import 'package:micro_app_movie/src/movies/domain/entities/movie_result_entity.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
@@ -21,25 +22,30 @@ void main() {
 
   const tId = 297761;
 
-  final tListMovieEntity = [
-    MovieEntity(
-      posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
-      adult: false,
-      overview:
-      'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
-      releaseDate: DateTime.now(),
-      genreIds: const [14, 28, 80],
-      id: 297761,
-      originalTitle: 'Suicide Squad',
-      originalLanguage: 'en',
-      title: 'Suicide Squad',
-      backdropPath: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jp',
-      popularity: 48.261451,
-      voteCount: 1466,
-      video: false,
-      voteAverage: 5.91,
-    ),
-  ];
+  final tMovieEntity = MovieEntity(
+    page: 1,
+    results: [
+      MovieResultEntity(
+        posterPath: '/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg',
+        adult: false,
+        overview:
+        'From DC Comics comes the Suicide Squad, an antihero team of incarcerated',
+        releaseDate: DateTime.now(),
+        genreIds: const [14, 28, 80],
+        id: 297761,
+        originalTitle: 'Suicide Squad',
+        originalLanguage: 'en',
+        title: 'Suicide Squad',
+        backdropPath: '/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg',
+        popularity: 48.261451,
+        voteCount: 1466,
+        video: false,
+        voteAverage: 5.91,
+      ),
+    ],
+    totalPages: 33,
+    totalResults: 649,
+  );
 
   final tMovieDetailsEntity = MovieDetailsEntity(
     adult: false,
@@ -69,18 +75,20 @@ void main() {
 
   const tType = MovieTypeEnum.nowPlaying;
 
+  const tPage = 1;
+
   group('getList', () {
     test('Should return success when call datasource', () async {
-      when(() => datasource.getList(tType))
-          .thenAnswer((_) async => Right(tListMovieEntity));
-      final result = await repository.getList(tType);
+      when(() => datasource.getList(type: tType, page: tPage))
+          .thenAnswer((_) async => Right(tMovieEntity));
+      final result = await repository.getList(type: tType, page: tPage);
       expect(result.isRight(), true);
     });
 
     test('Should return error when call datasource', () async {
-      when(() => datasource.getList(tType))
+      when(() => datasource.getList(type: tType, page: tPage))
           .thenAnswer((_) async => Left(Exception('Ocorreu algum erro')));
-      final result = await repository.getList(MovieTypeEnum.nowPlaying);
+      final result = await repository.getList(type: tType, page: tPage);
       expect(result.isLeft(), true);
     });
   });

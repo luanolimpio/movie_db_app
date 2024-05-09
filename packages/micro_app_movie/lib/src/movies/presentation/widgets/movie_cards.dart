@@ -5,9 +5,9 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 import '../../../core/enums/movie_type_enum.dart';
 import '../../../core/routes/movie_routes.dart';
-import '../bloc/movie_bloc.dart';
-import '../bloc/movie_event.dart';
-import '../bloc/movie_state.dart';
+import '../bloc/list/movie_bloc.dart';
+import '../bloc/list/movie_event.dart';
+import '../bloc/list/movie_state.dart';
 
 class MovieCards extends StatefulWidget {
   const MovieCards({Key? key}) : super(key: key);

@@ -5,7 +5,10 @@ import '../entities/movie_details_entity.dart';
 import '../entities/movie_entity.dart';
 
 abstract class IMovieRepository {
-  Future<Either<Exception, List<MovieEntity>>> getList(MovieTypeEnum type);
+  Future<Either<Exception, MovieEntity>> getList({
+    required MovieTypeEnum type,
+    required int page,
+  });
 
   Future<Either<Exception, MovieDetailsEntity>> getDetails(int id);
 }

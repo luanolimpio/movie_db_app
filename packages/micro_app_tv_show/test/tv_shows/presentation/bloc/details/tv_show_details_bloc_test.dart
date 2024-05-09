@@ -1,34 +1,27 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:micro_app_tv_show/src/core/enums/status_enum.dart';
-import 'package:micro_app_tv_show/src/core/enums/tv_show_type_enum.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/created_by_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/episode_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/network_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/season_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_details_entity.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/entities/tv_show_entity.dart';
 import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_show_details_usecase.dart';
-import 'package:micro_app_tv_show/src/tv_shows/domain/usecases/get_tv_shows_usecase.dart';
-import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/tv_show_bloc.dart';
-import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/tv_show_event.dart';
-import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/tv_show_state.dart';
+import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/details/tv_show_details_bloc.dart';
+import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/details/tv_show_details_event.dart';
+import 'package:micro_app_tv_show/src/tv_shows/presentation/bloc/details/tv_show_details_state.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
-
-class MockGetTVShowsUseCase extends Mock implements GetTVShowsUseCase {}
 
 class MockGetTVShowDetailsUseCase extends Mock
     implements GetTVShowDetailsUseCase {}
 
 void main() {
-  late MockGetTVShowsUseCase getTVShowsUseCase;
   late MockGetTVShowDetailsUseCase getTVShowDetailsUseCase;
-  late TVShowBloc bloc;
+  late TVShowDetailsBloc bloc;
 
   setUp(() {
-    getTVShowsUseCase = MockGetTVShowsUseCase();
     getTVShowDetailsUseCase = MockGetTVShowDetailsUseCase();
-    bloc = TVShowBloc(getTVShowsUseCase, getTVShowDetailsUseCase);
+    bloc = TVShowDetailsBloc(getTVShowDetailsUseCase);
   });
 
   tearDown(() {
@@ -36,25 +29,6 @@ void main() {
   });
 
   const tId = 1399;
-
-  final tListTVShowEntity = [
-    TVShowEntity(
-      backdropPath: '/mAJ84W6I8I272Da87qplS2Dp9ST.jpg',
-      firstAirDate: DateTime.now(),
-      genreIds: const [9648, 18],
-      id: 202250,
-      name: 'Dirty Linen',
-      originCountry: const ['PH'],
-      originalLanguage: 'tl',
-      originalName: 'Dirty Linen',
-      overview:
-          'To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.',
-      popularity: 2797.914,
-      posterPath: '/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg',
-      voteAverage: 5,
-      voteCount: 13,
-    ),
-  ];
 
   final tTVShowDetailsEntity = TVShowDetailsEntity(
     adult: false,
@@ -131,73 +105,39 @@ void main() {
     voteCount: 21390,
   );
 
-  const tType = TVShowTypeEnum.onTheAir;
-
-  group('getTVShows', () {
-    blocTest<TVShowBloc, TVShowState>(
-      'Should emit the correct state sequence when getTVShowsUseCase returns success',
-      build: () {
-        when(() => getTVShowsUseCase(tType))
-            .thenAnswer((_) async => Right(tListTVShowEntity));
-        return bloc;
-      },
-      act: (bloc) {
-        bloc.add(const GetTVShowsEvent(type: tType));
-      },
-      expect: () => <dynamic>[
-        isA<TVShowsLoading>(),
-        isA<TVShowsSuccess>(),
-      ],
-    );
-
-    blocTest<TVShowBloc, TVShowState>(
-      'Should emit the correct state sequence when getTVShowsUseCase returns error',
-      build: () {
-        when(() => getTVShowsUseCase(tType))
-            .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));
-        return bloc;
-      },
-      act: (bloc) {
-        bloc.add(const GetTVShowsEvent(type: tType));
-      },
-      expect: () => <dynamic>[
-        isA<TVShowsLoading>(),
-        isA<TVShowsError>(),
-      ],
-    );
+  test('Should initiate state equals to TVShowDetailsInitial', () async {
+    expect(bloc.state, equals(const TVShowDetailsInitial()));
   });
 
-  group('getDetails', () {
-    blocTest<TVShowBloc, TVShowState>(
-      'Should emit the correct state sequence when getTVShowDetailsUseCase returns success',
-      build: () {
-        when(() => getTVShowDetailsUseCase(tId))
-            .thenAnswer((_) async => Right(tTVShowDetailsEntity));
-        return bloc;
-      },
-      act: (bloc) {
-        bloc.add(const GetTVShowDetailsEvent(id: tId));
-      },
-      expect: () => <dynamic>[
-        isA<TVShowDetailsLoading>(),
-        isA<TVShowDetailsSuccess>(),
-      ],
-    );
+  blocTest<TVShowDetailsBloc, TVShowDetailsState>(
+    'Should emit the correct state sequence when getTVShowDetailsUseCase returns success',
+    build: () {
+      when(() => getTVShowDetailsUseCase(tId))
+          .thenAnswer((_) async => Right(tTVShowDetailsEntity));
+      return bloc;
+    },
+    act: (bloc) {
+      bloc.add(const GetTVShowDetailsEvent(id: tId));
+    },
+    expect: () => <dynamic>[
+      isA<TVShowDetailsLoading>(),
+      isA<TVShowDetailsSuccess>(),
+    ],
+  );
 
-    blocTest<TVShowBloc, TVShowState>(
-      'Should emit the correct state sequence when getTVShowDetailsUseCase returns error',
-      build: () {
-        when(() => getTVShowDetailsUseCase(tId))
-            .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));
-        return bloc;
-      },
-      act: (bloc) {
-        bloc.add(const GetTVShowDetailsEvent(id: tId));
-      },
-      expect: () => <dynamic>[
-        isA<TVShowDetailsLoading>(),
-        isA<TVShowDetailsError>(),
-      ],
-    );
-  });
+  blocTest<TVShowDetailsBloc, TVShowDetailsState>(
+    'Should emit the correct state sequence when getTVShowDetailsUseCase returns error',
+    build: () {
+      when(() => getTVShowDetailsUseCase(tId))
+          .thenAnswer((_) async => Left(ApiException('Ocorreu algum erro')));
+      return bloc;
+    },
+    act: (bloc) {
+      bloc.add(const GetTVShowDetailsEvent(id: tId));
+    },
+    expect: () => <dynamic>[
+      isA<TVShowDetailsLoading>(),
+      isA<TVShowDetailsError>(),
+    ],
+  );
 }
