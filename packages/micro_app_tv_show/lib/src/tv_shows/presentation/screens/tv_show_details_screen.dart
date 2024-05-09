@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_core/micro_core.dart';
@@ -193,26 +194,21 @@ class TVShowDetailsScreen extends StatelessWidget {
                     details.networks.length,
                     (index) {
                       if (details.networks[index].logoPath != null) {
-                        return InkWell(
-                          child: DSCachedImage(
-                            path: APIInfo.requestH30Image(
-                              details.networks[index].logoPath!,
-                            ),
-                            placeholder: const DSShimmer(
-                              height: 30,
-                              width: 100,
-                            ),
+                        return DSCachedImage(
+                          path: APIInfo.requestH30Image(
+                            details.networks[index].logoPath!,
                           ),
-                          onTap: () {},
+                          placeholder: const DSShimmer(
+                            height: 30,
+                            width: 100,
+                            borderRadius: BorderRadius.zero,
+                          ),
                         );
                       }
-                      return InkWell(
-                        child: _getText(
-                          text: details.networks[index].name,
-                          fontSize: 14,
-                          isBold: true,
-                        ),
-                        onTap: () {},
+                      return _getText(
+                        text: details.networks[index].name,
+                        fontSize: 14,
+                        isBold: true,
                       );
                     },
                   ),
