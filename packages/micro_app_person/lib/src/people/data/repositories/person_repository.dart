@@ -11,8 +11,8 @@ class PersonRepository implements IPersonRepository {
   PersonRepository(this._dataSource);
 
   @override
-  Future<Either<Exception, List<PersonEntity>>> getList() async {
-    return await _dataSource.getList();
+  Future<Either<Exception, PersonEntity>> getList({required int page}) async {
+    return await _dataSource.getList(page: page);
   }
 
   @override

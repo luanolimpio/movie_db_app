@@ -23,6 +23,8 @@ void main() {
   const tJsonDetails =
       '{"adult": false, "also_known_as": ["Thomas Jeffrey Hanks"], "biography": "Thomas Jeffrey Hanks (born July 9, 1956) is an American actor and filmmaker", "birthday": "1956-07-09","deathday": null,"gender": 2,"homepage": null,"id": 31,"imdb_id": "nm0000158","known_for_department": "Acting","name": "Tom Hanks","place_of_birth": "Concord, California, USA","popularity": 82.989,"profile_path": "/xndWFsBlClOJFRdhSt4NBwiPq2o.jpg"}';
 
+  const tPage = 1;
+
   group('getList', () {
     test('Should return success when call dio client', () async {
       when(() => dioClient.get(any())).thenAnswer(
@@ -34,7 +36,7 @@ void main() {
           ),
         ),
       );
-      final result = await dataSource.getList();
+      final result = await dataSource.getList(page: tPage);
       expect(result.isRight(), true);
     });
 
@@ -46,7 +48,7 @@ void main() {
           ),
         ),
       );
-      final result = await dataSource.getList();
+      final result = await dataSource.getList(page: tPage);
       expect(result.isLeft(), true);
     });
   });

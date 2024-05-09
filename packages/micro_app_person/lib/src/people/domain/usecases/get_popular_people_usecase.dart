@@ -8,7 +8,7 @@ class GetPopularPeopleUseCase {
 
   GetPopularPeopleUseCase(this._repository);
 
-  Future<Either<Exception, List<PersonEntity>>> call() async {
-    return _repository.getList();
+  Future<Either<Exception, PersonEntity>> call({required int page}) async {
+    return _repository.getList(page: page);
   }
 }

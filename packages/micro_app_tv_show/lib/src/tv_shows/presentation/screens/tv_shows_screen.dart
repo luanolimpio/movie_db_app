@@ -88,7 +88,7 @@ class _TVShowsScreenState extends State<TVShowsScreen>
                   mainAxisSpacing: 10,
                   mainAxisExtent: 200,
                 ),
-                itemCount: state.tvShows.length + 4,
+                itemCount: state.tvShows.length + 3,
                 itemBuilder: (_, index) {
                   if (index < state.tvShows.length) {
                     final tvShow = state.tvShows[index];

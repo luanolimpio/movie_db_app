@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:micro_common/micro_common.dart';
 import 'package:micro_design_system/micro_design_system.dart';
 
-import '../../domain/entities/person_entity.dart';
+import '../../domain/entities/person_result_entity.dart';
 
 class PersonCardWidget extends StatelessWidget {
   const PersonCardWidget({
@@ -11,7 +11,7 @@ class PersonCardWidget extends StatelessWidget {
     super.key,
   });
 
-  final PersonEntity person;
+  final PersonResultEntity person;
   final VoidCallback onTap;
 
   @override

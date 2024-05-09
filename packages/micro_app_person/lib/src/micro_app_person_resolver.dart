@@ -7,7 +7,7 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 import 'core/injector/injector.dart';
 import 'core/routes/person_routes.dart';
 import 'people/presentation/arguments/person_details_arguments.dart';
-import 'people/presentation/bloc/person_bloc.dart';
+import 'people/presentation/bloc/list/person_bloc.dart';
 import 'people/presentation/screens/person_details_screen.dart';
 import 'people/presentation/screens/popular_people_screen.dart';
 

@@ -35,7 +35,7 @@ class MovieResultEntity extends Equatable {
 
   @override
   String toString() {
-    return 'MovieEntity(posterPath: $posterPath,'
+    return 'MovieResultEntity(posterPath: $posterPath,'
         ' adult: $adult,'
         ' overview: $overview,'
         ' releaseDate: $releaseDate,'

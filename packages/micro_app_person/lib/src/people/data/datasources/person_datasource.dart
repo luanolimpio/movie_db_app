@@ -13,16 +13,13 @@ class PersonDatasource implements IPersonDatasource {
   PersonDatasource(this._dioClient);
 
   @override
-  Future<Either<Exception, List<PersonEntity>>> getList() async {
+  Future<Either<Exception, PersonEntity>> getList({required int page}) async {
     try {
       final result = await _dioClient.get(
-        'person/popular?api_key=${APIInfo.key}&language=${APIInfo.language}',
+        'person/popular?api_key=${APIInfo.key}&language=${APIInfo.language}&page=$page',
       );
       if (result.statusCode == 200) {
-        final List<PersonEntity> list = (result.data['results'] as List)
-            .map((dynamic json) => PersonModel.fromJson(json))
-            .toList();
-        return Right(list);
+        return Right(PersonModel.fromJson(result.data));
       }
       return Left(
         ApiException(
@@ -36,16 +33,20 @@ class PersonDatasource implements IPersonDatasource {
 
   @override
   Future<Either<Exception, PersonDetailsEntity>> getDetails(int id) async {
-    final result = await _dioClient.get(
-      'person/$id?api_key=${APIInfo.key}&language=${APIInfo.language}',
-    );
-    if (result.statusCode == 200) {
-      return Right(PersonDetailsModel.fromJson(result.data));
+    try {
+      final result = await _dioClient.get(
+        'person/$id?api_key=${APIInfo.key}&language=${APIInfo.language}',
+      );
+      if (result.statusCode == 200) {
+        return Right(PersonDetailsModel.fromJson(result.data));
+      }
+      return Left(
+        ApiException(
+          'Não foi possível buscar os detalhes. Por favor, tente novamente.',
+        ),
+      );
+    } catch (e) {
+      return Left(ApiException(e.toString()));
     }
-    return Left(
-      ApiException(
-        'Não foi possível buscar os detalhes. Por favor, tente novamente.',
-      ),
-    );
   }
 }

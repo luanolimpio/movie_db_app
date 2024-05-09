@@ -2,7 +2,6 @@ import 'package:micro_dependencies/micro_dependencies.dart';
 
 class TVShowResultEntity extends Equatable {
   const TVShowResultEntity({
-    required this.backdropPath,
     required this.genreIds,
     required this.id,
     required this.name,
@@ -14,10 +13,11 @@ class TVShowResultEntity extends Equatable {
     required this.posterPath,
     required this.voteAverage,
     required this.voteCount,
+    this.backdropPath,
     this.firstAirDate,
   });
 
-  final String backdropPath;
+  final String? backdropPath;
   final DateTime? firstAirDate;
   final List<int> genreIds;
   final int id;
@@ -33,7 +33,7 @@ class TVShowResultEntity extends Equatable {
 
   @override
   String toString() {
-    return 'TVShowEntity(backdropPath: $backdropPath,'
+    return 'TVShowResultEntity(backdropPath: $backdropPath,'
         ' firstAirDate: $firstAirDate,'
         ' genreIds: $genreIds,'
         ' id: $id,'
@@ -50,18 +50,18 @@ class TVShowResultEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    backdropPath,
-    firstAirDate,
-    genreIds,
-    id,
-    name,
-    originCountry,
-    originalLanguage,
-    originalName,
-    overview,
-    popularity,
-    posterPath,
-    voteAverage,
-    voteCount,
-  ];
+        backdropPath,
+        firstAirDate,
+        genreIds,
+        id,
+        name,
+        originCountry,
+        originalLanguage,
+        originalName,
+        overview,
+        popularity,
+        posterPath,
+        voteAverage,
+        voteCount,
+      ];
 }

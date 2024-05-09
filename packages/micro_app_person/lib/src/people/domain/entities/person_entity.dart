@@ -1,53 +1,33 @@
-import 'package:micro_common/micro_common.dart';
 import 'package:micro_dependencies/micro_dependencies.dart';
 
-import '../../../core/enums/department_type_enum.dart';
+import 'person_result_entity.dart';
 
 class PersonEntity extends Equatable {
   const PersonEntity({
-    required this.adult,
-    required this.gender,
-    required this.id,
-    required this.knownFor,
-    required this.knownForDepartment,
-    required this.name,
-    required this.originalName,
-    required this.popularity,
-    this.profilePath,
+    required this.page,
+    required this.results,
+    required this.totalPages,
+    required this.totalResults,
   });
 
-  final bool adult;
-  final int gender;
-  final int id;
-  final List<KnownForEntity> knownFor;
-  final DepartmentTypeEnum knownForDepartment;
-  final String name;
-  final String originalName;
-  final double popularity;
-  final String? profilePath;
+  final int page;
+  final List<PersonResultEntity> results;
+  final int totalPages;
+  final int totalResults;
 
   @override
   String toString() {
-    return 'PersonEntity(adult: $adult,'
-        ' gender: $gender,'
-        ' id: $id,'
-        ' knownFor: $knownFor,'
-        ' knownForDepartment: $knownForDepartment,'
-        ' name: $name,'
-        ' originalName: $originalName,'
-        ' popularity: $popularity,'
-        ' profilePath: $profilePath)';
+    return 'PersonEntity(page: $page,'
+        ' results: $results,'
+        ' totalPages: $totalPages,'
+        ' totalResults: $totalResults)';
   }
 
   @override
   List<Object?> get props => [
-        adult,
-        gender,
-        id,
-        knownFor,
-        knownForDepartment,
-        name,
-        popularity,
-        profilePath,
+        page,
+        results,
+        totalPages,
+        totalResults,
       ];
 }

@@ -72,10 +72,11 @@ class DSTopPosterCard extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                  const SizedBox(height: 1),
                   Text(
                     description,
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 11,
                       color: Colors.black45,
                     ),
                     maxLines: 2,

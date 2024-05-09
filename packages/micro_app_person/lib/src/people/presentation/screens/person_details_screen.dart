@@ -6,9 +6,9 @@ import 'package:micro_design_system/micro_design_system.dart';
 
 import '../../domain/entities/person_details_entity.dart';
 import '../arguments/person_details_arguments.dart';
-import '../bloc/person_bloc.dart';
-import '../bloc/person_event.dart';
-import '../bloc/person_state.dart';
+import '../bloc/details/person_details_bloc.dart';
+import '../bloc/details/person_details_event.dart';
+import '../bloc/details/person_details_state.dart';
 
 class PersonDetailsScreen extends StatelessWidget {
   const PersonDetailsScreen({
@@ -21,12 +21,12 @@ class PersonDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          GetIt.I<PersonBloc>()..add(GetPersonDetailsEvent(id: arguments.id)),
+      create: (_) => GetIt.I<PersonDetailsBloc>()
+        ..add(GetPersonDetailsEvent(id: arguments.id)),
       child: Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: BlocConsumer<PersonBloc, PersonState>(
+            child: BlocConsumer<PersonDetailsBloc, PersonDetailsState>(
               listener: (context, state) {
                 if (state is PersonDetailsError) {
                   navigatorKey.currentState!.pop();

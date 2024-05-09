@@ -4,7 +4,6 @@ import '../../domain/entities/tv_show_result_entity.dart';
 
 class TVShowResultModel extends TVShowResultEntity {
   const TVShowResultModel({
-    required super.backdropPath,
     required super.genreIds,
     required super.id,
     required super.name,
@@ -16,6 +15,7 @@ class TVShowResultModel extends TVShowResultEntity {
     required super.posterPath,
     required super.voteAverage,
     required super.voteCount,
+    super.backdropPath,
     super.firstAirDate,
   });
 

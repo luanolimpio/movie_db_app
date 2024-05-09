@@ -88,7 +88,7 @@ class _MoviesScreenState extends State<MoviesScreen>
                   mainAxisSpacing: 10,
                   mainAxisExtent: 200,
                 ),
-                itemCount: state.movies.length + 4,
+                itemCount: state.movies.length + 3,
                 itemBuilder: (_, index) {
                   if (index < state.movies.length) {
                     final movie = state.movies[index];

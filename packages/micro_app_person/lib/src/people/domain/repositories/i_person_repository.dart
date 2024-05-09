@@ -4,7 +4,7 @@ import '../entities/person_details_entity.dart';
 import '../entities/person_entity.dart';
 
 abstract class IPersonRepository {
-  Future<Either<Exception, List<PersonEntity>>> getList();
+  Future<Either<Exception, PersonEntity>> getList({required int page});
 
   Future<Either<Exception, PersonDetailsEntity>> getDetails(int id);
 }
