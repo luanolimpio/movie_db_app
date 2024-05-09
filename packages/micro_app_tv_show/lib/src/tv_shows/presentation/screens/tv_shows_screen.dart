@@ -62,7 +62,7 @@ class _TVShowsScreenState extends State<TVShowsScreen>
         child: BlocConsumer<TVShowBloc, TVShowState>(
           listener: (context, state) {
             if (state is TVShowsError) {
-              navigatorKey.currentState!.pop();
+              if (state.currentPage == 1) navigatorKey.currentState!.pop();
               DSAlertOverlay.show(
                 context: context,
                 type: DSAlertTypeEnum.error,

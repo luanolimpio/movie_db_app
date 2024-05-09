@@ -62,7 +62,7 @@ class _MoviesScreenState extends State<MoviesScreen>
         child: BlocConsumer<MovieBloc, MovieState>(
           listener: (context, state) {
             if (state is MoviesError) {
-              navigatorKey.currentState!.pop();
+              if (state.currentPage == 1) navigatorKey.currentState!.pop();
               DSAlertOverlay.show(
                 context: context,
                 type: DSAlertTypeEnum.error,

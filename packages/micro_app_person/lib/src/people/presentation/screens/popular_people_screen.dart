@@ -56,7 +56,7 @@ class _PopularPeopleScreenState extends State<PopularPeopleScreen>
         child: BlocConsumer<PersonBloc, PersonState>(
           listener: (context, state) {
             if (state is PopularPeopleError) {
-              navigatorKey.currentState!.pop();
+              if (state.currentPage == 1) navigatorKey.currentState!.pop();
               DSAlertOverlay.show(
                 context: context,
                 type: DSAlertTypeEnum.error,
