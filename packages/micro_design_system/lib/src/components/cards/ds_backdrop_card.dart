@@ -1,16 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/ds_key_enum.dart';
+import 'ds_no_image_card.dart';
 import 'ds_poster_card.dart';
 
 class DSBackdropCard extends StatelessWidget {
   const DSBackdropCard({
     required this.title,
     required this.tagline,
+    required this.onTapBackButton,
     this.posterPath,
     this.backdropPath,
     this.subtitle,
-    this.onTapBackButton,
     Key? key,
   }) : super(key: key);
 
@@ -19,11 +21,12 @@ class DSBackdropCard extends StatelessWidget {
   final String? posterPath;
   final String? backdropPath;
   final String? subtitle;
-  final VoidCallback? onTapBackButton;
+  final VoidCallback onTapBackButton;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
+      key: Key(DSKeyEnum.backdropCard.name),
       alignment: Alignment.center,
       children: [
         Container(
@@ -65,18 +68,12 @@ class DSBackdropCard extends StatelessWidget {
                   path: posterPath!,
                 )
               else
-                Container(
+                DSNoImageCard(
                   height: 200,
                   width: MediaQuery.of(context).size.width / 3,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade400,
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  child: Icon(
-                    Icons.image,
-                    size: 100,
-                    color: Colors.grey.shade600,
-                  ),
+                  icon: Icons.image,
+                  iconSize: 100,
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
               const SizedBox(width: 10),
               Flexible(

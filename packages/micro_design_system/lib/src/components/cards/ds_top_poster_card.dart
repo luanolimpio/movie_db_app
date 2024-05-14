@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../images/ds_cached_image.dart';
 import '../loading/ds_shimmer.dart';
+import '../utils/ds_key_enum.dart';
+import 'ds_no_image_card.dart';
 
 class DSTopPosterCard extends StatelessWidget {
   const DSTopPosterCard({
@@ -40,6 +42,7 @@ class DSTopPosterCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: _imageRadius,
                 child: DSCachedImage(
+                  key: Key(DSKeyEnum.cachedImage.name),
                   path: path!,
                   fit: BoxFit.cover,
                   placeholder: DSShimmer(
@@ -49,17 +52,11 @@ class DSTopPosterCard extends StatelessWidget {
                 ),
               )
             else
-              Container(
+              DSNoImageCard(
                 height: height,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: _imageRadius,
-                ),
-                child: Icon(
-                  Icons.person,
-                  size: 100,
-                  color: Colors.grey.shade600,
-                ),
+                icon: Icons.person,
+                iconSize: 100,
+                borderRadius: _imageRadius,
               ),
             Padding(
               padding: const EdgeInsets.all(5.0),

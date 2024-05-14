@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../images/ds_cached_image.dart';
 import '../loading/ds_shimmer.dart';
+import '../utils/ds_key_enum.dart';
 
 class DSPosterCard extends StatelessWidget {
   const DSPosterCard({
@@ -16,6 +17,7 @@ class DSPosterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: Key(DSKeyEnum.posterCard.name),
       onTap: onTap,
       child: SizedBox(
         height: 200,
