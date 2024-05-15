@@ -29,7 +29,7 @@ class DSDetailsShimmer extends StatelessWidget {
               ),
               SizedBox(height: 10),
               DSShimmer(
-                height: 80,
+                height: 100,
               ),
               SizedBox(height: 10),
               DSShimmer(
@@ -48,6 +48,20 @@ class DSDetailsShimmer extends StatelessWidget {
               SizedBox(height: 10),
               DSShimmer(
                 height: 20,
+              ),
+              SizedBox(height: 10),
+              DSShimmer(
+                height: 20,
+                width: 90,
+              ),
+              SizedBox(height: 10),
+              DSShimmer(
+                height: 20,
+              ),
+              SizedBox(height: 10),
+              DSShimmer(
+                height: 20,
+                width: 110,
               ),
             ],
           ),
