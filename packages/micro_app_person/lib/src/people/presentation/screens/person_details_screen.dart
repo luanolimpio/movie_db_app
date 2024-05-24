@@ -68,12 +68,12 @@ class PersonDetailsScreen extends StatelessWidget {
           tagline: 'Reconhecido(a) por: ${details.knownForDepartment.value}',
           onTapBackButton: () => navigatorKey.currentState!.pop(),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (details.biography.isNotEmpty) ...[
+        if (details.biography.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 _getText(
                   text: 'Biografia',
                   fontSize: 17,
@@ -87,38 +87,48 @@ class PersonDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
               ],
-              if (arguments.knownFor.isNotEmpty) ...[
-                _getText(
-                  text: 'Reconhecido(a) por',
-                  fontSize: 17,
-                  isBold: true,
-                ),
-                const SizedBox(height: 10),
-                DSHorizontalPosterCardList(
-                  posterCards: List.generate(
-                    arguments.knownFor.length,
-                    (index) {
-                      final knownFor = arguments.knownFor[index];
-                      return DSPosterCard(
-                        path: APIInfo.requestPosterImage(
-                          knownFor.posterPath,
-                        ),
-                        onTap: () {
-                          if (knownFor.mediaType == MediaTypeEnum.movie) {
-                            EventBus.emit(
-                              GoToMovieDetailsEvent(id: knownFor.id),
-                            );
-                          } else {
-                            EventBus.emit(
-                              GoToTVShowDetailsEvent(id: knownFor.id),
-                            );
-                          }
-                        },
-                      );
-                    },
+            ),
+          ),
+        if (arguments.knownFor.isNotEmpty) ...[
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: _getText(
+              text: 'Reconhecido(a) por',
+              fontSize: 17,
+              isBold: true,
+            ),
+          ),
+          const SizedBox(height: 10),
+          DSHorizontalPosterCardList(
+            posterCards: List.generate(
+              arguments.knownFor.length,
+              (index) {
+                final knownFor = arguments.knownFor[index];
+                return DSPosterCard(
+                  path: APIInfo.requestPosterImage(
+                    knownFor.posterPath,
                   ),
-                ),
-              ],
+                  onTap: () {
+                    if (knownFor.mediaType == MediaTypeEnum.movie) {
+                      EventBus.emit(
+                        GoToMovieDetailsEvent(id: knownFor.id),
+                      );
+                    } else {
+                      EventBus.emit(
+                        GoToTVShowDetailsEvent(id: knownFor.id),
+                      );
+                    }
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               if (details.birthday != null) ...[
                 const SizedBox(height: 10),
                 _getText(
