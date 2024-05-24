@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../images/ds_cached_image.dart';
 import '../loading/ds_shimmer.dart';
 import '../utils/ds_key_enum.dart';
+import 'ds_no_image_card.dart';
 
 class DSPosterCard extends StatelessWidget {
   const DSPosterCard({
@@ -30,6 +31,12 @@ class DSPosterCard extends StatelessWidget {
             placeholder: DSShimmer(
               height: 200,
               width: MediaQuery.of(context).size.width / 3,
+            ),
+            errorWidget: DSNoImageCard(
+              height: 200,
+              width: MediaQuery.of(context).size.width / 3,
+              icon: Icons.image,
+              iconSize: 50,
             ),
           ),
         ),

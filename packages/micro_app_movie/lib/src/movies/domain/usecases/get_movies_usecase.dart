@@ -12,7 +12,8 @@ class GetMoviesUseCase {
   Future<Either<Exception, MovieEntity>> call({
     required MovieTypeEnum type,
     required int page,
+    bool useCache = false,
   }) async {
-    return _repository.getList(type: type, page: page);
+    return _repository.getList(type: type, page: page, useCache: useCache);
   }
 }

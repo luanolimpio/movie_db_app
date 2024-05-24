@@ -8,6 +8,7 @@ abstract class IMovieDatasource {
   Future<Either<Exception, MovieEntity>> getList({
     required MovieTypeEnum type,
     required int page,
+    bool useCache = false,
   });
 
   Future<Either<Exception, MovieDetailsEntity>> getDetails(int id);

@@ -17,10 +17,16 @@ class TVShowDatasource implements ITVShowDatasource {
   Future<Either<Exception, TVShowEntity>> getList({
     required TVShowTypeEnum type,
     required int page,
+    bool useCache = false,
   }) async {
     try {
       final result = await _dioClient.get(
         'tv/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}&page=$page',
+        options: Options(
+          extra: {
+            'useCache': useCache,
+          },
+        ),
       );
       if (result.statusCode == 200) {
         return Right(TVShowModel.fromJson(result.data));

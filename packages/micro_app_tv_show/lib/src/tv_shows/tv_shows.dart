@@ -1,1 +1,1 @@
-export 'presentation/widgets/tv_show_cards.dart';
+export 'presentation/widgets/tv_show_cards_widget.dart';

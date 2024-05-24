@@ -15,8 +15,13 @@ class TVShowRepository implements ITVShowRepository {
   Future<Either<Exception, TVShowEntity>> getList({
     required TVShowTypeEnum type,
     required int page,
+    bool useCache = false,
   }) async {
-    return await _dataSource.getList(type: type, page: page);
+    return await _dataSource.getList(
+      type: type,
+      page: page,
+      useCache: useCache,
+    );
   }
 
   @override

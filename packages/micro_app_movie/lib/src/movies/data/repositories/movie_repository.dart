@@ -15,8 +15,13 @@ class MovieRepository implements IMovieRepository {
   Future<Either<Exception, MovieEntity>> getList({
     required MovieTypeEnum type,
     required int page,
+    bool useCache = false,
   }) async {
-    return await _dataSource.getList(type: type, page: page);
+    return await _dataSource.getList(
+      type: type,
+      page: page,
+      useCache: useCache,
+    );
   }
 
   @override

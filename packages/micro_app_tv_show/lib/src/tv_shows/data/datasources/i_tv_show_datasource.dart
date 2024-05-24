@@ -8,6 +8,7 @@ abstract class ITVShowDatasource {
   Future<Either<Exception, TVShowEntity>> getList({
     required TVShowTypeEnum type,
     required int page,
+    bool useCache = false,
   });
 
   Future<Either<Exception, TVShowDetailsEntity>> getDetails(int id);

@@ -13,11 +13,7 @@ class Injector {
     final GetIt getIt = GetIt.instance;
 
     getIt.registerLazySingleton<ISearchDatasource>(() => SearchDatasource(
-          Dio(
-            BaseOptions(
-              baseUrl: APIInfo.baseUrl,
-            ),
-          ),
+          CustomDio(),
         ));
 
     getIt.registerLazySingleton<ISearchRepository>(

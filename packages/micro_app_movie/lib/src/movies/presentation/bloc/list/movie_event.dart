@@ -5,9 +5,8 @@ abstract class MovieEvent {
 }
 
 class GetMoviesEvent extends MovieEvent {
-  const GetMoviesEvent({required this.type});
+  const GetMoviesEvent({required this.type, this.useCache = false});
 
   final MovieTypeEnum type;
+  final bool useCache;
 }
-
-

@@ -26,6 +26,7 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     final result = await _getMoviesUseCase(
       type: event.type,
       page: state.currentPage,
+      useCache: event.useCache,
     );
     result.fold(
       (error) => emit(

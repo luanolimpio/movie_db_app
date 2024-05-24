@@ -6,12 +6,14 @@ class DSCachedImage extends StatelessWidget {
     required this.path,
     this.fit,
     this.placeholder,
+    this.errorWidget,
     Key? key,
   }) : super(key: key);
 
   final String path;
   final BoxFit? fit;
   final Widget? placeholder;
+  final Widget? errorWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class DSCachedImage extends StatelessWidget {
       imageUrl: path,
       fit: fit,
       placeholder: placeholder != null ? (_, __) => placeholder! : null,
+      errorWidget: errorWidget != null ? (_, __, ___) => errorWidget! : null,
     );
   }
 }

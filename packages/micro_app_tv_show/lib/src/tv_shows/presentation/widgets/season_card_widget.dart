@@ -8,11 +8,13 @@ class SeasonCardWidget extends StatelessWidget {
   const SeasonCardWidget({
     required this.season,
     this.lastEpisodeName,
+    this.onTap,
     super.key,
   });
 
   final SeasonEntity season;
   final String? lastEpisodeName;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +110,7 @@ class SeasonCardWidget extends StatelessWidget {
           ),
         ],
       ],
+      onTap: onTap,
     );
   }
 }

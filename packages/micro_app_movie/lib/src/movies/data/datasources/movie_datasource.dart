@@ -17,10 +17,16 @@ class MovieDatasource implements IMovieDatasource {
   Future<Either<Exception, MovieEntity>> getList({
     required MovieTypeEnum type,
     required int page,
+    bool useCache = false,
   }) async {
     try {
       final result = await _dioClient.get(
         'movie/${type.path}?api_key=${APIInfo.key}&language=${APIInfo.language}&page=$page',
+        options: Options(
+          extra: {
+            'useCache': useCache,
+          },
+        ),
       );
       if (result.statusCode == 200) {
         return Right(MovieModel.fromJson(result.data));

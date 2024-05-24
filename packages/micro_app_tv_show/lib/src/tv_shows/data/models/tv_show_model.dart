@@ -15,7 +15,7 @@ class TVShowModel extends TVShowEntity {
       results: map['results'] == null
           ? []
           : List.from(map['results'])
-              .map((e) => TVShowResultModel.fromJson(e))
+              .map((e) => TVShowResultModel.fromJson(Map<String, dynamic>.from(e)))
               .toList(),
       totalPages: map['total_pages'],
       totalResults: map['total_results'],

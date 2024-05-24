@@ -12,7 +12,8 @@ class GetTVShowsUseCase {
   Future<Either<Exception, TVShowEntity>> call({
     required TVShowTypeEnum type,
     required int page,
+    bool useCache = false,
   }) async {
-    return _repository.getList(type: type, page: page);
+    return _repository.getList(type: type, page: page, useCache: useCache);
   }
 }

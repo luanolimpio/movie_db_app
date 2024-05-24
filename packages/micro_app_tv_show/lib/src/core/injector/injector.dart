@@ -15,11 +15,9 @@ class Injector {
     final GetIt getIt = GetIt.instance;
 
     getIt.registerLazySingleton<ITVShowDatasource>(() => TVShowDatasource(
-          Dio(
-            BaseOptions(
-              baseUrl: APIInfo.baseUrl,
-            ),
-          ),
+          CustomDio([
+            CommonInterceptor(HiveCacheService()),
+          ]),
         ));
 
     getIt.registerLazySingleton<ITVShowRepository>(

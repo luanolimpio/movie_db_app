@@ -26,6 +26,7 @@ class TVShowBloc extends Bloc<TVShowEvent, TVShowState> {
     final result = await _getTVShowsUseCase(
       type: event.type,
       page: state.currentPage,
+      useCache: event.useCache,
     );
     result.fold(
       (error) => emit(

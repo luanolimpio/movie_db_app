@@ -15,7 +15,7 @@ class MovieModel extends MovieEntity {
       results: map['results'] == null
           ? []
           : List.from(map['results'])
-              .map((e) => MovieResultModel.fromJson(e))
+              .map((e) => MovieResultModel.fromJson(Map<String, dynamic>.from(e)))
               .toList(),
       totalPages: map['total_pages'],
       totalResults: map['total_results'],

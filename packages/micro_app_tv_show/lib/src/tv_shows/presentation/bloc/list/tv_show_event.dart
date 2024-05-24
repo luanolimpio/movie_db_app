@@ -5,7 +5,8 @@ abstract class TVShowEvent {
 }
 
 class GetTVShowsEvent extends TVShowEvent {
-  const GetTVShowsEvent({required this.type});
+  const GetTVShowsEvent({required this.type, this.useCache = false});
 
   final TVShowTypeEnum type;
+  final bool useCache;
 }

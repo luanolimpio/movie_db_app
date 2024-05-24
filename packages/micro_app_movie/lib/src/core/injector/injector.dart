@@ -13,13 +13,13 @@ class Injector {
   static void initialize() {
     final GetIt getIt = GetIt.instance;
 
-    getIt.registerLazySingleton<IMovieDatasource>(() => MovieDatasource(
-          Dio(
-            BaseOptions(
-              baseUrl: APIInfo.baseUrl,
-            ),
-          ),
-        ));
+    getIt.registerLazySingleton<IMovieDatasource>(
+      () => MovieDatasource(
+        CustomDio([
+          CommonInterceptor(HiveCacheService()),
+        ]),
+      ),
+    );
 
     getIt.registerLazySingleton<IMovieRepository>(
       () => MovieRepository(getIt()),

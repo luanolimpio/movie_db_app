@@ -19,9 +19,7 @@ class DSHorizontalPosterCardList extends StatelessWidget {
         itemCount: posterCards.length,
         itemBuilder: (_, index) {
           return Padding(
-            padding: index != posterCards.length - 1
-                ? const EdgeInsets.only(right: 10)
-                : EdgeInsets.zero,
+            padding: EdgeInsets.only(left: index == 0 ? 10 : 0, right: 10),
             child: posterCards[index],
           );
         },

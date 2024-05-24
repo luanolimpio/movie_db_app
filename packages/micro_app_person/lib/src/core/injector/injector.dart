@@ -15,11 +15,7 @@ class Injector {
     final GetIt getIt = GetIt.instance;
 
     getIt.registerLazySingleton<IPersonDatasource>(() => PersonDatasource(
-          Dio(
-            BaseOptions(
-              baseUrl: APIInfo.baseUrl,
-            ),
-          ),
+          CustomDio(),
         ));
 
     getIt.registerLazySingleton<IPersonRepository>(

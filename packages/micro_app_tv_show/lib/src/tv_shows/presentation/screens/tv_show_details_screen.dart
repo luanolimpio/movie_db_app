@@ -154,28 +154,13 @@ class TVShowDetailsScreen extends StatelessWidget {
                 SeasonCardWidget(
                   season: details.seasons.last,
                   lastEpisodeName: details.lastEpisodeToAir!.name,
-                ),
-                const SizedBox(height: 10),
-                OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+                  onTap: () => navigatorKey.currentState!.pushNamed(
+                    TVShowRoutes.seasons,
+                    arguments: SeasonsArguments(
+                      tvShowName: details.name,
+                      seasons: details.seasons,
                     ),
-                    side: const BorderSide(width: 1.0, color: Colors.white),
                   ),
-                  child: const Text(
-                    'Ver Todas as Temporadas',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    navigatorKey.currentState!.pushNamed(
-                      TVShowRoutes.seasons,
-                      arguments: SeasonsArguments(
-                        tvShowName: details.name,
-                        seasons: details.seasons,
-                      ),
-                    );
-                  },
                 ),
               ],
               if (details.networks.isNotEmpty) ...[

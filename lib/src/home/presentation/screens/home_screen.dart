@@ -36,14 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
         leadingWidth: 40,
       ),
       body: const SingleChildScrollView(
-        padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 10),
-            MovieCards(),
+            MovieCardsWidget(),
             SizedBox(height: 10),
-            TVShowCards(),
+            TVShowCardsWidget(),
           ],
         ),
       ),
