@@ -1,16 +1,15 @@
-# movie_db_app
+# Movie DB APP
 
-A new Flutter project.
+- [X] Clean Architecture
+- [X] Micro Frontend
+- [X] Design Patterns
+    - [X] Singleton
+    - [X] Event Bus
+    - [X] Dependency Injection
+    - [X] Pagination 
+- [X] Solid
+- [X] TDD (Unit Test, Widget Test)
+- [X] Offline First
+- [X] Design System
+- [X] API integration
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
