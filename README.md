@@ -1,4 +1,12 @@
-# Movie DB APP
+# 🎥 Movie DB APP
+
+## ⏩ Preview
+
+Home | Drawer | Search
+------------- | ------------- | -------------
+![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/home_movies.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/top_rated_movies.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/search_movies.gif?raw=true)
+
+## 📚 Tech Stack
 
 - [X] Clean Architecture
 - [X] Micro Frontend
