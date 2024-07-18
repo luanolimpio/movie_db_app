@@ -6,6 +6,9 @@ Home | Drawer | Search
 ------------- | ------------- | -------------
 ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/home_movies.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/top_rated_movies.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/search_movies.gif?raw=true)
 
+Home | Drawer | Search
+------------- | ------------- | -------------
+![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/home_tv_shows.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/popular_tv_shows.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/search_tv_shows.gif?raw=true)
 ## 📚 Tech Stack
 
 - [X] Clean Architecture
