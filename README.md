@@ -2,15 +2,17 @@
 
 Movie DB is a Flutter app designed using the TMDB API, providing a complete experience in the world of entertainment. It offers detailed information about movies, TV series, and artists, all in one place. The app allows users to explore new releases, discover classics, and learn more about their favorite artists.
 
+**[The Movie Database (TMDB) API](https://developer.themoviedb.org/docs/getting-started)**
+
 ## ⏩ Preview
 
 Home | Menu | Search
 ------------- | ------------- | -------------
-![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/home_movies.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/top_rated_movies.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/search_movies.gif?raw=true)
+![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/home.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/menu.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/search.gif?raw=true)
 
 ## ✨ Features
- - Display a list of popular, now playing, upcoming and top rated movies.
- - Display a list of popular, airing today, on tv, and top rated tv shows.
+ - Display lists of movies by type: popular, now playing, upcoming and top rated.
+ - Display lists of tv shows by type: popular, airing today, on tv, and top rated.
  - Display a list of people ordered by popularity.
  - View detailed information about movies, tv shows, and people.
  - Search for movies, TV shows and people in a single request.
