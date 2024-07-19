@@ -1,6 +1,6 @@
 # 🎥 Movie DB APP
 
-Movie DB is a Flutter app designed using the TMDB API, providing a complete experience in the world of entertainment. It offers detailed information about movies, TV series, and artists, all in one place. The app allows users to explore new releases, discover classics, and learn more about their favorite artists.
+Movie DB is a Flutter app designed using the TMDB API, that provides a complete experience in the world of entertainment. It offers detailed information about movies, TV series, and artists, all in one place. The app allows users to explore new releases, discover classics, and learn more about their favorite artists.
 
 **[The Movie Database (TMDB) API](https://developer.themoviedb.org/docs/getting-started)**
 
