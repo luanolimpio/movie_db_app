@@ -8,7 +8,7 @@ Movie DB is a Flutter app designed using the TMDB API, that provides a complete 
 
 Home | Menu | Search
 ------------- | ------------- | -------------
-![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/home.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/menu.gif?raw=true) | ![](https://github.com/LuanMaia1234/movie_db_app/blob/master/assets/preview/search.gif?raw=true)
+![](https://github.com/luanolimpio/movie_db_app/blob/master/assets/preview/home.gif?raw=true) | ![](https://github.com/luanolimpio/movie_db_app/blob/master/assets/preview/menu.gif?raw=true) | ![](https://github.com/luanolimpio/movie_db_app/blob/master/assets/preview/search.gif?raw=true)
 
 ## ✨ Features
  - Display lists of movies by type: popular, now playing, upcoming and top rated.
@@ -36,7 +36,7 @@ Home | Menu | Search
 
 To run this app, you'll need to have Android Studio or Visual Studio Code installed. Follow these steps to get started:
 
- - Clone this repository: git clone https://github.com/LuanMaia1234/movie_db_app.git
+ - Clone this repository: git clone https://github.com/luanolimpio/movie_db_app.git
  - Open the project in Android Studio or Visual Studio Code.
  - Run "flutter pub get" in the terminal.
  - Build and run the app.
